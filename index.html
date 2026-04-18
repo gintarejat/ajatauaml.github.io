@@ -578,7 +578,7 @@ nav{
   .modal-visuals{border-right:none;border-bottom:1px solid rgba(240,237,227,0.1)}
   .modal-panel{max-height:95vh}
 }
-.footer-strip{position:fixed;bottom:0;left:0;right:0;height:28px;background:var(--bg2);border-top:1px solid var(--border-bright);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;z-index:150}
+.footer-strip{position:fixed;bottom:0;left:0;right:0;height:28px;background:var(--bg2);border-top:1px solid var(--border-bright);align-items:center;justify-content:space-between;padding:0 1.5rem;z-index:150}
 .footer-strip span{font-family:var(--fm);font-size:0.55rem;letter-spacing:0.07em;text-transform:uppercase;color:rgba(240,237,227,0.2)}
 .footer-strip .fa{color:rgba(232,176,48,0.5)}
 .footer-strip .fa a{color:inherit;text-decoration:none}
@@ -677,7 +677,7 @@ nav{
       <div class="home-profile">
         <div class="hp-row"><span class="k">Location</span><span class="v">Lithuania · Remote</span></div>
         <div class="hp-row"><span class="k">Timezone</span><span class="v">EMEA · UTC+2/3</span></div>
-        <div class="hp-row"><span class="k">Open to</span><span class="v tl">Remote · B2B · DAO</span></div>
+        <div class="hp-row"><span class="k">Open to</span><span class="v tl">Remote</span></div>
         <div class="hp-row"><span class="k">Email</span><span class="v am">gintare@ajatauaml.com</span></div>
       </div>
     </div>
@@ -704,18 +704,18 @@ nav{
 <div id="pane-portfolio" class="tab-pane">
   <div style="display:grid;grid-template-columns:180px 1fr;min-height:100vh">
     <div class="p-sidebar">
-      <h2>Real cases.<br><em>Documented.</em></h2>
-      <p>Nordic bank investigations, Web3 builds, and AI tools in progress.</p>
+      <h2>Real projects.<br><em>Documented.</em></h2>
+      <p>Investigations, Web3 builds, and AI tools in progress.</p>
       <div class="port-filter">
         <button class="pf active">All (6)</button>
-        <button class="pf">Live</button>
-        <button class="pf">Building</button>
-        <button class="pf">Coming</button>
+        <button class="live">Live</button>
+        <button class="wip">Building</button>
+        <button class="soon">Coming</button>
       </div>
     </div>
     <div class="port-area">
       <div class="port-grid">
-        <div class="pc pc-amber" onclick="openModal('live1')" style="cursor:pointer">
+        <div class="pc pc-amber live" onclick="openModal('live1')" style="cursor:pointer">
           <div class="pc-cat"><span class="cat-dot"></span>Beta Version Live</div>
           <h3>AML Automation — Python & SQL Scripts</h3>
          <p class="wc-desc">
@@ -723,48 +723,42 @@ nav{
            The core premise: the same investigative logic used in manual AML reviews can be partially automated using SQL queries, Python scripts, and GenAI API calls.</p>
           <p><strong>Project components:</strong> (1) A Python-based sanctions screening helper that cross-references name inputs against OFAC SDN list patterns. 
           <p>(2) SQL anomaly detection queries that flag unusual transaction patterns in sample datasets. </p>
-          <p>>(3) A GenAI-assisted SAR narrative generator that takes structured investigation
-            notes and produces draft SAR language. </p>>
+          <p>>(3) A GenAI-assisted SAR narrative generator that takes structured investigation notes and produces draft SAR language. </p>
             <p>Streaming output via Claude API. Beta v0.1.</p>
          </p>
           <div class="pc-tags"><span class="pt">GenAI API</span><span class="pt">Python</span><span class="pt">SQL</span>
             <span class="pt">RegTech</span><span class="pt">SAR / STR Drafting</span><span class="pt">OFAC Screening</span>
             <span class="pt">Anomaly Detection</span></div>
         </div>
-        <div class="pc pc-olive" onclick="openModal('dao1')" style="cursor:pointer">
+        <div class="pc pc-olive wip" onclick="openModal('dao1')" style="cursor:pointer">
           <div class="pc-cat"><span class="cat-dot"></span>DAO · Apr 29</div>
-          
             <h3>Kambria Participant-Proposed DAO — DEP 2</h3>
-          <p class="wc-desc">
-            <p>Compliance &amp; Risk Advisor on tokenomics risk and MiCA frameworks in decentralised governance.</p>
-          </p>
+            <p class="wc-desc">
+              Compliance Risk Advisor on tokenomics risk and MiCA frameworks in decentralised governance.
+            </p>
           <div class="pc-tags"><span class="pt">DAO</span><span class="pt">MiCA</span><span class="pt">Web3</span></div>
         </div>
         <div class="pc pc-steel" onclick="openModal('build1')" style="cursor:pointer">
-          <div class="pc-cat"><span class="cat-dot"></span>Beta Version Live</div>
+          <div class="pc-cat live"><span class="cat-dot"></span>Beta Version Live</div>
               <h3>Policy Reader — Compliance Document Analyser</h3>
             <p class="wc-desc">
-              <p> Dual-mode AI tool for compliance teams. 
+              Dual-mode AI tool for compliance teams. 
                 <p>Compare mode: inline strikethrough/highlight showing difference between policy versions.</p>
                 <p>Analyse mode: extracts every rule, threshold, and restriction into a searchable, keyword-grouped database. Beta v0.1.</p>
-              </p>
             </p>
           <div class="pc-tags"><span class="pt">Claude API</span><span class="pt">React</span><span class="pt">AMLD6</span>
             <span class="pt">MiCA</span><span class="pt">Rule Extraction</span></div>
         </div>
-        <div class="pc pc-coral" onclick="openModal('build2')" style="cursor:pointer">
+        <div class="pc pc-coral live" onclick="openModal('build2')" style="cursor:pointer">
           <div class="pc-cat"><span class="cat-dot"></span>Draft Version Live</div>
           <h3>Anti Financial Crime Knowledge Base — Compliance Guides v0.5</h3>
           <p class="wc-desc">
-            <p>Here's everything delivered — 6 PDFs + 1 interactive diagram:
-
               <p><strong>The 4 Regulation Guides:</strong></p>
 
-               <p> Guide 1 — AMLD6 · Navy/gold · 22 predicate offences, corporate liability, SAR workflow chain</p>
-               <p>Guide 2 — MiCA · Purple/teal · 3 asset categories, Travel Rule, CASP obligations checklist</p>
-               <p>Guide 3 — OFAC · Crimson/amber · SDN list, strict liability, crypto wallet screening, DPRK exposure</p> 
-               <p>Guide 4 — KYC/AML/PoF/W · Forest green · CDD ladder (SDD→CDD→EDD), PoF vs PoW distinction, PEP framework</p>
-          
+               <p>Guide 1 — AMLD6 · 22 predicate offences, corporate liability, SAR workflow chain</p>
+               <p>Guide 2 — MiCA · 3 asset categories, Travel Rule, CASP obligations checklist</p>
+               <p>Guide 3 — OFAC · SDN list, strict liability, crypto wallet screening, DPRK exposure</p> 
+               <p>Guide 4 — KYC/AML/PoF/W · CDD ladder (SDD→CDD→EDD), PoF vs PoW distinction, PEP framework</p>
               <p> Comparative & Policy Guides: </p>
                <p>Guide 5 — Fiat vs Web3 AML · Side-by-side comparison across 5 dimensions: identity, monitoring, ML techniques, regulation, KYC requirements</p>
                <p>The L1/L2 Framework Graph · Shows the full investigation workflow from TxM alert → FIU filing, with every document required at each line colour-coded as standard / critical / 
@@ -773,11 +767,11 @@ nav{
           
               <p>Coming up: 1 - AML Investigation Document Guide — all 32 documents from the L1/L2 framework, fully explained.</p>
               <p>2 - Red Flag Investigation Guide.</p>          
-                    </p>
+            </p>
          <div class="pc-tags"><span class="pt">Policy</span><span class="pt">Documentation</span><span class="pt">AML</span>
             <span class="pt">Compliance</span><span class="pt">Crypto</span></div>
         </div>
-        <div class="pc pc-dark" onclick="openModal('soon1')" style="cursor:pointer">
+        <div class="pc pc-dark soon" onclick="openModal('soon1')" style="cursor:pointer">
           <div class="pc-cat">Coming Up Soon</div>
           <h3>Case Study - AML Escalation Escalation Process</h3>
           <p class="wc-desc">
@@ -785,7 +779,7 @@ nav{
           </p>
             <div class="pc-tags"><span class="pt">tag</span><span class="pt">tag</span><span class="pt">tag</span></div>
         </div>
-        <div class="pc pc-dark" onclick="openModal('soon2')" style="cursor:pointer">
+        <div class="pc pc-dark soon" onclick="openModal('soon2')" style="cursor:pointer">
           <div class="pc-cat">Coming Up Soon</div>
           <h3>Case Study - Crypto Transation Tracing </h3>
           <p class="wc-desc">
@@ -802,8 +796,8 @@ nav{
     <h2 class="about-pull">Not the back office.<br>The team that decides if<br>the money is <em>actually clean.</em></h2>
     <div class="about-rule"></div>
     <div class="about-txt">
-      <p>Two years inside the actual AML function of a major Nordic bank — running live transaction monitoring across <strong>Finland, Denmark, and Sweden</strong>. OFAC alerts, CDD/EDD, SAR/STR filing, adverse media, OSINT. The real thing.</p>
-      <p><strong>90%+ quality score</strong> across every monthly assessment. Not a box-ticking exercise — I actually notice things. The pattern that's slightly off. The business model that doesn't add up. That's the job, and I genuinely like it.</p>
+      <p>Two years inside the actual AML function of a major Nordic bank — running live transaction monitoring across <strong>Finland, Denmark, and Sweden</strong>. OFAC alerts, CDD/EDD, adverse media, OSINT. The real thing.</p>
+      <p><strong>90%+ quality score</strong> across every monthly assessment. NOT a box-ticking exercise => The pattern that's slightly off, doesn't add up. That's the job.</p>
       <p>Now building toward <strong>Web3 and AI compliance</strong>. Four POSTECH blockchain certs. MiCA training. GenAI for fraud detection cert. Python and SQL in progress. CAMS next.</p>
     </div>
     <div class="about-tags">
@@ -818,11 +812,11 @@ nav{
     <div class="ar-top">
       <div class="ar-init">GJ</div>
       <h3>Gintarė Jatautytė</h3>
-      <div class="ar-role">AML Officer · Web3 Compliance</div>
+      <div class="ar-role">AML Officer · => Web3 Compliance</div>
     </div>
     <div class="ar-rows">
-      <div class="arw"><span class="k">Location</span><span class="v">Lithuania · Remote</span></div>
-      <div class="arw"><span class="k">Role</span><span class="v">AML Officer · Transcom</span></div>
+      <div class="arw"><span class="k">Location</span><span class="v">Lithuania · <strong>Remote</strong></span></div>
+      <div class="arw"><span class="k">Role</span><span class="v">AML Officer · Transcom(past)</span></div>
       <div class="arw"><span class="k">Timezone</span><span class="v">EMEA · EET/EEST</span></div>
       <div class="arw"><span class="k">Languages</span><span class="v">LT · EN</span></div>
       <div class="arw"><span class="k">Quality</span><span class="v tl">90%+ always</span></div>
@@ -870,7 +864,7 @@ nav{
     <div class="exp-card">
       <div class="exp-head">
         <div class="exp-head-l"><div class="co">UAB "Transcom" — Nordic Bank AML</div><h3>AML Officer</h3></div>
-        <div class="exp-head-r"><strong>May 2024 — Present</strong>Lithuania · Remote</div>
+        <div class="exp-head-r"><strong>May 2024 — December 2025</strong>Lithuania · Remote</div>
       </div>
       <div class="exp-body"><ul>
         <li>Live Transaction Monitoring (TM) across Nordic jurisdictions — Finland, Denmark, Sweden — identifying and escalating high-risk payment patterns.</li>
@@ -901,8 +895,8 @@ nav{
 <div id="pane-certs" class="tab-pane">
   <div class="cert-sidebar">
     <h2>Certified in<br>finding <em>filth.</em></h2>
-    <p>The criminals call it laundering. My job is proving the laundry's still dirty.</p>
-    <div class="cert-analogy"><strong>AML = anti-money laundering.</strong> "Laundering" = washing. I prove it's not clean. These are my cleaning credentials.</div>
+    <p>The criminals call it laundering. My job is pointing out the spots that are still left uncleaned.</p>
+    <div class="cert-analogy"><strong>AML = anti-money laundering.</strong> "Laundering" = washing. I swear you DID NOT check everything. GET CERTIFIED NOT FINED(B2B).</div>
     <div class="cert-count">9<span>Certifications</span></div>
   </div>
   <div class="cert-area">
@@ -911,7 +905,7 @@ nav{
         <div class="cc-ico">🎯</div>
         <h4>CAMS — Certified Anti-Money Laundering Specialist</h4>
         <div class="cc-iss">ACAMS · Global Gold Standard</div>
-        <div class="cc-pill cp-next"><span class="cp-dot"></span>Currently acquiring</div>
+        <div class="cc-pill cp-next"><span class="cp-dot"></span>Currently in preparation</div>
       </div>
       <div class="cc cc-cream"><div class="cc-ico">⛓</div><h4>Blockchain Specialisation (×4)</h4><div class="cc-iss">POSTECH · Coursera</div><div class="cc-pill cp-done">Completed</div></div>
       <div class="cc cc-cream"><div class="cc-ico">🪙</div><h4>EU MiCA Regulatory Framework</h4><div class="cc-iss">Markets in Crypto-Assets</div><div class="cc-pill cp-done">Completed</div></div>
@@ -951,7 +945,7 @@ nav{
 <div class="footer-strip">
   <span>© 2026 ajatau AML · Gintarė Jatautytė</span>
   <span class="fa"><a href="mailto:gintare@ajatauaml.com">gintare@ajatauaml.com</a></span>
-  <span>"Your shady transactions are my puzzle pieces."</span>
+  <span>"Your shady transactions stand no chance against my binding X-ray flashlight."</span>
 </div>
 
 <script>
@@ -968,20 +962,23 @@ function showTab(id){
 // ── PORTFOLIO MODAL DATA ──
 const projects = {
   live1: {
-    title: "Unusual Incoming Transactions & Self-Funding Pattern",
+    title: "AML Automation — Python & SQL Scripts",
     badge: "live",
-    badgeText: "Live Case Study",
+    badgeText: "Beta Version Live",
     meta: [
       {k:"Type", v:"KYC + Transaction Monitoring"},
       {k:"Jurisdiction", v:"Nordic (FI / DK / SE)"},
       {k:"Frameworks", v:"OFAC · EU AMLD · RBA"},
       {k:"Status", v:"Published"},
     ],
-    overview: `<p>This investigation began with a routine transaction monitoring alert — an unusually high volume of incoming transfers with no clear business rationale. What followed was a multi-layer Source of Funds analysis that revealed a self-funding pattern designed to simulate legitimate income.</p>
-<p><strong>The core challenge:</strong> the customer presented documentation that appeared compliant on the surface. The anomaly was in the <em>rhythm</em> of the transactions — timing, counterparty patterns, and account behaviour over a 90-day window.</p>
-<p>This case study walks through the investigation methodology: how the initial alert was triaged, how OSINT and adverse media screening expanded the risk picture, and how the final SAR narrative was structured for FIU submission.</p>`,
-    approach: `<p>Applied a Risk-Based Approach (RBA) to prioritise investigation depth. Cross-referenced transaction data with declared Source of Funds documentation. Used open-source block explorer tools to verify cryptocurrency exposure flagged in adverse media.</p>`,
-    tags: ["Transaction Monitoring","KYC / CDD","OSINT","SAR Filing","RBA","Source of Funds","Adverse Media"],
+    overview: `<p> A technical portfolio of compliance automation scripts built to demonstrate practical RegTech capability.
+           The core premise: the same investigative logic used in manual AML reviews can be partially automated using SQL queries, Python scripts, and GenAI API calls.</p>
+          <p><strong>Project components:</strong> (1) A Python-based sanctions screening helper that cross-references name inputs against OFAC SDN list patterns. 
+          <p>(2) SQL anomaly detection queries that flag unusual transaction patterns in sample datasets. </p>
+          <p>>(3) A GenAI-assisted SAR narrative generator that takes structured investigation notes and produces draft SAR language. </p>
+            <p>Streaming output via Claude API. Beta v0.1.</p>
+         </p>`,
+    tags: ["GenAI API","Python","SQL","SAR / STR Drafting","RegTech","Source of Funds","Anomaly Detection"],
     tagStyle: ["tl","tl","am","tl","","",""],
     images: [
       {label:"Investigation timeline — 90-day transaction flow", color:"img-amber", size:"modal-img-lg"},
@@ -990,7 +987,7 @@ const projects = {
     ],
     actions: [
       {label:"Download Case Study", icon:"↓", style:"ma-primary", href:"#"},
-      {label:"View on ajatauaml.com", icon:"↗", style:"ma-secondary", href:"https://www.ajatauaml.com/portfolio-1", external:true},
+      {label:"View on ajatauaml.com", icon:"↗", style:"ma-secondary", external:false},
       {label:"Download SAR Template", icon:"↓", style:"ma-ghost", href:"#"},
     ]
   },
@@ -1022,20 +1019,21 @@ const projects = {
     ]
   },
   build1: {
-    title: "On-Chain OSINT — Crypto Tracing Portfolio",
-    badge: "build",
-    badgeText: "Building Now",
+    title: "Policy Reader — Compliance Document Analyser",
+    badge: "live",
+    badgeText: "Beta Version Live",
     meta: [
       {k:"Type", v:"Blockchain OSINT / Forensics"},
       {k:"Tools", v:"Etherscan · Mempool.space"},
       {k:"Target", v:"Chainalysis-level methodology"},
       {k:"Status", v:"In Progress"},
     ],
-    overview: `<p>A hands-on portfolio of on-chain OSINT investigations built using public block explorers. The goal: develop and document a replicable methodology for tracing transaction flows, identifying wallet clusters, and flagging indicators of illicit activity — without enterprise tooling.</p>
-<p><strong>Why this matters:</strong> enterprise forensics platforms (Chainalysis Reactor, TRM Forensics, Elliptic) are built on the same underlying blockchain data that's publicly available via Etherscan and Mempool. Understanding the raw data layer makes enterprise tool outputs easier to interrogate and challenge.</p>
-<p>This project will produce: documented case walkthroughs, a personal tracing methodology guide, and a comparative analysis of public vs. enterprise-grade investigation depth.</p>`,
-    approach: `<p>Starting with BTC (Mempool.space) and ETH (Etherscan) transaction tracing. Building a personal SOP for address clustering, counterparty identification, and cross-chain bridge tracking. Each case documents the investigation process, findings, and limitation.</p>`,
-    tags: ["Etherscan","Mempool.space","Bitcoin Tracing","Ethereum Tracing","Wallet Clustering","OSINT","Chainalysis (theory)","TRM (theory)"],
+    overview: `<p class="wc-desc">
+              Dual-mode AI tool for compliance teams. 
+                <p>Compare mode: inline strikethrough/highlight showing difference between policy versions.</p>
+                <p>Analyse mode: extracts every rule, threshold, and restriction into a searchable, keyword-grouped database. Beta v0.1.</p>
+            </p>`
+    tags: ["Claude API","AMLD6","MiCA","Rule Extraction","Policy"],
     tagStyle: ["am","am","","","tl","tl","",""],
     images: [
       {label:"Wallet transaction graph — placeholder", color:"img-steel", size:"modal-img-lg"},
@@ -1045,24 +1043,34 @@ const projects = {
     actions: [
       {label:"Download Methodology Draft", icon:"↓", style:"ma-primary", href:"#"},
       {label:"View GitHub (Coming Soon)", icon:"↗", style:"ma-secondary", href:"#"},
-      {label:"Etherscan Reference", icon:"↗", style:"ma-ghost", href:"https://etherscan.io", external:true},
+      {label:"Reference", icon:"↗", style:"ma-ghost", href:"#", external:true},
     ]
   },
   build2: {
-    title: "AML Automation — Python & SQL Scripts",
-    badge: "build",
-    badgeText: "Building Now",
+    title: "Anti Financial Crime Knowledge Base — Compliance Guides v0.5",
+    badge: "live",
+    badgeText: "Draft Version Live",
     meta: [
       {k:"Type", v:"Compliance Automation"},
       {k:"Stack", v:"Python · SQL · GenAI API"},
       {k:"Purpose", v:"RegTech Portfolio"},
       {k:"Status", v:"In Progress"},
     ],
-    overview: `<p>A technical portfolio of compliance automation scripts built to demonstrate practical RegTech capability. The core premise: the same investigative logic used in manual AML reviews can be partially automated using SQL queries, Python scripts, and GenAI API calls.</p>
-<p><strong>Project components:</strong> (1) A Python-based sanctions screening helper that cross-references name inputs against OFAC SDN list patterns. (2) SQL anomaly detection queries that flag unusual transaction patterns in sample datasets. (3) A GenAI-assisted SAR narrative generator that takes structured investigation notes and produces draft SAR language.</p>
-<p>Each component is documented with methodology notes and limitations. The goal isn't to replace human judgment — it's to show how automation handles the repetitive parts so analysts can focus on the complex decisions.</p>`,
-    approach: `<p>Building in Python 3.x with pandas for data manipulation and the Anthropic API for the GenAI component. SQL scripts target PostgreSQL syntax. All sample data is synthetic — no real transaction data is used.</p>`,
-    tags: ["Python","SQL","GenAI API","OFAC Screening","Anomaly Detection","SAR Drafting","RegTech","Automation"],
+    overview: `<p><strong>The 4 Regulation Guides:</strong></p>
+
+               <p>Guide 1 — AMLD6 · 22 predicate offences, corporate liability, SAR workflow chain</p>
+               <p>Guide 2 — MiCA · 3 asset categories, Travel Rule, CASP obligations checklist</p>
+               <p>Guide 3 — OFAC · SDN list, strict liability, crypto wallet screening, DPRK exposure</p> 
+               <p>Guide 4 — KYC/AML/PoF/W · CDD ladder (SDD→CDD→EDD), PoF vs PoW distinction, PEP framework</p>
+              <p> Comparative & Policy Guides: </p>
+               <p>Guide 5 — Fiat vs Web3 AML · Side-by-side comparison across 5 dimensions: identity, monitoring, ML techniques, regulation, KYC requirements</p>
+               <p>The L1/L2 Framework Graph · Shows the full investigation workflow from TxM alert → FIU filing, with every document required at each line colour-coded as standard / critical / 
+                  regulatory filing — plus SLAs, escalation triggers, and record retention periods.</p> 
+              <p>Draft v0.5.</p>
+          
+              <p>Coming up: 1 - AML Investigation Document Guide — all 32 documents from the L1/L2 framework, fully explained.</p>
+              <p>2 - Red Flag Investigation Guide.</p>    `,
+    tags: ["Python","SQL","Claude API","Policy","Documentation","AML","RegTech","Compliance"],
     tagStyle: ["am","am","am","tl","tl","tl","",""],
     images: [
       {label:"Sanctions screening script — output sample", color:"img-coral", size:"modal-img-lg"},
@@ -1076,7 +1084,7 @@ const projects = {
     ]
   },
   soon1: {
-    title: "Case Study — Sanctions Evasion Investigation",
+    title: "Case Study - AML Escalation Escalation Process",
     badge: "soon",
     badgeText: "Coming Soon",
     meta: [
@@ -1085,10 +1093,8 @@ const projects = {
       {k:"Method", v:"Alert Escalation + OSINT"},
       {k:"Status", v:"Drafting"},
     ],
-    overview: `<p>A real-world sanctions evasion case study currently being written up. This investigation involved an OFAC alert that on first review appeared to be a false positive — the counterparty name was not an exact match. The thread it unravelled tells a different story.</p>
-<p><strong>Placeholder:</strong> full write-up in progress. Will document the initial alert, name-matching methodology, corporate structure analysis, and how the investigation ultimately led to a confirmed escalation despite an imperfect name match.</p>`,
-    approach: `<p>Documentation in progress. Methodology will cover: OFAC SDN search parameters, corporate registry cross-referencing, adverse media timeline, and the internal escalation path to the second line of defence.</p>`,
-    tags: ["OFAC","Sanctions Evasion","Corporate Registry","Alert Adjudication","OSINT","Escalation"],
+    overview: `<p>Investigation flow coming soon</p>`,
+    tags: ["tag", "tag", "tag"],
     tagStyle: ["am","","","tl","tl",""],
     images: [
       {label:"Coming soon — case study in progress", color:"img-steel", size:"modal-img-lg"},
@@ -1098,7 +1104,7 @@ const projects = {
     ]
   },
   soon2: {
-    title: "Case Study — EDD Deep Dive",
+    title: "Case Study - Crypto Transation Tracing",
     badge: "soon",
     badgeText: "Coming Soon",
     meta: [
@@ -1107,10 +1113,8 @@ const projects = {
       {k:"Subjects", v:"High-risk PEP + Complex Corp."},
       {k:"Status", v:"Drafting"},
     ],
-    overview: `<p>An Enhanced Due Diligence case study focused on a high-risk Politically Exposed Person (PEP) with multiple layers of corporate ownership. The Source of Wealth verification process required going several structures deep before a coherent picture emerged.</p>
-<p><strong>Placeholder:</strong> full documentation in progress. Will cover: PEP identification methodology, corporate ownership unwrapping, SoW evidence evaluation, and final risk rating rationale.</p>`,
-    approach: `<p>Case will document the full EDD workflow from initial PEP flag through SoW verification, adverse media analysis, and final risk assessment. Methodology based on FATF guidance for enhanced measures on PEPs.</p>`,
-    tags: ["Enhanced Due Diligence","PEP","Source of Wealth","Corporate Structures","FATF","Risk Rating"],
+    overview: `<p>Investigation flow coming soon</p>`,
+    tags: ["tag", "tag", "tag"],
     tagStyle: ["am","","tl","","",""],
     images: [
       {label:"Coming soon — case study in progress", color:"img-olive", size:"modal-img-lg"},
@@ -1216,21 +1220,25 @@ document.addEventListener('keydown',e=>{
 </script>
 
 <!-- ── PORTFOLIO MODAL ── -->
-<div class="modal-overlay" id="portfolioModal" onclick="closeModalOnOverlay(event)">
-  <div class="modal-panel" id="modalPanel">
-    <div class="modal-header">
-      <div class="modal-header-l">
-        <span class="modal-badge" id="modalBadge"><span class="mb-dot"></span><span id="modalBadgeText">Live</span></span>
-        <h2 class="modal-title" id="modalTitle">Case Study Title</h2>
-      </div>
-      <button class="modal-close" onclick="closeModal()" title="Close">✕</button>
+        <div class="modal-overlay" id="portfolioModal" onclick="closeModalOnOverlay(event)">
+          <div class="modal-panel" id="modalPanel">
+            <div class="modal-header">
+              <div class="modal-header-l">
+                <span class="modal-badge" id="modalBadge"><span class="mb-dot"></span><span id="modalBadgeText">Live</span></span>
+                <h2 class="modal-title" id="modalTitle">Case Study Title</h2>
+              </div>
+              <button class="modal-close" onclick="closeModal()" title="Close">✕</button>
+            </div>
+            <div class="modal-body">
+              <div class="modal-visuals" id="modalVisuals"><!-- injected --></div>
+              <div class="modal-info" id="modalInfo"><!-- injected --></div>
+            </div>
+            <div class="modal-actions" id="modalActions"><!-- injected --></div>
+          </div>
+        </div>
     </div>
-    <div class="modal-body">
-      <div class="modal-visuals" id="modalVisuals"><!-- injected --></div>
-      <div class="modal-info" id="modalInfo"><!-- injected --></div>
-    </div>
-    <div class="modal-actions" id="modalActions"><!-- injected --></div>
   </div>
+</div>
 </div>
 </body>
 </html>
