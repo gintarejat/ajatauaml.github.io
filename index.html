@@ -7,6 +7,33 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+  /* 1. Hide the pane by default and style it */
+.side-pane {
+    display: none;          /* Hidden by default */
+    position: fixed;        /* Stays in place on the screen */
+    top: 0;
+    right: 0;               /* Pins it to the right side of the screen */
+    width: 400px;
+    height: 100vh;
+    background-color: #f4f4f4;
+    box-shadow: -4px 0 15px rgba(0,0,0,0.2);
+    padding: 30px;
+    z-index: 999;
+}
+
+/* 2. THE MAGIC: When the URL # matches the pane's ID, show it */
+.side-pane:target {
+    display: block;
+}
+
+/* 3. Style the close button */
+.close-btn {
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 20px;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#0b0b09;--bg2:#11110e;
@@ -549,6 +576,13 @@ nav{
 </nav>
 
 <div class="pane-wrap">
+  <!-- This is the hidden pane that the button looks for -->
+<div id="pane-portfolio" class="side-pane">
+    <a href="#" class="close-btn">✖ Close</a>
+    <h2>My Portfolio</h2>
+    <p>Here is my AI-Automated SAR Generator...</p>
+</div>
+
 
 <!-- HOME: vertical split — left: hero / right: 2x2 stats bento -->
 <div id="pane-home" class="tab-pane active">
