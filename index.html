@@ -553,7 +553,7 @@ nav{
 </style>
 </head>
 <body>
-
+<!-- MENU ABOVE ALL -->
 <nav>
   <a class="logo-wrap" href="#" onclick="showTab('home');return false">
     <svg width="30" height="30" viewBox="0 0 30 30" fill="none" style="flex-shrink:0">
@@ -565,26 +565,24 @@ nav{
     <div><div class="logo-name">ajatau</div><div class="logo-sub">AML · Web3</div></div>
   </a>
   <div class="nav-tabs">
-    <button class="nav-tab active" data-tab="home" onclick="showTab('pane-home')">Home</button>
-    <button class="nav-tab" data-tab="portfolio" onclick="showTab('pane-portfolio')">Portfolio</button>
-    <button class="nav-tab" data-tab="about" onclick="showTab('pane-about')">Who's This?</button>
-    <button class="nav-tab" data-tab="skills" onclick="showTab('pane-skills')">Skills</button>
-    <button class="nav-tab" data-tab="experience" onclick="showTab('pane-experience')">Experience</button>
-    <button class="nav-tab" data-tab="certs" onclick="showTab('pane-certs')">Certs</button>
-    <button class="nav-tab" data-tab="contact" onclick="showTab('pane-contact')">Contact</button>
+    <button class="nav-tab active" data-tab="home" onclick="showTab('home')">Home</button>
+    <button class="nav-tab" data-tab="portfolio" onclick="showTab('portfolio')">Portfolio</button>
+    <button class="nav-tab" data-tab="about" onclick="showTab('about')">Who's This?</button>
+    <button class="nav-tab" data-tab="skills" onclick="showTab('skills')">Skills</button>
+    <button class="nav-tab" data-tab="experience" onclick="showTab('experience')">Experience</button>
+    <button class="nav-tab" data-tab="certs" onclick="showTab('certs')">Certs</button>
+    <button class="nav-tab" data-tab="contact" onclick="showTab('contact')">Contact</button>
   </div>
   <div class="nav-right"><a class="btn-hire" href="mailto:gintare@ajatauaml.com">Hire Me &#x2192;</a></div>
 </nav>
 
 <div class="pane-wrap">
   <!-- This is the hidden pane that the button looks for -->
-<div id="pane-portfolio" class="side-pane">
-    <a href="#" class="close-btn">✖ Close</a>
+<div class="side-pane">
 </div>
 
-
 <!-- HOME: vertical split — left: hero / right: 2x2 stats bento -->
-<div id="pane-home" class="tab-pane active">
+<div id="home" class="tab-pane active">
   <div class="home-grid">
     <div class="home-left">
       <div>
@@ -598,7 +596,7 @@ nav{
       <div>
         <p class="hero-desc">AML compliance specialist. Two years inside the actual AML team of a major Nordic bank. Pattern recognition is my thing. Dirty money doesn&apos;t stand a chance.</p>
         <div class="hero-actions">
-          <a class="btn-dark" href="#pane-portfolio" onclick="showTab('pane-portfolio');return false">View Portfolio</a>
+          <a class="btn-dark" href="#portfolio" onclick="showTab('portfolio');return false">View Portfolio</a>
           <a class="btn-ghost-dark" href="mailto:gintare@ajatauaml.com">Let&apos;s talk</a>
         </div>
       </div>
@@ -623,9 +621,8 @@ nav{
 </div>
 
 <!-- PORTFOLIO -->
-<div id="pane-portfolio" class="tab-pane">
+<div id="portfolio" class="tab-pane">
   <div class="port-layout">
-    <a href="#" class="close-btn side-pane">✖ Close</a>
     <div class="p-sidebar">
       <h2>Real cases.<br><em>Documented.</em></h2>
       <p>Nordic bank investigations, Web3 builds, and AI tools in progress.</p>
@@ -703,8 +700,7 @@ nav{
 </div>
 
 <!-- WHO'S THIS: same bento top + scrollable bio -->
-<div id="pane-about" class="tab-pane">
-      <a href="#" class="close-btn side-pane">✖ Close</a>
+<div id="about" class="tab-pane">
   <div class="about-hero-block">
     <div class="about-hero-left">
       <div>
@@ -778,8 +774,7 @@ nav{
 </div>
 
 <!-- SKILLS -->
-<div id="pane-skills" class="tab-pane">
-      <a href="#" class="close-btn side-pane">✖ Close</a>
+<div id="skills" class="tab-pane">
   <div class="sk-layout">
     <div class="sk-sidebar">
       <h2>From OFAC<br>to <em>on-chain.</em></h2>
@@ -800,8 +795,7 @@ nav{
 </div>
 
 <!-- EXPERIENCE -->
-<div id="pane-experience" class="tab-pane">
-      <a href="#" class="close-btn side-pane">✖ Close</a>
+<div id="experience" class="tab-pane">
   <div class="ex-layout">
     <div class="ex-sidebar">
       <h2>Two years in the<br><em>engine room.</em></h2>
@@ -838,8 +832,7 @@ nav{
 </div>
 
 <!-- CERTS -->
-<div id="pane-certs" class="tab-pane">
-      <a href="#" class="close-btn side-pane">✖ Close</a>
+<div id="certs" class="tab-pane">
   <div class="cert-layout">
     <div class="cert-sidebar">
       <h2>Certified in<br>finding <em>filth.</em></h2>
@@ -864,8 +857,7 @@ nav{
 </div>
 
 <!-- CONTACT -->
-<div id="pane-contact" class="tab-pane">
-      <a href="#" class="close-btn side-pane">✖ Close</a>
+<div id="contact" class="tab-pane">
   <div class="con-layout">
     <div class="con-left">
       <p class="con-kicker">// Available Now &middot; Lithuania &middot; EMEA</p>
