@@ -551,7 +551,7 @@ nav{
 <div class="pane-wrap">
   <!-- This is the hidden pane that the button looks for -->
 <!-- HOME: vertical split — left: hero / right: 2x2 stats bento -->
-<div id="home" class="tab-pane active">
+<div id="pane-home" class="tab-pane active">
   <div class="home-grid">
     <div class="home-left">
       <div>
@@ -590,7 +590,7 @@ nav{
 </div>
 
 <!-- PORTFOLIO -->
-<div id="portfolio" class="tab-pane">
+<div id="pane-portfolio" class="tab-pane">
   <div class="port-layout">
     <div class="p-sidebar">
       <h2>Real cases.<br><em>Documented.</em></h2>
@@ -608,11 +608,11 @@ nav{
         <!-- CARD 1: AML Automation — Beta Live (amber) -->
         <div class="pc pc-amber" onclick="openModal('live1')">
           <div class="pc-cat"><span class="cat-dot"></span>Beta Version Live</div>
-          <h3>SAR Drafiting Automation — Python &amp; SQL Scripts</h3>
-          <p>Sanctions screening helper (OFAC SDN patterns), SQL anomaly detection on transaction datasets, and GenAI-assisted SAR narrative generation via Claude API. Streaming output. Beta v0.1.</p>
+          <h3> Drafiting Automation — Python &amp; SQL Scripts</h3>
+          <p>Sanctions screening helper (OFAC SDN patterns), SQL anomaly detection on transaction datasets, and GenAI-assisted  narrative generation via Claude API. Streaming output. Beta v0.1.</p>
           <div class="pc-tags">
             <span class="pt">GenAI API</span><span class="pt">Python</span><span class="pt">SQL</span>
-            <span class="pt">RegTech</span><span class="pt">SAR / STR Drafting</span><span class="pt">OFAC Screening</span>
+            <span class="pt">RegTech</span><span class="pt"> / STR Drafting</span><span class="pt">OFAC Screening</span>
           </div>
         </div>
 
@@ -639,7 +639,7 @@ nav{
         <div class="pc pc-coral" onclick="openModal('build2')">
           <div class="pc-cat"><span class="cat-dot"></span>Draft Version Live</div>
           <h3>Anti Financial Crime Knowledge Base &mdash; Compliance Guides v0.5</h3>
-          <p><strong>4 Regulation Guides:</strong> AMLD6 (22 predicate offences, SAR chain), MiCA (Travel Rule, CASP obligations), OFAC (SDN list, crypto wallet screening), KYC/AML/PoF/W (CDD ladder SDD&rarr;EDD, PEP framework).</p>
+          <p><strong>4 Regulation Guides:</strong> AMLD6 (22 predicate offences,  chain), MiCA (Travel Rule, CASP obligations), OFAC (SDN list, crypto wallet screening), KYC/AML/PoF/W (CDD ladder SDD&rarr;EDD, PEP framework).</p>
           <p><strong>Comparative:</strong> Fiat vs Web3 AML across 5 dimensions. <strong>L1/L2 Framework Graph:</strong> full investigation workflow TxM alert &rarr; FIU filing, with SLAs, escalation triggers, and retention periods. Draft v0.5.</p>
           <div class="pc-tags">
             <span class="pt">Policy</span><span class="pt">Documentation</span><span class="pt">AMLD6</span>
@@ -669,7 +669,7 @@ nav{
 </div>
 
 <!-- WHO'S THIS: same bento top + scrollable bio -->
-<div id="about" class="tab-pane">
+<div id="pane-about" class="tab-pane">
   <div class="about-hero-block">
     <div class="about-hero-left">
       <div>
@@ -707,11 +707,11 @@ nav{
       <div class="bio-kicker">Who&apos;s This?</div>
       <h2 class="bio-pull">Not the back office.<br>The team that decides if<br>the money is <em>actually clean.</em></h2>
       <div class="bio-divider"></div>
-      <p class="bio-p">Two years inside the actual AML function of a major Nordic bank &mdash; running live transaction monitoring across <strong>Finland, Denmark, and Sweden</strong>. OFAC alerts, CDD/EDD, SAR/STR filing, adverse media, OSINT. The real thing.</p>
+      <p class="bio-p">Two years inside the actual AML function of a major Nordic bank &mdash; running live transaction monitoring across <strong>Finland, Denmark, and Sweden</strong>. OFAC alerts, CDD/EDD, /STR filing, adverse media, OSINT. The real thing.</p>
       <p class="bio-p"><strong>90%+ quality score</strong> across every monthly assessment. Not a box-ticking exercise &mdash; I actually notice things. The pattern that&apos;s slightly off. The business model that doesn&apos;t add up. That&apos;s the job, and I genuinely like it.</p>
       <p class="bio-p">Now building toward <strong>Web3 and AI compliance</strong>. Four POSTECH blockchain certs. MiCA training. GenAI for fraud detection cert. Python and SQL in progress. CAMS next.</p>
       <div class="bio-tags">
-        <span class="atag">OFAC</span><span class="atag">AML/CTF</span><span class="atag">CDD/EDD</span><span class="atag">OSINT</span><span class="atag">MiCA</span><span class="atag">DeFi</span><span class="atag">GenAI</span><span class="atag">RBA</span><span class="atag">Nordic FIU</span><span class="atag">FATF</span><span class="atag">SAR/STR</span><span class="atag">PEP Screening</span><span class="atag">Blockchain Analytics</span><span class="atag">VASP</span>
+        <span class="atag">OFAC</span><span class="atag">AML/CTF</span><span class="atag">CDD/EDD</span><span class="atag">OSINT</span><span class="atag">MiCA</span><span class="atag">DeFi</span><span class="atag">GenAI</span><span class="atag">RBA</span><span class="atag">Nordic FIU</span><span class="atag">FATF</span><span class="atag">/STR</span><span class="atag">PEP Screening</span><span class="atag">Blockchain Analytics</span><span class="atag">VASP</span>
       </div>
     </div>
     <div class="bio-sidebar">
@@ -743,7 +743,7 @@ nav{
 </div>
 
 <!-- SKILLS -->
-<div id="skills" class="tab-pane">
+<div id="pane-skills" class="tab-pane">
   <div class="sk-layout">
     <div class="sk-sidebar">
       <h2>From OFAC<br>to <em>on-chain.</em></h2>
@@ -752,9 +752,9 @@ nav{
     </div>
     <div class="sk-area">
       <div class="sk-grid">
-        <div class="skc"><p class="skc-cat">Core Compliance</p><h4>Financial Crime</h4><div class="sk-pills"><span class="skp">AML/CTF</span><span class="skp">CDD/EDD</span><span class="skp">SAR/STR/UAR</span><span class="skp">PEP Screening</span><span class="skp">SoF/SoW</span><span class="skp">RBA</span><span class="skp">Alert Adjudication</span><span class="skp">Risk Scoring</span></div></div>
+        <div class="skc"><p class="skc-cat">Core Compliance</p><h4>Financial Crime</h4><div class="sk-pills"><span class="skp">AML/CTF</span><span class="skp">CDD/EDD</span><span class="skp">/STR/UAR</span><span class="skp">PEP Screening</span><span class="skp">SoF/SoW</span><span class="skp">RBA</span><span class="skp">Alert Adjudication</span><span class="skp">Risk Scoring</span></div></div>
         <div class="skc"><p class="skc-cat">Regulatory Frameworks</p><h4>Regulations</h4><div class="sk-pills"><span class="skp">OFAC SDN List</span><span class="skp">EU AMLD</span><span class="skp">FATF 40</span><span class="skp">EU Consolidated Sanctions</span><span class="skp">UN Sanctions</span><span class="skp">EU MiCA</span><span class="skp">GDPR</span><span class="skp">Nordic FIU</span></div></div>
-        <div class="skc"><p class="skc-cat">Investigations</p><h4>TM &amp; OSINT</h4><div class="sk-pills"><span class="skp">Live Alert Triaging</span><span class="skp">Cross-Border Payments</span><span class="skp">OSINT</span><span class="skp">Adverse Media</span><span class="skp">Anomaly Detection</span><span class="skp">SAR Writing</span><span class="skp">TM Software (&equiv; Actimize)</span></div></div>
+        <div class="skc"><p class="skc-cat">Investigations</p><h4>TM &amp; OSINT</h4><div class="sk-pills"><span class="skp">Live Alert Triaging</span><span class="skp">Cross-Border Payments</span><span class="skp">OSINT</span><span class="skp">Adverse Media</span><span class="skp">Anomaly Detection</span><span class="skp"> Writing</span><span class="skp">TM Software (&equiv; Actimize)</span></div></div>
         <div class="skc"><p class="skc-cat">Blockchain &amp; Crypto</p><h4>On-Chain</h4><div class="sk-pills"><span class="skp">Etherscan</span><span class="skp">Mempool.space</span><span class="skp">DeFi Compliance</span><span class="skp">Crypto-Asset Risk</span><span class="skp">VASP</span><span class="skp">Travel Rule</span><span class="skp">Tokenomics Risk</span></div></div>
         <div class="skc"><p class="skc-cat">Data &amp; Analytics</p><h4>Technical</h4><div class="sk-pills"><span class="skp">SQL</span><span class="skp">Python (building)</span><span class="skp">AWS</span><span class="skp">Tableau</span><span class="skp">Google Sheets</span><span class="skp">Google Data Analytics &#x2713;</span></div></div>
         <div class="skc"><p class="skc-cat">AI &amp; RegTech</p><h4>Emerging Tech</h4><div class="sk-pills"><span class="skp">GenAI Fraud Detection &#x2713;</span><span class="skp">Prompt Engineering</span><span class="skp">AI Workflow Automation</span><span class="skp">Pattern Recognition</span><span class="skp">Async/Remote</span><span class="skp">DAO Governance</span></div></div>
@@ -764,7 +764,7 @@ nav{
 </div>
 
 <!-- EXPERIENCE -->
-<div id="experience" class="tab-pane">
+<div id="pane-experience" class="tab-pane">
   <div class="ex-layout">
     <div class="ex-sidebar">
       <h2>Two years in the<br><em>engine room.</em></h2>
@@ -782,7 +782,7 @@ nav{
           <li>SoF / SoW verification as part of Enhanced Due Diligence (EDD) for high-risk customers and complex entity structures.</li>
           <li>Risk-Based Approach (RBA) applied to customer risk scoring, incorporating KYC validation, business model and account activity analysis.</li>
           <li>Adverse media screening and OSINT for PEP, sanctions, and reputational risk identification.</li>
-          <li>SAR/STR and UAR reporting to the Financial Intelligence Unit (FIU).</li>
+          <li>/STR and UAR reporting to the Financial Intelligence Unit (FIU).</li>
           <li>Sustained <strong>90%+ quality score</strong> across every monthly assessment.</li>
         </ul></div>
       </div>
@@ -801,7 +801,7 @@ nav{
 </div>
 
 <!-- CERTS -->
-<div id="certs" class="tab-pane">
+<div id="pane-certs" class="tab-pane">
   <div class="cert-layout">
     <div class="cert-sidebar">
       <h2>Certified in<br>finding <em>filth.</em></h2>
@@ -826,7 +826,7 @@ nav{
 </div>
 
 <!-- CONTACT -->
-<div id="contact" class="tab-pane">
+<div id="pane-contact" class="tab-pane">
   <div class="con-layout">
     <div class="con-left">
       <p class="con-kicker">// Available Now &middot; Lithuania &middot; EMEA</p>
@@ -902,15 +902,15 @@ document.addEventListener('keydown', function(e) {
 // ── MODAL DATA ──
 var projects = {
   live1: {
-    title: "SAR Drafting Automation — Python & SQL Scripts",
+    title: " Drafting Automation — Python & SQL Scripts",
     badge: "live", badgeText: "Beta Version Live",
     meta: [{k:"Stack",v:"Python · SQL · Claude API"},{k:"Version",v:"Beta v0.1"},{k:"Type",v:"RegTech Automation"},{k:"Status",v:"Live"}],
-    overview: "<p>A technical portfolio of compliance automation scripts demonstrating practical RegTech capability. The core premise: the same investigative logic used in manual AML reviews can be partially automated using SQL queries, Python scripts, and GenAI API calls.</p><p><strong>Component 1:</strong> Python-based sanctions screening helper that cross-references name inputs against OFAC SDN list patterns.</p><p><strong>Component 2:</strong> SQL anomaly detection queries flagging unusual transaction patterns in sample datasets.</p><p><strong>Component 3:</strong> GenAI-assisted SAR narrative generator — takes structured investigation notes and produces draft SAR language via streaming Claude API. Beta v0.1.</p>",
+    overview: "<p>A technical portfolio of compliance automation scripts demonstrating practical RegTech capability. The core premise: the same investigative logic used in manual AML reviews can be partially automated using SQL queries, Python scripts, and GenAI API calls.</p><p><strong>Component 1:</strong> Python-based sanctions screening helper that cross-references name inputs against OFAC SDN list patterns.</p><p><strong>Component 2:</strong> SQL anomaly detection queries flagging unusual transaction patterns in sample datasets.</p><p><strong>Component 3:</strong> GenAI-assisted  narrative generator — takes structured investigation notes and produces draft  language via streaming Claude API. Beta v0.1.</p>",
     approach: "<p>Built to prove practical AI/automation execution, not just theoretical knowledge. Each component is documented with methodology notes and limitations. All sample data is fully synthetic.</p>",
-    tags: ["Python","SQL","Claude API","OFAC Screening","Anomaly Detection","SAR Drafting","RegTech"],
+    tags: ["Python","SQL","Claude API","OFAC Screening","Anomaly Detection"," Drafting","RegTech"],
     tagStyles: ["am","am","am","tl","tl","tl",""],
-    images: [{label:"SAR narrative generator — streaming output",color:"img-amber",size:"modal-img-lg"},{label:"OFAC screening script output",color:"img-steel",size:"modal-img-sm"},{label:"SQL anomaly detection results",color:"img-olive",size:"modal-img-sm"}],
-    actions: [{label:"Try Live Beta",icon:"&#x2197;",cls:"ma-p",href:"sar-draft-automation.vercel.app"",ext:true},{label:"View GitHub",icon:"&#x2197;",cls:"ma-s",href:"https://github.com/gintarejat/SAR-Draft-Automation", ext:true}]
+    images: [{label:" narrative generator — streaming output",color:"img-amber",size:"modal-img-lg"},{label:"OFAC screening script output",color:"img-steel",size:"modal-img-sm"},{label:"SQL anomaly detection results",color:"img-olive",size:"modal-img-sm"}],
+    actions: [{label:"Try Live Beta",icon:"&#x2197;",cls:"ma-p",href:"sar-draft-automation.vercel.app",ext:true},{label:"View GitHub",icon:"&#x2197;",cls:"ma-s",href:"https://github.com/gintarejat/SAR-Draft-Automation", ext:true}]
   },
   dao1: {
     title: "Kambria Participant-Proposed DAO — DEP 2",
