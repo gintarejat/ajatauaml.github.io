@@ -136,7 +136,6 @@ nav{
 }
 /* Active: fill the entire pane-wrap, flex column so children can flex:1 */
 .tab-pane.active{
-  opacity: 1;
   display:flex;
   flex-direction:column;
 }
@@ -555,7 +554,7 @@ nav{
 <body>
 <!-- MENU ABOVE ALL -->
 <nav>
-  <a class="logo-wrap" href="#" onclick="showTab('home');return false">
+  <a class="logo-wrap" href="#home" onclick="showTab('home');return false">
     <svg width="30" height="30" viewBox="0 0 30 30" fill="none" style="flex-shrink:0">
       <rect width="30" height="30" rx="7" fill="#e8b030"/>
       <circle cx="13" cy="13" r="5" stroke="#0b0b09" stroke-width="2" fill="none"/>
@@ -566,12 +565,12 @@ nav{
   </a>
   <div class="nav-tabs">
     <button class="nav-tab active" data-tab="home" onclick="showTab('home')">Home</button>
-    <button class="nav-tab" data-tab="portfolio" onclick="showTab('portfolio')">Portfolio</button>
-    <button class="nav-tab" data-tab="about" onclick="showTab('about')">Who's This?</button>
-    <button class="nav-tab" data-tab="skills" onclick="showTab('skills')">Skills</button>
-    <button class="nav-tab" data-tab="experience" onclick="showTab('experience')">Experience</button>
-    <button class="nav-tab" data-tab="certs" onclick="showTab('certs')">Certs</button>
-    <button class="nav-tab" data-tab="contact" onclick="showTab('contact')">Contact</button>
+    <button class="nav-tab" data-tab="portfolio" href="#portfolio" onclick="showTab('portfolio')">Portfolio</button>
+    <button class="nav-tab" data-tab="about" href="#about" onclick="showTab('about')">Who's This?</button>
+    <button class="nav-tab" data-tab="skills" href="#skills" onclick="showTab('skills')">Skills</button>
+    <button class="nav-tab" data-tab="experience" href="#experience" onclick="showTab('experience')">Experience</button>
+    <button class="nav-tab" data-tab="certs" href="#certs" onclick="showTab('certs')">Certs</button>
+    <button class="nav-tab" data-tab="contact" href="#contact" onclick="showTab('contact')">Contact</button>
   </div>
   <div class="nav-right"><a class="btn-hire" href="mailto:gintare@ajatauaml.com">Hire Me &#x2192;</a></div>
 </nav>
