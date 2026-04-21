@@ -468,8 +468,8 @@ nav{
 .modal-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.12);border-radius:2px}
 .modal-visuals{border-right:1px solid rgba(240,237,227,0.1);padding:1.4rem;display:flex;flex-direction:column;gap:1rem;overflow-y:auto}
 .modal-img{width:100%;border-radius:6px;overflow:hidden;border:1px solid;flex-shrink:0}
-.modal-img-placeholder{width:100%;display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;}
-.modal-img-caption{padding:0.45rem 0.7rem;background:rgba(240,237,227,0.04);border-top:1px solid rgba(240,237,227,0.08);font-family:var(--fm);font-size:0.6rem;color:var(--muted);line-height:1.5}
+.modal-img-placeholder{width:100%;display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;overflow:hidden;}
+.modal-img-placeholder img{width:100%;height:100%;object-fit:cover;display:block;}.modal-img-caption{padding:0.45rem 0.7rem;background:rgba(240,237,227,0.04);border-top:1px solid rgba(240,237,227,0.08);font-family:var(--fm);font-size:0.6rem;color:var(--muted);line-height:1.5}
 .modal-img-lg .modal-img-placeholder{min-height:260px}
 .modal-img-sm .modal-img-placeholder{min-height:130px}
 .img-amber {background:var(--amber-bg);border-color:rgba(232,176,48,0.2)}
@@ -920,8 +920,8 @@ var projects = {
     approach: "<p>Positioning as a Risk and Compliance Advisor rather than a developer. Bringing institutional AML/CTF discipline (OFAC, CDD/EDD, MiCA) into a decentralised context, evaluating tokenomic structures for financial crime exposure and regulatory compliance gaps.</p>",
     tags: ["DAO Governance","EU MiCA","Tokenomics Risk","Async / Web3","AML Advisory","DeFi Compliance"],
     tagStyles: ["am","am","","","tl","tl"],
-    images: [{label:"DAO governance structure overview",color:"img-olive",size:"modal-img-lg"},{label:"Tokenomic risk mapping",color:"img-amber",size:"modal-img-sm"},{label:"MiCA compliance checklist",color:"img-steel",size:"modal-img-sm"}],
-    actions: [{label:"Kambria DEP 2 Info",icon:"&#x2197;",cls:"ma-p",href:"https://home.kambria.io",ext:true},{label:"Download Risk Framework",icon:"&#x2193;",cls:"ma-s",href:"#"},{label:"MiCA Reference Doc",icon:"&#x2193;",cls:"ma-g",href:"#"}]
+    images: [{source:"https://cdn.discordapp.com/attachments/1336824392449265807/1496222228046545088/Ekrano_nuotrauka_is_2026-04-21_21-52-42.png?ex=69e91909&is=69e7c789&hm=0a2847f85b0f421fdbdd53d268c8a0f636eaf3f4f7a25b073b8f3d6e4a245d8a&",label:"DAO governance structure overview",color:"img-olive",size:"modal-img-lg"},{source:"https://cdn.discordapp.com/attachments/1336824392449265807/1496220265829502996/Ekrano_nuotrauka_is_2026-04-21_21-44-39.png?ex=69e91735&is=69e7c5b5&hm=48c6c69f42f8f7f495a5d36cc0414df32b21ac56ce3e87aef524701a5e9e4d6a&",label:"Tokenomic risk mapping",color:"img-amber",size:"modal-img-sm"},{source:"#",label:"MiCA compliance checklist",color:"img-steel",size:"modal-img-sm"}],
+    actions: [{label:"Kambria DEP 2 Info",icon:"&#x2197;",cls:"ma-p",href:"https://home.kambria.io",ext:true}]
   },
   build1: {
     title: "Policy Reader — Compliance Document Analyser",
@@ -931,7 +931,7 @@ var projects = {
     approach: "<p>Built to solve a real workflow problem: compliance teams waste hours manually comparing policy versions and hunting for specific rules. This tool handles both in seconds. Beta v0.1 — actively being expanded with more regulatory frameworks.</p>",
     tags: ["Claude API","React","AMLD6","MiCA","Rule Extraction","Policy Comparison","RegTech"],
     tagStyles: ["am","am","tl","tl","","",""],
-    images: [{label:"Compare mode — policy diff output",color:"img-steel",size:"modal-img-lg"},{label:"Analyse mode — rule extraction",color:"img-amber",size:"modal-img-sm"},{label:"Keyword-grouped rule database",color:"img-olive",size:"modal-img-sm"}],
+    images: [{source:"https://cdn.discordapp.com/attachments/1336824392449265807/1496279737646059660/Ekrano_nuotrauka_is_2026-04-21_21-58-54.png?ex=69e94e98&is=69e7fd18&hm=631cb17371a8014f826a51748d345e8512d0a37a3c113c9121ba666abdc7e92a&",label:"Compare mode — policy diff output",color:"img-steel",size:"modal-img-lg"},{source:"https://cdn.discordapp.com/attachments/1336824392449265807/1496279737977274458/Ekrano_nuotrauka_is_2026-04-21_22-02-27.png?ex=69e94e99&is=69e7fd19&hm=dd733335db86900a1feba7f104e4ad68cebf7c6f011026c6d0deae23d2e7c9ab&",abel:"Analyse mode — rule extraction",color:"img-amber",size:"modal-img-sm"},{source:"https://cdn.discordapp.com/attachments/1336824392449265807/1496279738296176843/Ekrano_nuotrauka_is_2026-04-21_22-02-40.png?ex=69e94e99&is=69e7fd19&hm=8903dceed120714f3ecd3a0e73c324174a48b1448ebe3530dc291c622ac02997&",label:"Keyword-grouped rule database",color:"img-olive",size:"modal-img-sm"}],
     actions: [{label:"View Live Beta",icon:"&#x2197;",cls:"ma-p",href:"#",ext:false},{label:"View GitHub",icon:"&#x2197;",cls:"ma-s",href:"#"},{label:"Download Sample Output",icon:"&#x2193;",cls:"ma-g",href:"#"}]
   },
   build2: {
@@ -942,8 +942,8 @@ var projects = {
     approach: "<p><strong>Coming up:</strong> AML Investigation Document Guide (all 32 documents from the L1/L2 framework, fully explained) and Red Flag Investigation Guide. Built as a working reference resource, not just a portfolio piece.</p>",
     tags: ["AMLD6","MiCA","OFAC","KYC/AML","PoF/PoW","PEP Framework","L1/L2 Workflow","Documentation"],
     tagStyles: ["am","am","tl","tl","","","",""],
-    images: [{label:"L1/L2 Framework Graph — investigation workflow",color:"img-coral",size:"modal-img-lg"},{label:"Fiat vs Web3 AML comparison",color:"img-steel",size:"modal-img-sm"},{label:"AMLD6 regulation guide",color:"img-amber",size:"modal-img-sm"}],
-    actions: [{label:"View Knowledge Base",icon:"&#x2197;",cls:"ma-p",href:"#",ext:false},{label:"Download L1/L2 Graph",icon:"&#x2193;",cls:"ma-s",href:"#"},{label:"AMLD6 Reference",icon:"&#x2197;",cls:"ma-g",href:"#",ext:true}]
+    images: [{source:"https://cdn.discordapp.com/attachments/1336824392449265807/1496287493450891396/Ekrano_nuotrauka_is_2026-04-22_02-12-05.png?ex=69e955d2&is=69e80452&hm=09e9e6b341c6a9bdbdf29b921127df55cb580c3e4ad08fc0c75307bba6edfbda&",label:"L1/L2 Framework Graph — investigation workflow",color:"img-coral",size:"modal-img-lg"},{label:"Fiat vs Web3 AML comparison",color:"img-steel",size:"modal-img-sm"},{label:"AMLD6 regulation guide",color:"img-amber",size:"modal-img-sm"}],
+    actions: [{label:"Guide 1: AMLD6",icon:"&#x2197;",cls:"ma-p",href:"/guides/Guide_1_AMLD6.pdf",ext:true},{label:"Guide 2: MiCA",icon:"&#x2197;",cls:"ma-p",href:"/guides/Guide_2_MiCA.pdf",ext:true},{label:"Guide 2: OFAC",icon:"&#x2197;",cls:"ma-p",href:"/guides/Guide_3_OFAC.pdf",ext:true},{label:"Guide 2: KYC, AML, PoF/W",icon:"&#x2197;",cls:"ma-p",href:"/guides/Guide_4_KYC_AML_PoFW.pdf",ext:true},{label:"Guide 2: Fiat vs Web3 AML",icon:"&#x2197;",cls:"ma-p",href:"/guides/Guide_5_Fiat_vs_Web3_AML.pdf",ext:true}{label:"DOA Policy & Tokens",icon:"&#x2193;",cls:"ma-s",href:/"guides/Guide_6_DOA_Policy_Tokens.pdf",ext:true}]
   },
   soon1: {
     title: "Case Study — AML Escalation Process",
@@ -1024,10 +1024,14 @@ function openModal(key) {
   overlay.style.display = 'flex';
   /* body overflow managed globally */
 }
-
+  
 function buildImg(img) {
+  var inner = img.source
+    ? '<img src="' + img.source + '" alt="' + img.label + '" style="width:100%;height:100%;object-fit:cover;display:block;">'
+    : '<span style="color:rgba(240,237,227,0.25)">' + img.label + '</span>';
   return '<div class="modal-img ' + img.size + ' ' + img.color + '">'
-    + '<div class="modal-img-placeholder>" + '<img src="' + 'img.source' + '">' +'</div>'
+    + '<div class="modal-img-placeholder">' + inner + '</div>'
+    + '<div class="modal-img-caption">' + img.label + '</div>'
     + '</div>';
 }
 
