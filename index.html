@@ -909,7 +909,7 @@ var projects = {
     approach: "<p>Built to prove practical AI/automation execution, not just theoretical knowledge. Each component is documented with methodology notes and limitations. All sample data is fully synthetic.</p>",
     tags: ["Python","SQL","Claude API","OFAC Screening","Anomaly Detection"," Drafting","RegTech"],
     tagStyles: ["am","am","am","tl","tl","tl",""],
-    images: [{label:" narrative generator — streaming output",color:"img-amber",size:"modal-img-lg"},{label:"OFAC screening script output",color:"img-steel",size:"modal-img-sm"},{label:"SQL anomaly detection results",color:"img-olive",size:"modal-img-sm"}],
+    images: [{src:"https://64.media.tumblr.com/662c03bf7c2328c9bcc9d95089dde9c2/6a7f9a56fa052f80-cd/s1280x1920/8ad680c43eb0700fdc28b8986c9c5158e8a3abdb.pnj", label:" narrative generator — streaming output",color:"img-amber",size:"modal-img-lg"},{src:"https://64.media.tumblr.com/12b0bfe724f041fe72914cd135bd4d5e/6a7f9a56fa052f80-8a/s1280x1920/d92d44cd5abf8a1408f5feafceeb30ec5b9740e3.pnj", label:"OFAC screening script output",color:"img-steel",size:"modal-img-sm"},{src:"https://64.media.tumblr.com/13b481f78e9d993b02cf86799d6a5086/6a7f9a56fa052f80-19/s1280x1920/0a5a1d25ef9a27f9cacdfa3329f8fad3a87d5e21.pnj",label:"SQL anomaly detection results",color:"img-olive",size:"modal-img-sm"}],
     actions: [{label:"Try Live Beta",icon:"&#x2197;",cls:"ma-p",href:"https://sar-draft-automation.vercel.app",ext:true},{label:"View GitHub",icon:"&#x2197;",cls:"ma-s",href:"https://github.com/gintarejat/SAR-Draft-Automation", ext:true}]
   },
   dao1: {
@@ -1027,7 +1027,7 @@ function openModal(key) {
 
 function buildImg(img) {
   return '<div class="modal-img ' + img.size + ' ' + img.color + '">'
-    + '<div class="modal-img-placeholder">' + img.label + '</div>'
+    + '<div class="modal-img-placeholder">' + '<img src=' + '"' + ' + img.src +'">' + '</div>'
     + '<div class="modal-img-caption">' + img.label + '</div>'
     + '</div>';
 }
