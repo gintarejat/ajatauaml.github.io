@@ -467,18 +467,18 @@ nav{
 .modal-body::-webkit-scrollbar{width:4px}
 .modal-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.12);border-radius:2px}
 .modal-visuals{border-right:1px solid rgba(240,237,227,0.1);padding:1.4rem;display:flex;flex-direction:column;gap:1rem;overflow-y:auto}
-.modal-img{width:100%;border-radius:6px;overflow:hidden;border:1px solid rgba(240,237,227,0.1);flex-shrink:0}
-.modal-img-placeholder{width:100%;display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,237,227,0.2)}
+.modal-img{width:100%;border-radius:6px;overflow:hidden;border:1px solid;flex-shrink:0}
+.modal-img-placeholder{width:100%;display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;}
 .modal-img-caption{padding:0.45rem 0.7rem;background:rgba(240,237,227,0.04);border-top:1px solid rgba(240,237,227,0.08);font-family:var(--fm);font-size:0.6rem;color:var(--muted);line-height:1.5}
 .modal-img-lg .modal-img-placeholder{min-height:260px}
 .modal-img-sm .modal-img-placeholder{min-height:130px}
-.img-amber{background:var(--amber-bg);border-color:rgba(232,176,48,0.2)}
-.img-amber .modal-img-placeholder{color:rgba(232,176,48,0.3)}
-.img-olive{background:var(--olive);border-color:rgba(138,152,112,0.2)}
-.img-olive .modal-img-placeholder{color:rgba(138,152,112,0.4)}
-.img-steel{background:var(--steel);border-color:rgba(240,237,227,0.08)}
-.img-coral{background:var(--coral-bg);border-color:rgba(212,56,32,0.2)}
-.img-coral .modal-img-placeholder{color:rgba(212,56,32,0.35)}
+.img-amber {background:var(--amber-bg);border-color:rgba(232,176,48,0.2)}
+.img-amber {color:rgba(232,176,48,0.3)}
+.img-olive {background:var(--olive);border-color:rgba(138,152,112,0.2)}
+.img-olive {color:rgba(138,152,112,0.4)}
+.img-steel {background:var(--steel);border-color:rgba(240,237,227,0.08)}
+.img-coral {background:var(--coral-bg);border-color:rgba(212,56,32,0.2)}
+.img-coral {color:rgba(212,56,32,0.35)}
 .img-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .modal-info{padding:1.6rem;display:flex;flex-direction:column;gap:1.2rem;overflow-y:auto}
 .mi-label{font-family:var(--fm);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);margin-bottom:0.4rem;display:flex;align-items:center;gap:0.35rem}
@@ -608,17 +608,17 @@ nav{
         <!-- CARD 1: AML Automation — Beta Live (amber) -->
         <div class="pc pc-amber" onclick="openModal('live1')">
           <div class="pc-cat"><span class="cat-dot"></span>Beta Version Live</div>
-          <h3> Drafiting Automation — Python &amp; SQL Scripts</h3>
+          <h3> SAR Drafiting Automation — Python &amp; SQL Scripts</h3>
           <p>Sanctions screening helper (OFAC SDN patterns), SQL anomaly detection on transaction datasets, and GenAI-assisted  narrative generation via Claude API. Streaming output. Beta v0.1.</p>
           <div class="pc-tags">
             <span class="pt">GenAI API</span><span class="pt">Python</span><span class="pt">SQL</span>
-            <span class="pt">RegTech</span><span class="pt"> / STR Drafting</span><span class="pt">OFAC Screening</span>
+            <span class="pt">RegTech</span><span class="pt"> SAR / STR Drafting</span><span class="pt">OFAC Screening</span>
           </div>
         </div>
 
         <!-- CARD 2: Kambria DAO (olive) -->
         <div class="pc pc-olive" onclick="openModal('dao1')">
-          <div class="pc-cat"><span class="cat-dot"></span>DAO &middot; Apr 29</div>
+          <div class="pc-cat"><span class="cat-dot"></span>DAO &middot; Apr 29 -> </div>
           <h3>Kambria Participant-Proposed DAO &mdash; DEP 2</h3>
           <p>Compliance Risk Advisor on tokenomics risk and MiCA frameworks in decentralised governance.</p>
           <div class="pc-tags"><span class="pt">DAO</span><span class="pt">MiCA</span><span class="pt">Web3</span><span class="pt">AML Advisory</span></div>
@@ -909,7 +909,7 @@ var projects = {
     approach: "<p>Built to prove practical AI/automation execution, not just theoretical knowledge. Each component is documented with methodology notes and limitations. All sample data is fully synthetic.</p>",
     tags: ["Python","SQL","Claude API","OFAC Screening","Anomaly Detection"," Drafting","RegTech"],
     tagStyles: ["am","am","am","tl","tl","tl",""],
-    images: [{scr:"https://64.media.tumblr.com/662c03bf7c2328c9bcc9d95089dde9c2/6a7f9a56fa052f80-cd/s1280x1920/8ad680c43eb0700fdc28b8986c9c5158e8a3abdb.png",label:" narrative generator — streaming output",color:"img-amber",size:"modal-img-lg"},{scr:"https://64.media.tumblr.com/12b0bfe724f041fe72914cd135bd4d5e/6a7f9a56fa052f80-8a/s1280x1920/d92d44cd5abf8a1408f5feafceeb30ec5b9740e3.png",label:"OFAC screening script output",color:"img-steel",size:"modal-img-sm"},{scr:"https://64.media.tumblr.com/13b481f78e9d993b02cf86799d6a5086/6a7f9a56fa052f80-19/s1280x1920/0a5a1d25ef9a27f9cacdfa3329f8fad3a87d5e21.png",label:"SQL anomaly detection results",color:"img-olive",size:"modal-img-sm"}],
+    images: [{source:"https://64.media.tumblr.com/662c03bf7c2328c9bcc9d95089dde9c2/6a7f9a56fa052f80-cd/s1280x1920/8ad680c43eb0700fdc28b8986c9c5158e8a3abdb.png",label:" narrative generator — streaming output",color:"img-amber",size:"modal-img-lg"},{source:"https://64.media.tumblr.com/12b0bfe724f041fe72914cd135bd4d5e/6a7f9a56fa052f80-8a/s1280x1920/d92d44cd5abf8a1408f5feafceeb30ec5b9740e3.png",label:"OFAC screening script output",color:"img-steel",size:"modal-img-sm"},{source:"https://64.media.tumblr.com/13b481f78e9d993b02cf86799d6a5086/6a7f9a56fa052f80-19/s1280x1920/0a5a1d25ef9a27f9cacdfa3329f8fad3a87d5e21.png",label:"SQL anomaly detection results",color:"img-olive",size:"modal-img-sm"}],
     actions: [{label:"Try Live Beta",icon:"&#x2197;",cls:"ma-p",href:"https://sar-draft-automation.vercel.app",ext:true},{label:"View GitHub",icon:"&#x2197;",cls:"ma-s",href:"https://github.com/gintarejat/SAR-Draft-Automation", ext:true}]
   },
   dao1: {
@@ -1027,7 +1027,7 @@ function openModal(key) {
 
 function buildImg(img) {
   return '<div class="modal-img ' + img.size + ' ' + img.color + '">'
-    + '<img src="' + ' + img.scr +'">'
+    + '<div class="modal-img-placeholder>" + '<img src="' + 'img.source' + '">' +'</div>'
     + '</div>';
 }
 
