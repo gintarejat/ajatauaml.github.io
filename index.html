@@ -618,8 +618,8 @@ nav{
 
         <!-- CARD 2: Kambria DAO (olive) -->
         <div class="pc pc-olive" onclick="openModal('dao1')">
-          <div class="pc-cat"><span class="cat-dot"></span>DAO &middot; Apr 29 -> </div>
-          <h3>Kambria Participant-Proposed DAO &mdash; DEP 2 (In Progress..)</h3>
+          <div class="pc-cat"><span class="cat-dot"></span>DAO</div>
+          <h3>Kambria Participant-Proposed DAO &mdash; DEP 2 </h3>
           <p>Compliance Risk Advisor to be on tokenomics risk and MiCA frameworks in decentralised governance.</p>
           <p>///Participant, preparing documentation, system proposals.</p>
 
@@ -637,8 +637,19 @@ nav{
           </div>
         </div>
 
+        <!-- CARD 4: Scam Investigator - Beta Live -->
+        <div class="pc pc-amber" onclick="openModal('build2')">
+          <div class="pc-cat"><span class="cat-dot"></span>Beta Version Live</div>
+          <h3> Scam Investigator - KYB Verification </h3>
+          <p> Validity of companies investigated with the help of Claude API. Human-in-loop. Beta v1.o.</p>
+          <div class="pc-tags">
+            <span class="pt">GenAI API</span><span class="pt">KYB</span><span class="pt">Fraud</span><span class="pt">Scam</span>
+            <span class="pt">RegTech</span><span class="pt">Documentation</span><span class="pt">OSINT</span>
+          </div>
+        </div>
+        
         <!-- CARD 4: Knowledge Base — Draft Live (coral) -->
-        <div class="pc pc-coral" onclick="openModal('build2')">
+        <div class="pc pc-coral" onclick="openModal('build3')">
           <div class="pc-cat"><span class="cat-dot"></span>Draft Version Live</div>
           <h3>Anti Financial Crime Knowledge Base &mdash; Compliance Guides v1.0</h3>
           <p><strong>4 Regulation Guides:</strong> AMLD6 (22 predicate offences,  chain), MiCA (Travel Rule, CASP obligations), OFAC (SDN list, crypto wallet screening), KYC/AML/PoF/W (CDD ladder SDD&rarr;EDD, PEP framework).</p>
@@ -913,7 +924,7 @@ var projects = {
     approach: "<p>Built to prove practical AI/automation execution, not just theoretical knowledge. Each component is documented with methodology notes and limitations. All sample data is fully synthetic.</p>",
     tags: ["Python","SQL","Claude API","OFAC Screening","Anomaly Detection"," Drafting","RegTech"],
     tagStyles: ["am","am","am","tl","tl","tl",""],
-    images: [{source:"https://64.media.tumblr.com/662c03bf7c2328c9bcc9d95089dde9c2/6a7f9a56fa052f80-cd/s1280x1920/8ad680c43eb0700fdc28b8986c9c5158e8a3abdb.png",label:"SAR narrative generator — generated sample input",color:"img-amber",size:"modal-img-lg"},{source:"https://64.media.tumblr.com/12b0bfe724f041fe72914cd135bd4d5e/6a7f9a56fa052f80-8a/s1280x1920/d92d44cd5abf8a1408f5feafceeb30ec5b9740e3.png",label:" Data textfields for input",color:"img-steel",size:"modal-img-sm"},{source:"https://64.media.tumblr.com/13b481f78e9d993b02cf86799d6a5086/6a7f9a56fa052f80-19/s1280x1920/0a5a1d25ef9a27f9cacdfa3329f8fad3a87d5e21.png",label:"Technical documentation",color:"img-olive",size:"modal-img-sm"}],
+    images: [{source:"https://64.media.tumblr.com/90fe7405a203578a76347701f9169af2/c0d592b3a02b76b8-f8/s400x600/0e317d07224b384e68d618791ffc80e59dba4805.gifv",label:"SAR Drafting Automantion — walkthrough",color:"img-amber",size:"modal-img-lg"},{source:"https://64.media.tumblr.com/662c03bf7c2328c9bcc9d95089dde9c2/6a7f9a56fa052f80-cd/s1280x1920/8ad680c43eb0700fdc28b8986c9c5158e8a3abdb.png",label:"SAR Drafting",color:"img-steel",size:"modal-img-sm"},{source:"https://64.media.tumblr.com/12b0bfe724f041fe72914cd135bd4d5e/6a7f9a56fa052f80-8a/s1280x1920/d92d44cd5abf8a1408f5feafceeb30ec5b9740e3.png",label:" Data textfields for input",color:"img-steel",size:"modal-img-sm"},{source:"https://64.media.tumblr.com/13b481f78e9d993b02cf86799d6a5086/6a7f9a56fa052f80-19/s1280x1920/0a5a1d25ef9a27f9cacdfa3329f8fad3a87d5e21.png",label:"Technical documentation",color:"img-olive",size:"modal-img-sm"}],
     actions: [{label:"Try Live Beta",icon:"&#x2197;",cls:"ma-p",href:"https://sar-draft-automation.vercel.app",ext:true},{label:"View GitHub",icon:"&#x2197;",cls:"ma-s",href:"https://github.com/gintarejat/SAR-Draft-Automation", ext:true}]
   },
   dao1: {
@@ -935,11 +946,22 @@ var projects = {
     approach: "<p>Built to solve a real workflow problem: compliance teams waste hours manually comparing policy versions and hunting for specific rules. This tool handles both in seconds. Beta v1.0 — actively being expanded with more regulatory frameworks.</p>",
     tags: ["Claude API","React","AMLD6","MiCA","Rule Extraction","Policy Comparison","RegTech"],
     tagStyles: ["am","am","tl","tl","","",""],
-    images: [{source:"https://cdn.discordapp.com/attachments/1336824392449265807/1496279737646059660/Ekrano_nuotrauka_is_2026-04-21_21-58-54.png?ex=69e94e98&is=69e7fd18&hm=631cb17371a8014f826a51748d345e8512d0a37a3c113c9121ba666abdc7e92a&",label:"Compare mode — policy diff output",color:"img-steel",size:"modal-img-lg"},{source:"https://cdn.discordapp.com/attachments/1336824392449265807/1496279737977274458/Ekrano_nuotrauka_is_2026-04-21_22-02-27.png?ex=69e94e99&is=69e7fd19&hm=dd733335db86900a1feba7f104e4ad68cebf7c6f011026c6d0deae23d2e7c9ab&",abel:"Analyse mode — rule extraction",color:"img-amber",size:"modal-img-sm"},{source:"https://cdn.discordapp.com/attachments/1336824392449265807/1496279738296176843/Ekrano_nuotrauka_is_2026-04-21_22-02-40.png?ex=69e94e99&is=69e7fd19&hm=8903dceed120714f3ecd3a0e73c324174a48b1448ebe3530dc291c622ac02997&",label:"Keyword-grouped rule database",color:"img-olive",size:"modal-img-sm"}],
+    images: [{source:"https://64.media.tumblr.com/f3a26a25f53ac30c2d14cf375a710ab5/2558a57992f0438e-73/s400x600/173c1171f2d40f1e935de77651b71d33f2710194.gifv",label:"Policy Reader Walkthrough",color:"img-steel",size:"modal-img-lg"},{source:"https://cdn.discordapp.com/attachments/1336824392449265807/1496279737977274458/Ekrano_nuotrauka_is_2026-04-21_22-02-27.png?ex=69e94e99&is=69e7fd19&hm=dd733335db86900a1feba7f104e4ad68cebf7c6f011026c6d0deae23d2e7c9ab&",abel:"Analyse mode — rule extraction",color:"img-amber",size:"modal-img-sm"},{source:"https://cdn.discordapp.com/attachments/1336824392449265807/1496279738296176843/Ekrano_nuotrauka_is_2026-04-21_22-02-40.png?ex=69e94e99&is=69e7fd19&hm=8903dceed120714f3ecd3a0e73c324174a48b1448ebe3530dc291c622ac02997&",label:"Keyword-grouped rule database",color:"img-olive",size:"modal-img-sm"}],
     actions: [{label:"View Live Beta",icon:"&#x2197;",cls:"ma-p",href:"https://policy-reader-fawn.vercel.app",ext:false},{label:"View GitHub",icon:"&#x2197;",cls:"ma-s",href:"https://github.com/gintarejat/Policy-reader"}]
   },
   build2: {
-    title: "Anti Financial Crime Knowledge Base — Compliance Guides v0.5",
+    title: "Scam Investigator - KYB Verification",
+    badge: "build", badgeText: "Draft Version Live",
+    meta: [{k:"Type",v:"KYB Verification"},{k:"Version",v:"Beta v1.0"},{k:"Status",v:"Live"}],
+    overview: "AI tool for investigating job ads and business validity built on the Claude API.",
+    approach: "Based on my own experience of almost falling for a scam job, I decided to make at tool that validates each red flag. It saves time and money, actually goes on full investigation of the company offering the job. <p>Human-in-loop automation - only human can decide the verdict.</p> <p>Generates the whole investigation into a .pdf file.</p>",
+    tags: ["KYC","KYB","CRYPTO JOB INVESTIGATION","Documentation"],
+    tagStyles: ["am","am","tl","tl","","","",""],
+    images: [{source:"https://64.media.tumblr.com/71af5773d2960a6ebebb500f224e1740/4e19b44928561f51-00/s400x600/efbab7f4d379fd556ccc2a1a6a6d3516c25ccadf.gifv",label:"Scam Investigator Tool Walkthrough",color:"img-coral",size:"modal-img-lg"}],
+    actions: [{label:"LIVE BETA",icon:"&#x2197;",cls:"ma-p",href:"https://scamnot.vercel.app",ext:true},{label:"Github",icon:"&#x2197;",cls:"ma-p",href:"https://github.com/gintarejat/scamnot",ext:true}]
+  },
+  build3: {
+    title: "Anti Financial Crime Knowledge Base — Compliance Guides v1.0",
     badge: "build", badgeText: "Draft Version Live",
     meta: [{k:"Type",v:"Compliance Reference Library"},{k:"Version",v:"Draft v1.0"},{k:"Guides",v:"6 published, 2 coming"},{k:"Status",v:"Live"}],
     overview: "<p><strong>4 Regulation Guides:</strong> AMLD6 (22 predicate offences, corporate liability, SAR workflow chain) · MiCA (3 asset categories, Travel Rule, CASP obligations checklist) · OFAC (SDN list, strict liability, crypto wallet screening, DPRK exposure) · KYC/AML/PoF/W (CDD ladder SDD→CDD→EDD, PoF vs PoW distinction, PEP framework).</p><p><strong>Comparative & Process Guides:</strong> Fiat vs Web3 AML side-by-side across 5 dimensions. L1/L2 Framework Graph showing the full investigation workflow from TxM alert. FIU filing — every document required at each stage, colour-coded as standard / critical / regulatory filing — plus SLAs, escalation triggers, and record retention periods.</p>",
