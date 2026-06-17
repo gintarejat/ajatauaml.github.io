@@ -26,7 +26,6 @@
   --inner:calc(100vh - var(--nav) - var(--foot));
 }
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--fh);overflow:hidden}
-
 /* ── NAV — FILING CABINET FOLDER TABS ── */
 nav{
   position:fixed;top:0;left:0;right:0;
@@ -88,7 +87,6 @@ nav{
   font-weight:600;transition:opacity 0.15s;white-space:nowrap;
 }
 .btn-hire:hover{opacity:0.85}
-
 /* ── PANE SYSTEM ── */
 .port-layout,.sk-layout,.ex-layout,.cert-layout,.con-layout,.about-hero-block,.about-bio{
   grid-template-columns:1fr;
@@ -113,7 +111,6 @@ nav{
 }
 .tab-pane::-webkit-scrollbar{width:4px}
 .tab-pane::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.15);border-radius:2px;}
-
 /* ── ALERT PILL ── */
 .alert-pill{
   display:inline-flex;align-items:center;gap:0.7rem;
@@ -131,7 +128,6 @@ nav{
 .blip-r1{position:absolute;inset:-4px;border-radius:50%;border:1.5px solid var(--teal);animation:ring 1.8s ease-out infinite;opacity:0;}
 .blip-r2{position:absolute;inset:-10px;border-radius:50%;border:1px solid var(--teal);animation:ring 1.8s ease-out 0.4s infinite;opacity:0;}
 @keyframes ring{0%{transform:scale(0.6);opacity:0.8}100%{transform:scale(1);opacity:0};}
-
 /* ── BUTTONS ── */
 .btn-dark{padding:0.6rem 1.4rem;background:#0b0b09;color:var(--cream);font-family:var(--fh);font-weight:700;font-size:0.82rem;border:none;border-radius:4px;cursor:pointer;text-decoration:none;transition:background 0.15s;display:inline-block}
 .btn-dark:hover{background:#2a2a28}
@@ -141,7 +137,6 @@ nav{
 .btn-amber:hover{opacity:0.88}
 .btn-ghost-light{padding:0.6rem 1.4rem;background:transparent;color:var(--cream);font-family:var(--fh);font-weight:500;font-size:0.82rem;border:1px solid var(--bb);border-radius:4px;cursor:pointer;text-decoration:none;transition:border-color 0.15s,color 0.15s;display:inline-block}
 .btn-ghost-light:hover{border-color:var(--amber);color:var(--amber)}
-
 /* ── TICKER ── */
 .ticker{background:var(--bg2);border-top:2px solid var(--amber);padding:0.65rem 0;overflow:hidden;flex-shrink:0}
 .ticker-inner{display:flex;width:max-content;animation:ticker 26s linear infinite}
@@ -150,7 +145,6 @@ nav{
 .ti{font-family:var(--fm);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,237,227,0.35);padding:0 1.5rem;white-space:nowrap;display:inline-flex;align-items:center;gap:1.5rem}
 .ti::before{content:'◆';font-size:0.35rem;color:var(--amber)}
 .ti.hi{color:rgba(232,176,48,0.7)}
-
 /* ═══════════════════════
    HOME — VERTICAL SPLIT (left: hero / right: bento)
 ═══════════════════════ */
@@ -200,7 +194,6 @@ nav{
 .hp-row .v{font-weight:600;font-size:0.78rem}
 .hp-row .v.tl{color:var(--teal)}
 .hp-row .v.am{color:var(--amber)}
-
 /* ═══════════════════════
    WHO'S THIS — same top + scrollable bio below
 ═══════════════════════ */
@@ -266,7 +259,6 @@ nav{
 .bsn:nth-child(even){border-right:none}
 .bsn .n{font-family:var(--fh);font-weight:800;font-size:1.5rem;color:var(--amber);line-height:1}
 .bsn .l{font-family:var(--fm);font-size:0.54rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--olive-light);margin-top:0.2rem;line-height:1.2}
-
 /* ═══════════════════════
    PORTFOLIO — CLEAN BENTO CARDS
 ═══════════════════════ */
@@ -317,7 +309,6 @@ nav{
 .pt{padding:0.15rem 0.45rem;border-radius:3px;font-family:var(--fm);font-size:0.58rem;border:1px solid}
 .pc-arrow{position:absolute;top:1rem;right:1rem;font-size:0.9rem;opacity:0.4;transition:opacity 0.15s,transform 0.15s}
 .pc:hover .pc-arrow{opacity:1;transform:translate(2px,-2px)}
-
 /* ═══════════════════════
    SKILLS
 ═══════════════════════ */
@@ -337,7 +328,6 @@ nav{
 .skc h4{font-size:0.85rem;font-weight:700;margin-bottom:0.75rem;color:var(--cream)}
 .sk-pills{display:flex;flex-wrap:wrap;gap:0.28rem}
 .skp{padding:0.18rem 0.48rem;border-radius:3px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);font-family:var(--fm);font-size:0.6rem;color:rgba(240,237,227,0.5)}
-
 /* ═══════════════════════
    EXPERIENCE
 ═══════════════════════ */
@@ -362,7 +352,6 @@ nav{
 .exp-body ul{list-style:none;display:flex;flex-direction:column;gap:0.4rem}
 .exp-body li{font-size:0.78rem;color:rgba(0,0,0,0.6);padding-left:1rem;position:relative;line-height:1.6}
 .exp-body li::before{content:'';position:absolute;left:0;top:0.62em;width:5px;height:5px;border-radius:50%;background:var(--coral)}
-
 /* ═══════════════════════
    CERTS
 ═══════════════════════ */
@@ -393,7 +382,6 @@ nav{
 .cp-next{background:rgba(20,184,130,0.12);color:var(--teal);border:1px solid rgba(20,184,130,0.3)}
 .cp-dot{width:4px;height:4px;border-radius:50%;background:currentColor}
 .cp-next .cp-dot{animation:ring 1.8s ease-out infinite}
-
 /* ═══════════════════════
    CONTACT
 ═══════════════════════ */
@@ -414,7 +402,6 @@ nav{
 .c-val{font-size:0.85rem;font-weight:600;color:var(--cream)}
 .c-val a{color:var(--amber);text-decoration:none}
 .c-val a:hover{text-decoration:underline}
-
 /* ── FOOTER ── */
 .footer-strip{
   position:fixed;bottom:0;left:0;right:0;
@@ -426,7 +413,6 @@ nav{
 .footer-strip span{font-family:var(--fm);font-size:0.55rem;letter-spacing:0.07em;text-transform:uppercase;color:rgba(240,237,227,0.2)}
 .footer-strip .fa{color:rgba(232,176,48,0.5)}
 .footer-strip .fa a{color:inherit;text-decoration:none}
-
 /* ═══════════════════════
    MODAL — z-index:9999, fixed to body, NOT inside any pane
 ═══════════════════════ */
@@ -506,7 +492,6 @@ nav{
 .ma-g{background:transparent;color:var(--muted);border:1px solid var(--bb)}
 .ma-g:hover{color:var(--cream);border-color:rgba(240,237,227,0.2)}
 @media(max-width:700px){.modal-body{grid-template-columns:1fr}.modal-visuals{border-right:none;border-bottom:1px solid rgba(240,237,227,0.1)}.modal-panel{max-height:94vh}}
-
 /* ── MOBILE ── */
 @media(max-width:900px){
   html,body{overflow:auto}
@@ -547,7 +532,6 @@ nav{
   <div class="nav-right"><a class="btn-hire" href="mailto:gintare@ajatauaml.com">Hire Me &#x2192;</a></div>
 </nav>
 <!-- END OF THE NAVIGATION MENU -->
-
 <div class="pane-wrap">
   <!-- This is the hidden pane that the button looks for -->
 <!-- HOME: vertical split — left: hero / right: 2x2 stats bento -->
@@ -563,7 +547,7 @@ nav{
         <h1 class="hero-name">Gintarė<span class="hero-surname">Jatautytė</span></h1>
       </div>
       <div>
-        <p class="hero-desc">AML compliance specialist. Two years inside the actual AML team of a major Nordic bank. Pattern recognition is my thing. Dirty money doesn&apos;t stand a chance.</p>
+        <p class="hero-desc">AML compliance specialist. Two years inside the actual AML team of a major Nordic Tier 1 bank. Now building the practitioner&apos;s answer to what FIS and Anthropic announced as their Financial Crimes AI Agent - an agentic SAR generator, built independently from the inside. Pattern recognition is my thing. Dirty money doesn&apos;t stand a chance.</p>
         <div class="hero-actions">
           <a class="btn-dark" href="#portfolio" onclick="showTab('portfolio');return false">View Portfolio</a>
           <a class="btn-ghost-dark" href="mailto:gintare@ajatauaml.com">Let&apos;s talk</a>
@@ -588,7 +572,6 @@ nav{
     </div>
   </div>
 </div>
-
 <!-- PORTFOLIO -->
 <div id="pane-portfolio" class="tab-pane">
   <div class="port-layout">
@@ -604,28 +587,23 @@ nav{
     </div>
     <div class="port-area">
       <div class="port-grid">
-
         <!-- CARD 1: AML Automation — Beta Live (amber) -->
         <div class="pc pc-amber" onclick="openModal('live1')">
           <div class="pc-cat"><span class="cat-dot"></span>Beta Version Live</div>
-          <h3> SAR Drafting App — Python &amp; SQL Scripts</h3>
-          <p>Sanctions screening helper (OFAC SDN patterns), SQL anomaly detection on transaction datasets, and GenAI-assisted  narrative generation via Claude API. Streaming output. Beta v1.o.</p>
+          <h3>Agentic SAR Generator &mdash; Python &amp; SQL Scripts</h3>
+          <p>Targets the same core workflow FIS and Anthropic announced as their Financial Crimes AI Agent: automated evidence assembly and SAR narrative generation with human-in-the-loop review. Built independently, from the practitioner side. Sanctions screening helper (OFAC SDN patterns), SQL anomaly detection, GenAI narrative generation via streaming Claude API. Beta v1.0.</p>
           <div class="pc-tags">
             <span class="pt">GenAI API</span><span class="pt">Python</span><span class="pt">SQL</span>
             <span class="pt">RegTech</span><span class="pt"> SAR / STR Drafting</span><span class="pt">OFAC Screening</span>
           </div>
         </div>
-
         <!-- CARD 2: Kambria DAO (olive) -->
         <div class="pc pc-olive" onclick="openModal('dao1')">
-          <div class="pc-cat"><span class="cat-dot"></span>DAO</div>
+          <div class="pc-cat"><span class="cat-dot"></span>DAO &middot; Advisor</div>
           <h3>Kambria Participant-Proposed DAO &mdash; DEP 2 </h3>
-          <p>Compliance Risk Advisor to be on tokenomics risk and MiCA frameworks in decentralised governance.</p>
-          <p>///Participant, preparing documentation, system proposals.</p>
-
+          <p>Selected as Compliance &amp; Risk Advisor (May 2026 - Present). Applying AML/MiCA expertise to tokenomics risk assessment and decentralised treasury governance design.</p>
           <div class="pc-tags"><span class="pt">DAO</span><span class="pt">MiCA</span><span class="pt">Web3</span><span class="pt">AML Advisory</span></div>
         </div>
-
         <!-- CARD 3: Policy Reader — Beta Live (steel) -->
         <div class="pc pc-steel" onclick="openModal('build1')">
           <div class="pc-cat"><span class="cat-dot"></span>Beta Version Live</div>
@@ -636,12 +614,11 @@ nav{
             <span class="pt">MiCA</span><span class="pt">Rule Extraction</span>
           </div>
         </div>
-
         <!-- CARD 4: Scam Investigator - Beta Live -->
         <div class="pc pc-amber" onclick="openModal('build2')">
           <div class="pc-cat"><span class="cat-dot"></span>Beta Version Live</div>
           <h3> Scam Investigator - KYB Verification </h3>
-          <p> Validity of companies investigated with the help of Claude API. Human-in-loop. Beta v1.o.</p>
+          <p>Validity of companies investigated with the help of Claude API. Human-in-loop. Beta v1.0.</p>
           <div class="pc-tags">
             <span class="pt">GenAI API</span><span class="pt">KYB</span><span class="pt">Fraud</span><span class="pt">Scam</span>
             <span class="pt">RegTech</span><span class="pt">Documentation</span><span class="pt">OSINT</span>
@@ -652,14 +629,13 @@ nav{
         <div class="pc pc-coral" onclick="openModal('build3')">
           <div class="pc-cat"><span class="cat-dot"></span>Draft Version Live</div>
           <h3>Anti Financial Crime Knowledge Base &mdash; Compliance Guides v1.0</h3>
-          <p><strong>4 Regulation Guides:</strong> AMLD6 (22 predicate offences,  chain), MiCA (Travel Rule, CASP obligations), OFAC (SDN list, crypto wallet screening), KYC/AML/PoF/W (CDD ladder SDD&rarr;EDD, PEP framework).</p>
-          <p><strong>Comparative:</strong> Fiat vs Web3 AML across 5 dimensions. <strong>L1/L2 Framework Graph:</strong> full investigation workflow TxM alert &rarr; FIU filing, with SLAs, escalation triggers, and retention periods. Draft v1.0.</p>
+          <p><strong>6 Published Guides:</strong> AML/KYC + PoF/W (CDD ladder SDD&rarr;EDD, PEP framework), AMLD6 (22 predicate offences), OFAC (SDN list, crypto wallet screening), MiCA (Travel Rule, CASP obligations), Fiat vs Web3 AML, DAO Policy (Tokens).</p>
+          <p><strong>2 Upcoming:</strong> AML Investigation Document Guide (all 32 L1/L2 framework documents) and Red Flag Investigation Guide (methodology). Draft v1.0.</p>
           <div class="pc-tags">
             <span class="pt">Policy</span><span class="pt">Documentation</span><span class="pt">AMLD6</span>
             <span class="pt">OFAC</span><span class="pt">MiCA</span><span class="pt">KYC</span>
           </div>
         </div>
-
         <!-- CARD 5: Coming Soon (dark) -->
         <div class="pc pc-dark" onclick="openModal('soon1')">
           <div class="pc-cat">Coming Up Soon</div>
@@ -667,7 +643,6 @@ nav{
           <p>Full investigation flow from TxM alert to FIU filing. Every document, every decision point.</p>
           <div class="pc-tags"><span class="pt">Case Study</span><span class="pt">Escalation</span><span class="pt">FIU</span></div>
         </div>
-
         <!-- CARD 6: Coming Soon (dark) -->
         <div class="pc pc-dark" onclick="openModal('soon2')">
           <div class="pc-cat">Coming Up Soon</div>
@@ -675,12 +650,10 @@ nav{
           <p>On-chain OSINT walkthrough: wallet tracing, address clustering, and illicit fund identification.</p>
           <div class="pc-tags"><span class="pt">Crypto</span><span class="pt">OSINT</span><span class="pt">Blockchain</span></div>
         </div>
-
       </div>
     </div>
   </div>
 </div>
-
 <!-- WHO'S THIS: same bento top + scrollable bio -->
 <div id="pane-about" class="tab-pane">
   <div class="about-hero-block">
@@ -690,7 +663,7 @@ nav{
         <h1 class="hero-name">Gintarė<span class="hero-surname">Jatautytė</span></h1>
       </div>
       <div>
-        <p class="hero-desc">AML compliance specialist. Two years inside the actual AML team of a major Nordic bank. Pattern recognition is my thing. Dirty money doesn&apos;t stand a chance.</p>
+        <p class="hero-desc">AML compliance specialist. Two years inside the actual AML team of a major Nordic Tier 1 bank. Pattern recognition is my thing. Dirty money doesn&apos;t stand a chance.</p>
         <div class="hero-actions">
           <a class="btn-dark" href="#pane-portfolio" onclick="showTab('portfolio');return false">View Portfolio</a>
           <a class="btn-ghost-dark" href="mailto:gintare@ajatauaml.com">Let&apos;s talk</a>
@@ -720,11 +693,12 @@ nav{
       <div class="bio-kicker">Who&apos;s This?</div>
       <h2 class="bio-pull">Not the back office.<br>The team that decides if<br>the money is <em>actually clean.</em></h2>
       <div class="bio-divider"></div>
-      <p class="bio-p">Two years inside the actual AML function of a major Nordic bank &mdash; running live transaction monitoring across <strong>Finland, Denmark, and Sweden</strong>. OFAC alerts, CDD/EDD, /STR filing, adverse media, OSINT. The real thing.</p>
+      <p class="bio-p">Two years inside the actual AML function of a major Nordic Tier 1 bank &mdash; running live transaction monitoring across <strong>Finland, Denmark, and Sweden</strong>. OFAC alerts, CDD/EDD, SAR/STR filing, adverse media, OSINT. The real thing.</p>
       <p class="bio-p"><strong>90%+ quality score</strong> across every monthly assessment. Not a box-ticking exercise &mdash; I actually notice things. The pattern that&apos;s slightly off. The business model that doesn&apos;t add up. That&apos;s the job, and I genuinely like it.</p>
-      <p class="bio-p">Now building toward <strong>Web3 and AI compliance</strong>. Four POSTECH blockchain certs. MiCA training. GenAI for fraud detection cert. Python and SQL in progress. CAMS next.</p>
+      <p class="bio-p">Now building at the intersection of <strong>AML, AI automation, and Web3</strong>. My flagship build is an <strong>agentic SAR generator</strong> on the Claude API - automated evidence assembly and SAR narrative generation with human-in-the-loop review. It targets the same core workflow <strong>FIS and Anthropic</strong> announced as their Financial Crimes AI Agent, built independently from the practitioner side.</p>
+      <p class="bio-p">Four POSTECH blockchain certs. MiCA training. GenAI for fraud detection cert. Python and SQL in progress. CAMS next.</p>
       <div class="bio-tags">
-        <span class="atag">OFAC</span><span class="atag">AML/CTF</span><span class="atag">CDD/EDD</span><span class="atag">OSINT</span><span class="atag">MiCA</span><span class="atag">DeFi</span><span class="atag">GenAI</span><span class="atag">RBA</span><span class="atag">Nordic FIU</span><span class="atag">FATF</span><span class="atag">/STR</span><span class="atag">PEP Screening</span><span class="atag">Blockchain Analytics</span><span class="atag">VASP</span>
+        <span class="atag">OFAC</span><span class="atag">AML/CTF</span><span class="atag">CDD/EDD</span><span class="atag">OSINT</span><span class="atag">MiCA</span><span class="atag">DeFi</span><span class="atag">GenAI</span><span class="atag">RBA</span><span class="atag">Nordic FIU</span><span class="atag">FATF</span><span class="atag">SAR/STR</span><span class="atag">PEP Screening</span><span class="atag">Blockchain Analytics</span><span class="atag">VASP</span>
       </div>
     </div>
     <div class="bio-sidebar">
@@ -754,28 +728,26 @@ nav{
     </div>
   </div>
 </div>
-
 <!-- SKILLS -->
 <div id="pane-skills" class="tab-pane">
   <div class="sk-layout">
     <div class="sk-sidebar">
       <h2>From OFAC<br>to <em>on-chain.</em></h2>
       <p style="margin-top:0.5rem">Full toolkit &mdash; regulations, investigations, tools, tech.</p>
-      <div class="sk-count">32<span>Skills</span></div>
+      <div class="sk-count">40<span>Skills</span></div>
     </div>
     <div class="sk-area">
       <div class="sk-grid">
-        <div class="skc"><p class="skc-cat">Core Compliance</p><h4>Financial Crime</h4><div class="sk-pills"><span class="skp">AML/CTF</span><span class="skp">CDD/EDD</span><span class="skp">/STR/UAR</span><span class="skp">PEP Screening</span><span class="skp">SoF/SoW</span><span class="skp">RBA</span><span class="skp">Alert Adjudication</span><span class="skp">Risk Scoring</span></div></div>
+        <div class="skc"><p class="skc-cat">Core Compliance</p><h4>Financial Crime</h4><div class="sk-pills"><span class="skp">AML/CTF</span><span class="skp">CDD/EDD</span><span class="skp">SAR/STR/UAR</span><span class="skp">PEP Screening</span><span class="skp">SoF/SoW</span><span class="skp">RBA</span><span class="skp">Beneficial Ownership</span><span class="skp">Alert Adjudication</span><span class="skp">Risk Scoring</span></div></div>
         <div class="skc"><p class="skc-cat">Regulatory Frameworks</p><h4>Regulations</h4><div class="sk-pills"><span class="skp">OFAC SDN List</span><span class="skp">EU AMLD</span><span class="skp">FATF 40</span><span class="skp">EU Consolidated Sanctions</span><span class="skp">UN Sanctions</span><span class="skp">EU MiCA</span><span class="skp">GDPR</span><span class="skp">Nordic FIU</span></div></div>
-        <div class="skc"><p class="skc-cat">Investigations</p><h4>TM &amp; OSINT</h4><div class="sk-pills"><span class="skp">Live Alert Triaging</span><span class="skp">Cross-Border Payments</span><span class="skp">OSINT</span><span class="skp">Adverse Media</span><span class="skp">Anomaly Detection</span><span class="skp"> Writing</span><span class="skp">TM Software (&equiv; Actimize)</span></div></div>
-        <div class="skc"><p class="skc-cat">Blockchain &amp; Crypto</p><h4>On-Chain</h4><div class="sk-pills"><span class="skp">Etherscan</span><span class="skp">Mempool.space</span><span class="skp">DeFi Compliance</span><span class="skp">Crypto-Asset Risk</span><span class="skp">VASP</span><span class="skp">Travel Rule</span><span class="skp">Tokenomics Risk</span></div></div>
+        <div class="skc"><p class="skc-cat">Investigations</p><h4>TM &amp; OSINT</h4><div class="sk-pills"><span class="skp">Live Alert Triaging</span><span class="skp">Cross-Border Payments</span><span class="skp">OSINT</span><span class="skp">Adverse Media</span><span class="skp">Anomaly Detection</span><span class="skp">Corporate Registry Analysis</span><span class="skp">TM Software (&equiv; Actimize)</span><span class="skp">Unit21 (familiar)</span></div></div>
+        <div class="skc"><p class="skc-cat">Blockchain &amp; Crypto</p><h4>On-Chain</h4><div class="sk-pills"><span class="skp">Etherscan</span><span class="skp">Mempool.space</span><span class="skp">Chainalysis / TRM / Elliptic (theory)</span><span class="skp">DeFi Compliance</span><span class="skp">Crypto-Asset Risk</span><span class="skp">VASP / CASP</span><span class="skp">Travel Rule</span><span class="skp">Tokenomics Risk</span></div></div>
         <div class="skc"><p class="skc-cat">Data &amp; Analytics</p><h4>Technical</h4><div class="sk-pills"><span class="skp">SQL</span><span class="skp">Python (SAR drafting app, Policy reader app)</span><span class="skp">AWS</span><span class="skp">Tableau</span><span class="skp">Google Sheets</span><span class="skp">Google Data Analytics &#x2713;</span></div></div>
-        <div class="skc"><p class="skc-cat">AI &amp; RegTech</p><h4>Emerging Tech</h4><div class="sk-pills"><span class="skp">GenAI Fraud Detection &#x2713;</span><span class="skp">Prompt Engineering</span><span class="skp">AI Workflow Automation</span><span class="skp">Pattern Recognition</span><span class="skp">Async/Remote</span><span class="skp">DAO Governance</span></div></div>
+        <div class="skc"><p class="skc-cat">AI &amp; RegTech</p><h4>Emerging Tech</h4><div class="sk-pills"><span class="skp">Anthropic API</span><span class="skp">Model Context Protocol (MCP)</span><span class="skp">Claude Code</span><span class="skp">Sumsub (KYC/KYB)</span><span class="skp">GenAI Fraud Detection &#x2713;</span><span class="skp">AI Workflow Automation</span><span class="skp">Pattern Recognition</span><span class="skp">DAO Governance</span></div></div>
       </div>
     </div>
   </div>
 </div>
-
 <!-- EXPERIENCE -->
 <div id="pane-experience" class="tab-pane">
   <div class="ex-layout">
@@ -789,10 +761,10 @@ nav{
     </div>
     <div class="ex-area">
       <div class="exp-card">
-        <div class="exp-head"><div class="exp-head-l"><div class="co">UAB &ldquo;Transcom&rdquo; &mdash; Nordic Bank AML</div><h3>AML Officer</h3></div><div class="exp-head-r"><strong>May 2024 &mdash; December 2025</strong>Lithuania &middot; Remote</div></div>
+        <div class="exp-head"><div class="exp-head-l"><div class="co">UAB &ldquo;Transcom&rdquo; &mdash; Major Nordic Tier 1 Bank</div><h3>AML Officer</h3></div><div class="exp-head-r"><strong>May 2024 &mdash; December 2025</strong>Lithuania &middot; Remote</div></div>
         <div class="exp-body"><ul>
-          <li>Live Transaction Monitoring (TM) across Nordic jurisdictions &mdash; Finland, Denmark, Sweden &mdash; identifying and escalating high-risk payment patterns.</li>
-          <li>SoF / SoW verification as part of Enhanced Due Diligence (EDD) for high-risk customers and complex entity structures.</li>
+          <li>Live and batch Transaction Monitoring (TM) across Nordic jurisdictions &mdash; Finland, Denmark, Sweden &mdash; on a proprietary Tier 1 bank TM platform (Actimize-equivalent), escalating patterns consistent with structuring, layering, and self-funding typologies.</li>
+          <li>SoF / SoW verification as part of Enhanced Due Diligence (EDD) for high-risk customers and complex entity structures, including beneficial ownership analysis.</li>
           <li>Risk-Based Approach (RBA) applied to customer risk scoring, incorporating KYC validation, business model and account activity analysis.</li>
           <li>Adverse media screening and OSINT for PEP, sanctions, and reputational risk identification.</li>
           <li>SAR/STR and UAR reporting to the Financial Intelligence Unit (FIU).</li>
@@ -800,7 +772,7 @@ nav{
         </ul></div>
       </div>
       <div class="exp-card">
-        <div class="exp-head"><div class="exp-head-l"><div class="co">UAB &ldquo;Transcom&rdquo; &mdash; Nordic Bank AML</div><h3>Data Coordinator Specialist</h3></div><div class="exp-head-r"><strong>Dec 2023 &mdash; May 2024</strong>Lithuania &middot; Remote</div></div>
+        <div class="exp-head"><div class="exp-head-l"><div class="co">UAB &ldquo;Transcom&rdquo; &mdash; Major Nordic Tier 1 Bank</div><h3>Data Coordinator Specialist</h3></div><div class="exp-head-r"><strong>Dec 2023 &mdash; May 2024</strong>Lithuania &middot; Remote</div></div>
         <div class="exp-body"><ul>
           <li>OFAC sanctions alert review and adjudication &mdash; exception-handling protocols for complex multi-jurisdictional escalations.</li>
           <li>Customer Due Diligence (CDD): client ID, documentation review, and risk profiling per EU AMLD and Nordic FIU requirements.</li>
@@ -812,7 +784,6 @@ nav{
     </div>
   </div>
 </div>
-
 <!-- CERTS -->
 <div id="pane-certs" class="tab-pane">
   <div class="cert-layout">
@@ -827,7 +798,7 @@ nav{
         <div class="cc cc-amber"><div class="cc-ico">&#x1F3AF;</div><h4>CAMS &mdash; Certified Anti-Money Laundering Specialist</h4><div class="cc-iss">ACAMS &middot; Global Gold Standard</div><div class="cc-pill cp-next"><span class="cp-dot"></span>Planned October 2026</div></div>
         <div class="cc cc-steel"><div class="cc-ico">&#x26D3;</div><h4>Blockchain Specialisation (&times;4)</h4><div class="cc-iss">POSTECH &middot; Coursera</div><div class="cc-pill cp-done">Completed</div></div>
         <div class="cc cc-steel"><div class="cc-ico">&#x1FA99;</div><h4>EU MiCA Regulatory Framework</h4><div class="cc-iss">Markets in Crypto-Assets</div><div class="cc-pill cp-done">Completed</div></div>
-        <div class="cc cc-steel"><div class="cc-ico">&#x1FA99;</div><h4>Sumsub's Certification Stack</h4><div class="cc-iss"> Practice-Based Certificates: Transaction Monitoring, User Verification, Business Verification Fundamentals, AML Fundamentals, Fraud Prevention, Travel Rule </div><div class="cc-pill cp-done">Completed</div></div>
+        <div class="cc cc-steel"><div class="cc-ico">&#x1FA99;</div><h4>Sumsub's Certification Stack</h4><div class="cc-iss">CPD-accredited (25.5 CPD hrs): AML Fundamentals, Fraud Prevention, User Verification, Travel Rule, Business Verification Fundamentals, Business Verification Advanced, Transaction Monitoring</div><div class="cc-pill cp-done">Completed</div></div>
         <div class="cc cc-steel"><div class="cc-ico">&#x1FA99;</div><h4>Anthropic's Certifications Stack</h4><div class="cc-iss"> AI Knowledge Base: Introduction to Model Context Protocol, Model Context Protocol: Advanced Topics, Claude with the Anthropic API, Claude Code 101 & Claude Code in Action, AI Fluency: Framework & Foundations, Introduction to Claude Cowork</div><div class="cc-pill cp-done">Completed</div></div>
         <div class="cc cc-steel"><div class="cc-ico">&#x1F916;</div><h4>GenAI for Fraud Detection &amp; Compliance</h4><div class="cc-iss">Coursera</div><div class="cc-pill cp-done">Completed</div></div>
         <div class="cc cc-steel"><div class="cc-ico">&#x1F4CA;</div><h4>Google Data Analytics</h4><div class="cc-iss">Google &middot; Coursera &middot; Certified</div><div class="cc-pill cp-done">Completed</div></div>
@@ -839,7 +810,6 @@ nav{
     </div>
   </div>
 </div>
-
 <!-- CONTACT -->
 <div id="pane-contact" class="tab-pane">
   <div class="con-layout">
@@ -864,15 +834,12 @@ nav{
     </div>
   </div>
 </div>
-
 </div><!-- /pane-wrap -->
-
 <div class="footer-strip">
   <span>&copy; 2026 ajatau AML &middot; Gintare Jatautyte</span>
   <span class="fa"><a href="mailto:gintare@ajatauaml.com">gintare@ajatauaml.com</a></span>
   <span>&ldquo;Your shady transactions are my puzzle pieces.&rdquo;</span>
 </div>
-
 <!-- MODAL: direct child of body, z-index:9999, display:none by default -->
 <div class="modal-overlay" id="portfolioModal" onclick="closeModalOnOverlay(event)">
   <div class="modal-panel" id="modalPanel">
@@ -890,7 +857,6 @@ nav{
     <div class="modal-actions" id="modalActions"></div>
   </div>
 </div>
-
 <script>
 // ── TAB SWITCHING ──
 function showTab(id) {
@@ -900,11 +866,8 @@ function showTab(id) {
   var tab = document.querySelector('[data-tab="' + id + '"]');
   if (pane) { pane.classList.add('active'); pane.scrollTop = 0; }
   if (tab) tab.classList.add('active');
-
 }
-
 // Cork board strings removed — clean bento design
-
 // ── KEYBOARD NAV ──
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') { closeModal(); return; }
@@ -915,14 +878,13 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'ArrowRight' && i < tabs.length - 1) showTab(tabs[i+1]);
   if (e.key === 'ArrowLeft' && i > 0) showTab(tabs[i-1]);
 });
-
 // ── MODAL DATA ──
 var projects = {
   live1: {
-    title: "SAR Drafting Automation — Python & SQL Scripts",
+    title: "Agentic SAR Generator - Python & SQL Scripts",
     badge: "live", badgeText: "Beta Version Live",
     meta: [{k:"Stack",v:"Python · SQL · Claude API"},{k:"Version",v:"Beta v1.0"},{k:"Type",v:"RegTech Automation"},{k:"Status",v:"Live"}],
-    overview: "<p>A technical portfolio of compliance automation scripts demonstrating practical RegTech capability. The core premise: the same investigative logic used in manual AML reviews can be partially automated using SQL queries, Python scripts, and GenAI API calls.</p><p><strong>Component 1:</strong> Python-based sanctions screening helper that cross-references name inputs against OFAC SDN list patterns.</p><p><strong>Component 2:</strong> SQL anomaly detection queries flagging unusual transaction patterns in sample datasets.</p><p><strong>Component 3:</strong> GenAI-assisted  narrative generator — takes structured investigation notes and produces draft  language via streaming Claude API. Beta v1.0.</p>",
+    overview: "<p>Targets the same core workflow FIS and Anthropic announced as their Financial Crimes AI Agent: automated evidence assembly and SAR narrative generation with human-in-the-loop review. Built independently, from the practitioner side.</p><p>A technical portfolio of compliance automation scripts demonstrating practical RegTech capability. The core premise: the same investigative logic used in manual AML reviews can be partially automated using SQL queries, Python scripts, and GenAI API calls.</p><p><strong>Component 1:</strong> Python-based sanctions screening helper that cross-references name inputs against OFAC SDN list patterns.</p><p><strong>Component 2:</strong> SQL anomaly detection queries flagging unusual transaction patterns in sample datasets.</p><p><strong>Component 3:</strong> GenAI-assisted  narrative generator — takes structured investigation notes and produces draft  language via streaming Claude API. Beta v1.0.</p>",
     approach: "<p>Built to prove practical AI/automation execution, not just theoretical knowledge. Each component is documented with methodology notes and limitations. All sample data is fully synthetic.</p>",
     tags: ["Python","SQL","Claude API","OFAC Screening","Anomaly Detection"," Drafting","RegTech"],
     tagStyles: ["am","am","am","tl","tl","tl",""],
@@ -932,7 +894,7 @@ var projects = {
   dao1: {
     title: "Kambria Participant-Proposed DAO — DEP 2",
     badge: "dao", badgeText: "DAO · Live",
-    meta: [{k:"Type",v:"Compliance & Risk Advisory"},{k:"Project",v:"Kambria DEP 2"},{k:"Role",v:"Participant-Proposed DAO"},{k:"Status",v:"Interview Apr 29, 2026"}],
+    meta: [{k:"Type",v:"Compliance & Risk Advisory"},{k:"Project",v:"Kambria DEP 2"},{k:"Role",v:"Compliance & Risk Advisor"},{k:"Status",v:"Advisor · May 2026 - Present"}],
     overview: "<p>Selected for Kambria's Decentralized Experimental Program (DEP 2) as a Compliance and Risk Advisor. The project focuses on participant-proposed governance frameworks within a DAO structure.</p><p><strong>My contribution:</strong> applying AML/MiCA regulatory expertise to tokenomics risk assessment and decentralised governance design — identifying where standard financial crime risk surfaces in DAO treasury flows and token distribution mechanisms.</p>",
     approach: "<p>Positioning as a Risk and Compliance Advisor rather than a developer. Bringing institutional AML/CTF discipline (OFAC, CDD/EDD, MiCA) into a decentralised context, evaluating tokenomic structures for financial crime exposure and regulatory compliance gaps.</p>",
     tags: ["DAO Governance","EU MiCA","Tokenomics Risk","Async / Web3","AML Advisory","DeFi Compliance"],
@@ -963,15 +925,15 @@ var projects = {
     actions: [{label:"LIVE BETA",icon:"&#x2197;",cls:"ma-p",href:"https://scamnot.vercel.app",ext:true},{label:"Github",icon:"&#x2197;",cls:"ma-p",href:"https://github.com/gintarejat/scamnot",ext:true}]
   },
   build3: {
-    title: "Anti Financial Crime Knowledge Base — Compliance Guides v1.0",
+    title: "Anti Financial Crime Knowledge Base — Compliance Guides v2",
     badge: "build", badgeText: "Draft Version Live",
-    meta: [{k:"Type",v:"Compliance Reference Library"},{k:"Version",v:"Draft v1.0"},{k:"Guides",v:"6 published, 2 coming"},{k:"Status",v:"Live"}],
-    overview: "<p><strong>4 Regulation Guides:</strong> AMLD6 (22 predicate offences, corporate liability, SAR workflow chain) · MiCA (3 asset categories, Travel Rule, CASP obligations checklist) · OFAC (SDN list, strict liability, crypto wallet screening, DPRK exposure) · KYC/AML/PoF/W (CDD ladder SDD→CDD→EDD, PoF vs PoW distinction, PEP framework).</p><p><strong>Comparative & Process Guides:</strong> Fiat vs Web3 AML side-by-side across 5 dimensions. L1/L2 Framework Graph showing the full investigation workflow from TxM alert. FIU filing — every document required at each stage, colour-coded as standard / critical / regulatory filing — plus SLAs, escalation triggers, and record retention periods.</p>",
+    meta: [{k:"Type",v:"Compliance Reference Library"},{k:"Version",v:"v2"},{k:"Guides",v:"6 published, 2 coming"},{k:"Status",v:"Live"}],
+    overview: "<p><strong>6 Published Guides:</strong> AML/KYC + PoF/W (CDD ladder SDD→CDD→EDD, PoF vs PoW distinction, PEP framework) · AMLD6 (22 predicate offences, corporate liability, SAR workflow chain) · OFAC (SDN list, strict liability, crypto wallet screening, DPRK exposure) · MiCA (3 asset categories, Travel Rule, CASP obligations checklist) · Fiat vs Web3 AML (side-by-side across 5 dimensions) · DAO Policy (Tokens).</p><p>Plus the L1/L2 Framework Graph showing the full investigation workflow from TxM alert to FIU filing - every document required at each stage, colour-coded as standard / critical / regulatory filing, with SLAs, escalation triggers, and record retention periods.</p>",
     approach: "<p><strong>Coming up:</strong> AML Investigation Document Guide (all 32 documents from the L1/L2 framework, fully explained) and Red Flag Investigation Guide. Built as a working reference resource, not just a portfolio piece.</p>",
     tags: ["AMLD6","MiCA","OFAC","KYC/AML","PoF/PoW","PEP Framework","L1/L2 Workflow","Documentation"],
     tagStyles: ["am","am","tl","tl","","","",""],
     images: [{source:"https://64.media.tumblr.com/a888acce9e3f09141173969acd9032af/15571551ff57203f-10/s2048x3072/d64f7a604c01bda368757b2d03e6567a59fad187.png",label:"Knowledge hub",color:"img-coral",size:"modal-img-lg"}],
-    actions: [{label:"Guide 1: AMLD6",icon:"&#x2197;",cls:"ma-p",href:"/guides/Guide_1_AMLD6.pdf",ext:true},{label:"Guide 2: MiCA",icon:"&#x2197;",cls:"ma-p",href:"/guides/Guide_2_MiCA.pdf",ext:true},{label:"Guide 3: OFAC",icon:"&#x2197;",cls:"ma-p",href:"/guides/Guide_3_OFAC.pdf",ext:true},{label:"Guide 4: KYC, AML, PoF/W",icon:"&#x2197;",cls:"ma-p",href:"/guides/Guide_4_KYC_AML_PoFW.pdf",ext:true},{label:"Guide 5: Fiat vs Web3 AML",icon:"&#x2197;",cls:"ma-p",href:"/guides/Guide_5_Fiat_vs_Web3_AML.pdf",ext:true},{label:"DOA Policy & Tokens",icon:"&#x2193;",cls:"ma-s",href:"/guides/Guide_6_DOA_Policy_Tokens.pdf",ext:true}]
+    actions: [{label:"Guide 1: AMLD6",icon:"&#x2197;",cls:"ma-p",href:"https://gintare47.gumroad.com/",ext:true},]
   },
   soon1: {
     title: "Case Study — AML Escalation Process",
@@ -996,17 +958,14 @@ var projects = {
     actions: [{label:"Notify Me",icon:"&#x2709;",cls:"ma-p",href:"mailto:gintare@ajatauaml.com"}]
   }
 };
-
 function openModal(key) {
   var p = projects[key];
   if (!p) return;
-
   // Badge
   var badge = document.getElementById('modalBadge');
   badge.className = 'modal-badge mb-' + p.badge;
   document.getElementById('modalBadgeText').textContent = p.badgeText;
   document.getElementById('modalTitle').textContent = p.title;
-
   // Visuals
   var vhtml = '';
   if (p.images.length === 1) {
@@ -1018,7 +977,6 @@ function openModal(key) {
     vhtml += '</div>';
   }
   document.getElementById('modalVisuals').innerHTML = vhtml;
-
   // Info
   var ihtml = '';
   ihtml += '<div><div class="mi-label">Overview</div><div class="mi-text">' + p.overview + '</div></div>';
@@ -1037,7 +995,6 @@ function openModal(key) {
   }
   ihtml += '</div></div>';
   document.getElementById('modalInfo').innerHTML = ihtml;
-
   // Actions
   var ahtml = '';
   for (var a = 0; a < p.actions.length; a++) {
@@ -1046,7 +1003,6 @@ function openModal(key) {
     ahtml += '<a class="ma-btn ' + act.cls + '" href="' + act.href + '"' + tgt + '>' + act.icon + ' ' + act.label + '</a>';
   }
   document.getElementById('modalActions').innerHTML = ahtml;
-
   // Show — use display:flex
   var overlay = document.getElementById('portfolioModal');
   overlay.style.display = 'flex';
@@ -1062,12 +1018,10 @@ function buildImg(img) {
     + '<div class="modal-img-caption">' + img.label + '</div>'
     + '</div>';
 }
-
 function closeModal() {
   document.getElementById('portfolioModal').style.display = 'none';
   /* body overflow managed globally */
 }
-
 function closeModalOnOverlay(e) {
   if (e.target === document.getElementById('portfolioModal')) closeModal();
 }
