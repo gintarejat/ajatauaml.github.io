@@ -580,9 +580,9 @@ nav{
       <p>Nordic bank investigations, Web3 builds, and AI tools in progress.</p>
       <div class="port-filter">
         <button class="pf active">All (7)</button>
-        <button class="pf">Live (5)</button>
+        <button class="pf">Live (6)</button>
         <button class="pf">Building (7)</button>
-        <button class="pf">Coming soon (2)</button>
+        <button class="pf">Coming soon (1)</button>
       </div>
     </div>
     <div class="port-area">
@@ -637,11 +637,11 @@ nav{
           </div>
         </div>
         <!-- CARD 5: Coming Soon (dark) -->
-        <div class="pc pc-dark" onclick="openModal('soon1')">
-          <div class="pc-cat">Coming Up Soon</div>
-          <h3>Case Study &mdash; AML Escalation Process</h3>
-          <p>Full investigation flow from TxM alert to FIU filing. Every document, every decision point.</p>
-          <div class="pc-tags"><span class="pt">Case Study</span><span class="pt">Escalation</span><span class="pt">FIU</span></div>
+        <div class="pc pc-steel" onclick="openModal('soon1')">
+          <div class="pc-cat"><span class="cat-dot"></span>Published &middot; LinkedIn</div>
+          <h3>Case Study &mdash; How Would You File a SAR? EUR 306M Laundering</h3>
+          <p>Full investigation flow from TxM alert to FIU filing on a EUR 306 million laundering scenario - every document, every decision point.</p>
+          <div class="pc-tags"><span class="pt">Case Study</span><span class="pt">SAR Filing</span><span class="pt">Escalation</span><span class="pt">FIU</span></div>
         </div>
         <!-- CARD 6: Coming Soon (dark) -->
         <div class="pc pc-dark" onclick="openModal('soon2')">
@@ -936,15 +936,15 @@ var projects = {
     actions: [{label:"Guide 1: AMLD6",icon:"&#x2197;",cls:"ma-p",href:"https://gintare47.gumroad.com/",ext:true},]
   },
   soon1: {
-    title: "Case Study — AML Escalation Process",
-    badge: "soon", badgeText: "Coming Soon",
-    meta: [{k:"Type",v:"Process Documentation"},{k:"Frameworks",v:"EU AMLD · Nordic FIU"},{k:"Scope",v:"Full L1→L2→FIU chain"},{k:"Status",v:"Drafting"}],
-    overview: "<p>Full investigation flow from the first TxM alert through to FIU filing. Every document, every decision point, every escalation trigger — documented as a real case walkthrough.</p><p>Will cover: initial alert triage, CDD/EDD activation criteria, internal escalation to second line, SAR/STR drafting, and the FIU submission chain under Nordic regulatory requirements.</p>",
-    approach: "<p>Case documentation in progress. Will be structured as a step-by-step walkthrough with all 32 documents from the L1/L2 framework shown in context.</p>",
-    tags: ["Escalation","SAR/STR","FIU","Nordic AMLD","L1/L2 Workflow","Case Study"],
+    title: "Case Study - How Would You File a SAR? EUR 306M Laundering",
+    badge: "live", badgeText: "Published Article",
+    meta: [{k:"Type",v:"Case Study"},{k:"Frameworks",v:"EU AMLD · Nordic FIU"},{k:"Scope",v:"Full L1→L2→FIU chain"},{k:"Status",v:"Published · LinkedIn"}],
+    overview: "<p>A worked case study walking through how you would actually file a SAR on a EUR 306 million laundering scenario - the full investigation flow from the first TxM alert through to FIU filing. Every document, every decision point, every escalation trigger.</p><p>Covers: initial alert triage, CDD/EDD activation criteria, internal escalation to second line, SAR/STR drafting, and the FIU submission chain under Nordic regulatory requirements.</p>",
+    approach: "<p>Published as a long-form LinkedIn article - structured as a step-by-step practitioner walkthrough, grounded in the L1/L2 framework and real reporting obligations.</p>",
+    tags: ["Escalation","SAR Filing","FIU","Nordic AMLD","L1/L2 Workflow","Case Study"],
     tagStyles: ["am","tl","tl","","",""],
-    images: [{label:"Case study — coming soon",color:"img-steel",size:"modal-img-lg"}],
-    actions: [{label:"Notify Me",icon:"&#x2709;",cls:"ma-p",href:"mailto:gintare@ajatauaml.com"}]
+    images: [{label:"How Would You File a SAR? EUR 306M Laundering",color:"img-steel",size:"modal-img-lg"}],
+    actions: [{label:"Read on LinkedIn",icon:"&#x2197;",cls:"ma-p",href:"https://www.linkedin.com/pulse/how-would-you-file-sar-eur-306-million-laundering-gintare-jatautyte-x9gof/",ext:true}]
   },
   soon2: {
     title: "Case Study — Crypto Transaction Tracing",
