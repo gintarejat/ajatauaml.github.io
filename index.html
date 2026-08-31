@@ -1,856 +1,1013 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ajatau AML — Gintarė Jatautytė</title>
+<meta name="description" content="AML Practitioner & AI Compliance Tool Builder. 17,473 cases at 97% audited quality across 2+ years inside the AML function of a major Nordic Tier 1 bank. Open to remote, async, in-house and B2B contracts.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0b0b09;--bg2:#11110e;
-  --amber:#e8b030;--amber-bg:#150f00;
-  --coral:#d43820;--coral-bg:#1a0800;
-  --olive:#3d4828;--olive-light:#8a9870;
-  --steel:#1a2232;--steel-light:#2a3848;
-  --cream:#f0ede3;--cream2:#e0ddd3;
-  --teal:#14b882;--teal-dim:rgba(20,184,130,0.18);
-  --text:#f0ede3;--on-amber:#0b0b09;--on-cream:#0b0b09;
-  --muted:rgba(240,237,227,0.45);--dim:rgba(240,237,227,0.1);
-  --bb:rgba(240,237,227,0.12);
-  --fh:'Bricolage Grotesque',sans-serif;
-  --fi:'Instrument Serif',Georgia,serif;
-  --fm:'DM Mono',monospace;
-  --nav:64px;--foot:28px;
-  --inner:calc(100vh - var(--nav) - var(--foot));
+  --ink:#14130f;
+  --paper:#f2ede0;
+  --paper2:#ece6d6;
+  --card:#f7f3e9;
+  --grey:#6f6a5c;
+  --line:#dcd5c2;
+  --amber:#e8b030;
+  --amber-text:#8a6408;
+  --coral:#d43820;
+  --olive:#3d4828;
+  --olive-light:#8a9870;
+  --steel:#1a2232;
+  --steel-light:#2a3848;
+  --teal:#14b882;
+  --teal-text:#0c8a62;
+  --cream:#f0ede3;
+  --nav:64px;
+  --foot:30px;
+  --fd:"Fraunces",Georgia,serif;
+  --fs:"Archivo",Helvetica,Arial,sans-serif;
+  --fm:"Space Mono",ui-monospace,monospace;
 }
-html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--fh);overflow:hidden}
-/* ── NAV — FILING CABINET FOLDER TABS ── */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:var(--fs);
+  background:var(--paper);
+  color:var(--ink);
+  font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow:hidden;
+}
+/* paper grain */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.03 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+::selection{background:var(--ink);color:var(--paper)}
+a{color:inherit;text-decoration:none}
+.mono{font-family:var(--fm)}
+
+/* ══════════ NAV — filing-cabinet folder tabs ══════════ */
 nav{
-  position:fixed;top:0;left:0;right:0;
-  height:var(--nav);z-index:100;
-  display:flex;align-items:flex-end;
-  padding:0 1rem 0 0.6rem;
+  position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:100;
+  display:flex;align-items:flex-end;gap:2px;
+  padding:0 16px 0 10px;
   background:#18160f;
   border-bottom:3px solid #3a2f18;
-  overflow:visible;
 }
-.logo-wrap{
-  display:flex;align-items:center;gap:0.55rem;
-  text-decoration:none;
-  padding-bottom:5px;margin-right:0.8rem;
-  flex-shrink:0;z-index:20;
+.logo{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 22px 8px 10px;cursor:pointer;
 }
-.logo-name{font-family:var(--fi);font-style:italic;font-size:1rem;color:#e8dcc8}
-.logo-sub{font-family:var(--fm);font-size:0.5rem;color:rgba(232,220,200,0.4);letter-spacing:0.18em;text-transform:uppercase;margin-top:1px;display:block}
-.nav-tabs{
-  display:flex;align-items:flex-end;flex:1;
-  gap:3px;overflow-x:auto;overflow-y:visible;
-  scrollbar-width:none;padding-bottom:0;
-}
-.nav-tabs::-webkit-scrollbar{display:none}
-/* Base folder tab */
+.logo .lg{font-family:var(--fd);font-style:italic;font-weight:600;font-size:22px;color:var(--cream);line-height:1;letter-spacing:.01em}
+.logo .sub{font-family:var(--fm);font-size:8.5px;letter-spacing:.28em;color:rgba(240,237,227,.45);text-transform:uppercase;margin-top:4px;border-bottom:1px solid rgba(240,237,227,.25);padding-bottom:2px}
+.tabs{display:flex;align-items:flex-end;gap:3px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
 .nav-tab{
-  position:relative;padding:0 1.1rem;
+  font-family:var(--fm);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  padding:10px 18px 12px;border:0;cursor:pointer;white-space:nowrap;
   border-radius:7px 7px 0 0;
-  display:flex;align-items:center;
-  font-family:var(--fm);font-size:0.6rem;
-  letter-spacing:0.09em;text-transform:uppercase;
-  cursor:pointer;border:none;
-  white-space:nowrap;flex-shrink:0;
-  transition:height 0.12s ease,filter 0.12s ease;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.08);
+  transform:translateY(6px);
+  transition:transform .22s cubic-bezier(.34,1.56,.64,1),filter .2s;
+  position:relative;
 }
-/* Each tab: different color + different base height = staggered cabinet look */
-.nav-tab[data-tab="home"]      {background:#cdc4ae;color:#2a2010;height:44px;z-index:8}
-.nav-tab[data-tab="portfolio"] {background:#9a6c10;color:#f0e8d0;height:38px;z-index:7}
-.nav-tab[data-tab="about"]     {background:#303d1e;color:#7a9050;height:42px;z-index:6}
-.nav-tab[data-tab="skills"]    {background:#1a2838;color:#5070a0;height:36px;z-index:5}
-.nav-tab[data-tab="experience"]{background:#701808;color:#d0c8c0;height:40px;z-index:4}
-.nav-tab[data-tab="certs"]     {background:#201810;color:#6a5848;height:34px;z-index:3;border:1px solid rgba(255,255,255,0.05);border-bottom:none}
-.nav-tab[data-tab="contact"]   {background:#182828;color:#405858;height:38px;z-index:2}
-/* ACTIVE: tallest, brightest, pulled forward */
-.nav-tab.active{height:52px!important;filter:brightness(1.08) saturate(0.95);z-index:15!important}
-.nav-tab.active::after{
-  content:'';position:absolute;
-  top:8px;left:9px;
-  width:4px;height:4px;
-  border-radius:50%;background:rgba(0,0,0,0.25);
+.nav-tab:hover{transform:translateY(2px);filter:brightness(1.08)}
+.nav-tab.active{transform:translateY(0);padding-bottom:16px;font-weight:700}
+.nav-tab:focus-visible{outline:2px solid var(--amber);outline-offset:-2px}
+.t-cream{background:var(--cream);color:var(--ink)}
+.t-amber{background:var(--amber);color:var(--ink)}
+.t-paper{background:#d8d2c0;color:var(--ink)}
+.t-steel{background:var(--steel-light);color:var(--cream)}
+.t-coral{background:#a1291a;color:var(--cream)}
+.t-dark{background:#3a382e;color:rgba(240,237,227,.75)}
+.t-teal{background:#123a2e;color:#7fd6b5}
+.hire{
+  font-family:var(--fm);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  background:var(--cream);color:var(--ink);
+  padding:9px 16px;margin:0 0 12px 14px;border-radius:3px;
+  border:1px solid var(--cream);white-space:nowrap;
+  transition:background .2s,color .2s;
+  align-self:center;
 }
-.nav-tab:hover:not(.active){height:46px!important;filter:brightness(1.05);z-index:16!important}
-.nav-right{margin-left:auto;padding:0 0 5px 1rem;flex-shrink:0;z-index:20}
-.btn-hire{
-  padding:0.42rem 0.9rem;background:var(--amber);color:#0b0b09;
-  font-family:var(--fm);font-size:0.62rem;letter-spacing:0.07em;
-  text-transform:uppercase;text-decoration:none;border-radius:3px;
-  font-weight:600;transition:opacity 0.15s;white-space:nowrap;
+.hire:hover{background:var(--amber);border-color:var(--amber)}
+@media(max-width:760px){.logo .sub{display:none}.nav-tab{padding:9px 12px 11px}.hire{display:none}}
+
+/* ══════════ MAIN / PANES ══════════ */
+main{
+  position:fixed;top:var(--nav);bottom:var(--foot);left:0;right:0;
+  overflow:hidden;
 }
-.btn-hire:hover{opacity:0.85}
-/* ── PANE SYSTEM ── */
-.port-layout,.sk-layout,.ex-layout,.cert-layout,.con-layout,.about-hero-block,.about-bio{
-  grid-template-columns:1fr;
+.pane{
+  display:none;height:100%;overflow-y:auto;overscroll-behavior:contain;
+  scrollbar-width:thin;
 }
-  
-.pane-wrap{
-  position:fixed;
-  top:var(--nav);left:0;right:0;bottom:var(--foot);
-  z-index:1;
+.pane.active{display:block}
+.pane-in{
+  max-width:1360px;margin:0 auto;
+  padding:clamp(28px,4.5vh,56px) clamp(20px,4vw,56px) 80px;
+  position:relative;z-index:2;
 }
-/* Hidden by default */
-.tab-pane{
-  display:none;
-  position:absolute;
-  inset:0;
-  overflow-y:auto;
+/* ghost pane numeral */
+.ghost{
+  position:absolute;right:clamp(8px,3vw,40px);bottom:-30px;z-index:-1;
+  font-family:var(--fd);font-weight:300;font-style:italic;
+  font-size:clamp(160px,26vw,360px);line-height:1;
+  color:rgba(20,19,15,.05);pointer-events:none;user-select:none;
 }
-/* Active: fill the entire pane-wrap, flex column so children can flex:1 */
-.tab-pane.active{
-  display:flex;
-  flex-direction:column;
+/* staggered reveal on pane open */
+.rv{opacity:0;transform:translateY(16px)}
+.pane.active .rv{animation:up .6s cubic-bezier(.22,1,.36,1) forwards;animation-delay:calc(var(--i,0)*70ms)}
+@keyframes up{to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none}
+  .pane.active .rv{animation:none}
+  .nav-tab{transition:none}
 }
-.tab-pane::-webkit-scrollbar{width:4px}
-.tab-pane::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.15);border-radius:2px;}
-/* ── ALERT PILL ── */
-.alert-pill{
-  display:inline-flex;align-items:center;gap:0.7rem;
-  padding:0.45rem 0.9rem;
-  border:1.5px solid var(--teal);
-  border-radius:5px;
-  font-family:var(--fm);font-size:0.68rem;
-  color:var(--teal);background:var(--teal-dim);
-  letter-spacing:0.06em;text-transform:uppercase;
-  width:fit-content;
+
+/* ══════════ shared type ══════════ */
+.pill{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--fm);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--teal-text);border:1px solid rgba(20,184,130,.45);
+  padding:7px 14px;border-radius:99px;background:rgba(20,184,130,.07);
 }
-.alert-pill::before{content:'SYS //';font-size:0.55rem;opacity:0.5;margin-right:-0.1rem;}
-.blip-wrap{position:relative;width:12px;height:12px;flex-shrink:0;}
-.blip-core{position:absolute;inset:0;border-radius:50%;background:var(--teal);}
-.blip-r1{position:absolute;inset:-4px;border-radius:50%;border:1.5px solid var(--teal);animation:ring 1.8s ease-out infinite;opacity:0;}
-.blip-r2{position:absolute;inset:-10px;border-radius:50%;border:1px solid var(--teal);animation:ring 1.8s ease-out 0.4s infinite;opacity:0;}
-@keyframes ring{0%{transform:scale(0.6);opacity:0.8}100%{transform:scale(1);opacity:0};}
-/* ── BUTTONS ── */
-.btn-dark{padding:0.6rem 1.4rem;background:#0b0b09;color:var(--cream);font-family:var(--fh);font-weight:700;font-size:0.82rem;border:none;border-radius:4px;cursor:pointer;text-decoration:none;transition:background 0.15s;display:inline-block}
-.btn-dark:hover{background:#2a2a28}
-.btn-ghost-dark{padding:0.6rem 1.4rem;background:transparent;color:#0b0b09;font-family:var(--fh);font-weight:500;font-size:0.82rem;border:1.5px solid rgba(0,0,0,0.2);border-radius:4px;cursor:pointer;text-decoration:none;transition:border-color 0.15s;display:inline-block}
-.btn-ghost-dark:hover{border-color:#0b0b09}
-.btn-amber{padding:0.6rem 1.4rem;background:var(--amber);color:#0b0b09;font-family:var(--fh);font-weight:700;font-size:0.82rem;border:none;border-radius:4px;cursor:pointer;text-decoration:none;transition:opacity 0.15s;display:inline-block}
-.btn-amber:hover{opacity:0.88}
-.btn-ghost-light{padding:0.6rem 1.4rem;background:transparent;color:var(--cream);font-family:var(--fh);font-weight:500;font-size:0.82rem;border:1px solid var(--bb);border-radius:4px;cursor:pointer;text-decoration:none;transition:border-color 0.15s,color 0.15s;display:inline-block}
-.btn-ghost-light:hover{border-color:var(--amber);color:var(--amber)}
-/* ── TICKER ── */
-.ticker{background:var(--bg2);border-top:2px solid var(--amber);padding:0.65rem 0;overflow:hidden;flex-shrink:0}
-.ticker-inner{display:flex;width:max-content;animation:ticker 26s linear infinite}
-.ticker-inner:hover{animation-play-state:paused}
-@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.ti{font-family:var(--fm);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,237,227,0.35);padding:0 1.5rem;white-space:nowrap;display:inline-flex;align-items:center;gap:1.5rem}
-.ti::before{content:'◆';font-size:0.35rem;color:var(--amber)}
-.ti.hi{color:rgba(232,176,48,0.7)}
-/* ═══════════════════════
-   HOME — VERTICAL SPLIT (left: hero / right: bento)
-═══════════════════════ */
+.pill .sys{color:rgba(20,184,130,.6)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:ring 1.8s ease-out infinite}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(20,184,130,.4)}100%{box-shadow:0 0 0 9px rgba(20,184,130,0)}}
+@media(prefers-reduced-motion:reduce){.dot{animation:none}}
+
+/* ══════════ TM ALERT — investigation card ══════════ */
+.tmx{
+  background:#fffdf6;border:1px solid var(--line);border-radius:13px;max-width:680px;
+  box-shadow:0 20px 42px -24px rgba(20,19,15,.38),0 2px 6px rgba(20,19,15,.05);
+  overflow:hidden;position:relative;
+}
+.tmx-head{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:8px 13px;border-bottom:1px solid var(--line);
+  font-family:var(--fm);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);
+}
+.tmx-statl{display:inline-flex;align-items:center;gap:7px}
+.tmx-year{color:var(--grey);white-space:nowrap}
+.tma-pip{
+  width:6px;height:6px;border-radius:50%;background:var(--amber);flex:none;
+  animation:ring-a 1.6s ease-out infinite,pipteal .35s linear forwards;
+  animation-delay:0s,25.4s;
+}
+@keyframes ring-a{0%{box-shadow:0 0 0 0 rgba(232,176,48,.45)}100%{box-shadow:0 0 0 8px rgba(232,176,48,0)}}
+@keyframes pipteal{to{background:var(--teal);box-shadow:none}}
+.tmx-state{position:relative;height:11px;min-width:96px;text-align:left}
+.tmx-scan,.tmx-done{position:absolute;left:0;top:0;white-space:nowrap}
+.tmx-scan{color:var(--amber-text);animation:tmxOut .3s linear forwards;animation-delay:25.4s}
+.tmx-scan .c{animation:blink .8s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@keyframes tmxOut{to{opacity:0;visibility:hidden}}
+.tmx-done{color:var(--teal-text);opacity:0;animation:tmxIn .35s ease-out forwards;animation-delay:25.4s}
+@keyframes tmxIn{to{opacity:1}}
+.tmx-body{padding:12px 14px 15px}
+@keyframes pop{to{opacity:1;transform:scale(1)}}
+.tmx-line{
+  width:2px;height:11px;margin:5px 0 5px 22px;
+  background:repeating-linear-gradient(180deg,rgba(20,19,15,.3) 0 4px,transparent 4px 8px);
+  animation:dash .9s linear infinite;
+}
+@keyframes dash{to{background-position:0 8px}}
+/* evidence scan: skills flash one by one */
+.tmx-sr{
+  display:flex;align-items:center;gap:9px;padding:0 2px;
+  font-family:var(--fm);font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink);
+}
+.tmx-sr .ic{position:relative;width:14px;height:14px;flex:none}
+.tmx-sr .sp{
+  position:absolute;inset:0;border-radius:50%;
+  border:2px solid rgba(20,19,15,.14);border-top-color:var(--amber);
+  animation:spin .55s linear infinite,spdone .4s linear forwards;
+  animation-delay:0s,25.4s;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes spdone{to{border-color:rgba(20,184,130,.45);border-top-color:var(--teal)}}
+/* Evidence scan: one pass through the record, stopping on the summary.
+   Items are grid-stacked, so the row is always as tall as its tallest
+   line at any screen width — nothing is ever clipped on a small screen.
+   Each item holds for a time set inline (--d), scaled to its word count. */
+.tmx-skills{display:grid;flex:1;min-width:0}
+.tmx-skills span{
+  grid-area:1/1;align-self:center;
+  white-space:normal;overflow-wrap:anywhere;line-height:1.45;opacity:0;
+  animation:skin .34s cubic-bezier(.22,1,.36,1) forwards,
+            skout .34s cubic-bezier(.55,0,.9,.3) forwards;
+  animation-delay:var(--t),calc(var(--t) + var(--d));
+  will-change:transform,opacity,filter;
+}
+@keyframes skin{
+  from{opacity:0;transform:translateY(9px);filter:blur(3px)}
+  to{opacity:1;transform:none;filter:blur(0)}
+}
+@keyframes skout{
+  from{opacity:1;transform:none;filter:blur(0)}
+  to{opacity:0;transform:translateY(-9px);filter:blur(3px)}
+}
+/* When the scan ends the ticker row folds away and the summary opens in
+   its place, so the card resolves onto one clean line instead of leaving
+   an empty row behind. */
+.tmx-scanwrap{
+  display:grid;grid-template-rows:1fr;
+  animation:scanclose .6s cubic-bezier(.22,1,.36,1) forwards;
+  animation-delay:25.1s;
+}
+.tmx-scanwrap>div{overflow:hidden;min-height:0}
+@keyframes scanclose{
+  from{grid-template-rows:1fr;opacity:1}
+  to{grid-template-rows:0fr;opacity:0}
+}
+/* The summary: collapsed to nothing during the scan, then the card
+   expands and it lands on its own new line, and stays. */
+.tmx-final{
+  display:grid;grid-template-rows:0fr;opacity:0;
+  animation:finopen .6s cubic-bezier(.22,1,.36,1) forwards;
+  animation-delay:25.1s;
+}
+.tmx-final>div{overflow:hidden;min-height:0}
+.tmx-final p{
+  font-family:var(--fm);font-size:9.5px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;line-height:1.65;color:var(--ink);
+  padding:2px 2px 0;
+}
+@keyframes finopen{
+  from{grid-template-rows:0fr;opacity:0}
+  to{grid-template-rows:1fr;opacity:1}
+}
+.tmx-verdict{
+  display:flex;align-items:center;gap:9px;margin-top:11px;
+  background:rgba(20,184,130,.09);border:1px solid rgba(20,184,130,.5);border-radius:9px;
+  padding:9px 11px;font-family:var(--fm);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--teal-text);font-weight:700;
+  opacity:0;transform:scale(1.12);
+  animation:pop .45s cubic-bezier(.22,1.4,.36,1) forwards;animation-delay:26s;
+}
+.tmx-verdict .vd{
+  width:17px;height:17px;border-radius:50%;background:var(--teal);color:#fff;
+  display:grid;place-items:center;font-size:9px;font-weight:800;flex:none;
+}
+.tmx-meter{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(20,19,15,.07)}
+.tmx-meter span{display:block;height:100%;width:0;background:var(--teal);animation:fill 24.7s linear forwards;animation-delay:.4s}
+@keyframes fill{to{width:100%}}
+/* the ticker on small screens: smaller type, tighter padding */
+@media(max-width:620px){
+  .tmx-sr{font-size:9px;letter-spacing:.06em;gap:8px}
+  .tmx-final p{font-size:8.5px;letter-spacing:.04em}
+  .tmx-verdict{font-size:8.5px;letter-spacing:.08em}
+  .tmx-head{font-size:8px}
+  .tmx-body{padding:11px 12px 13px}
+}
+/* small TM status chip */
+.tmc{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--fm);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--teal-text);border:1px solid rgba(20,184,130,.45);border-radius:3px;
+  padding:6px 12px;background:rgba(20,184,130,.07);
+}
+/* home pane fits the viewport — no scroll on landing */
 #pane-home{overflow:hidden}
+#pane-home .pane-in{transform-origin:top center;padding-bottom:24px}
+#pane-home .ghost{bottom:0}
+@media(max-width:980px){#pane-home{overflow-y:auto}}
+@media(prefers-reduced-motion:reduce){
+  .tmx-verdict,.tmx-done{animation:none;opacity:1;transform:none}
+  .tmx-scan{display:none}
+  .tmx-scanwrap{animation:none;grid-template-rows:0fr;opacity:0}
+  .tmx-skills span{animation:none;opacity:0}
+  .tmx-final{animation:none;grid-template-rows:1fr;opacity:1}
+  .tmx-line{animation:none}
+  .tma-pip{animation:none}
+  .tmx-meter span{animation:none;width:100%}
+}
+.kicker{font-family:var(--fm);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--grey)}
+.h-sec{
+  font-family:var(--fd);font-weight:340;font-size:clamp(38px,5.4vw,72px);
+  line-height:1.02;letter-spacing:-.015em;
+}
+.h-sec em{font-style:italic;color:var(--coral);font-weight:420}
+.sec-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:30px;
+}
+.sec-sub{color:var(--grey);max-width:54ch;margin-top:16px;font-size:16.5px}
+.title-block{margin-bottom:clamp(28px,5vh,52px)}
+
+/* ══════════ 01 HOME ══════════ */
 .home-grid{
-  display:grid;
-  grid-template-columns:1fr 320px;
-  grid-template-rows:1fr;
-  flex:1;
-  min-height:0;
+  display:grid;grid-template-columns:minmax(0,7fr) minmax(320px,5fr);
+  gap:clamp(24px,4vw,56px);align-items:start;
 }
-.home-left{
-  background:var(--cream);
-  padding:2.5rem 3rem;
+@media(max-width:980px){.home-grid{grid-template-columns:1fr}}
+.hero-name{
+  font-family:var(--fd);font-weight:380;
+  font-size:clamp(48px,7.2vw,100px);
+  line-height:.98;letter-spacing:-.02em;
+  margin:16px 0 14px;
+}
+.hero-name .l2{display:block;font-style:italic;font-weight:560;color:var(--coral)}
+.hero-role{font-size:clamp(18px,1.9vw,23px);font-weight:600;letter-spacing:-.015em;margin-bottom:12px}
+.hero-p{color:var(--grey);max-width:54ch;margin-bottom:9px;font-size:15px}
+.hero-claim{
+  font-family:var(--fd);font-size:clamp(19px,2.1vw,25px);font-weight:420;line-height:1.25;
+  margin:16px 0 22px;
+}
+.hero-claim em{font-style:italic;color:var(--coral)}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  font-family:var(--fm);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  padding:14px 26px;border:1px solid var(--ink);border-radius:3px;cursor:pointer;
+  transition:transform .18s,box-shadow .18s,background .18s,color .18s;
+}
+.btn--solid{background:var(--ink);color:var(--cream)}
+.btn--ghost{background:transparent;color:var(--ink)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(20,19,15,.18)}
+.btn--solid:hover{background:var(--coral);border-color:var(--coral)}
+.btn--ghost:hover{background:var(--ink);color:var(--cream)}
+
+/* — bento squares — */
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{
+  aspect-ratio:1/1;padding:20px;border-radius:4px;position:relative;overflow:hidden;
   display:flex;flex-direction:column;justify-content:space-between;
-  border-right:2px solid var(--bg);
-  overflow:hidden;position:relative;min-width:0;
+  box-shadow:0 1px 2px rgba(20,19,15,.12),0 10px 26px -14px rgba(20,19,15,.35);
+  transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s;
+  cursor:default;
 }
-.home-left::after{
-  content:'01';
-  position:absolute;bottom:-1.5rem;right:1rem;
-  font-family:var(--fh);font-weight:800;font-size:9rem;
-  color:rgba(0,0,0,0.04);line-height:1;pointer-events:none;
+.tile:hover{transform:translateY(-5px) rotate(-.4deg);box-shadow:0 2px 3px rgba(20,19,15,.12),0 22px 40px -16px rgba(20,19,15,.45)}
+.tile .tl{font-family:var(--fm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.75;line-height:1.5}
+.tile .tv{font-weight:700;letter-spacing:-.02em;line-height:1.12;font-size:clamp(20px,1.9vw,27px)}
+.tile .tv .big{font-family:var(--fd);font-weight:560;font-size:clamp(30px,2.8vw,44px);font-style:italic;display:block;letter-spacing:-.01em}
+.tile-amber{background:var(--amber);color:var(--ink)}
+.tile-olive{background:var(--olive);color:var(--cream)}
+.tile-olive .tl{color:var(--olive-light);opacity:1}
+.tile-steel{background:var(--steel);color:var(--cream)}
+.tile-steel .tl{color:rgba(240,237,227,.55);opacity:1}
+.tile-coral{background:var(--coral);color:var(--cream)}
+.tile-coral .tl{color:rgba(240,237,227,.75);opacity:1}
+.tile-coral .stack{font-size:14px;font-weight:600;line-height:1.55}
+@media(max-width:460px){.tile{aspect-ratio:auto;min-height:150px}}
+/* facts strip under bento */
+.facts{margin-top:10px;border:1px solid var(--ink);border-radius:4px;background:var(--card);overflow:hidden}
+.fact{
+  display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:baseline;
+  padding:11px 18px;border-bottom:1px solid var(--line);font-size:13.5px;
 }
-.hero-name{font-family:var(--fi);font-style:italic;font-weight:400;font-size:5.8rem;line-height:0.9;letter-spacing:-0.025em;color:var(--on-cream)}
-.hero-surname{font-family:var(--fh);font-weight:800;font-size:5.4rem;line-height:0.9;letter-spacing:-0.03em;color:var(--coral);display:block;margin-bottom:1.5rem}
-.hero-kicker{font-family:var(--fm);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(0,0,0,0.35);margin-bottom:0.6rem}
-.hero-desc{font-size:0.9rem;color:rgba(0,0,0,0.55);line-height:1.75;max-width:400px;margin-bottom:1.4rem}
-.hero-actions{display:flex;gap:0.75rem;flex-wrap:wrap}
-.home-right{display:grid;grid-template-rows:1fr 1fr auto;min-width:0;}
-.stat-row{display:grid;grid-template-columns:1fr 1fr}
-.stat-block{padding:1.6rem 1.5rem;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(0,0,0,0.25)}
-.sb-amber{background:var(--amber)}
-.sb-olive{background:var(--olive)}
-.sb-steel{background:var(--steel)}
-.sb-coral{background:var(--coral)}
-.stat-l{font-family:var(--fh);font-size:0.82rem;font-weight:600;line-height:1.3}
-.stat-n{font-family:var(--fh);font-weight:800;font-size:1.9rem;line-height:1;margin-top:0.4rem}
-.sb-amber .stat-l,.sb-amber .stat-n{color:#0b0b09}
-.sb-olive .stat-l,.sb-olive .stat-n{color:var(--olive-light)}
-.sb-steel .stat-l,.sb-steel .stat-n{color:var(--cream)}
-.sb-coral .stat-l,.sb-coral .stat-n{color:var(--cream)}
-.home-profile{border-top:1px solid var(--bb)}
-.hp-row{display:flex;justify-content:space-between;align-items:center;padding:0.52rem 1.4rem;border-bottom:1px solid var(--bb);font-size:0.76rem}
-.hp-row:last-child{border-bottom:none}
-.hp-row .k{font-family:var(--fm);font-size:0.58rem;letter-spacing:0.07em;color:var(--muted)}
-.hp-row .v{font-weight:600;font-size:0.78rem}
-.hp-row .v.tl{color:var(--teal)}
-.hp-row .v.am{color:var(--amber)}
-/* ═══════════════════════
-   WHO'S THIS — same top + scrollable bio below
-═══════════════════════ */
-#pane-about{overflow-y:auto}
-.about-hero-block{
-  display:grid;
-  grid-template-columns:1fr 380px;
-  min-height:calc(100vh - var(--nav) - var(--foot));
-  border-bottom:2px solid var(--bg);
-}
-/* left side identical to home-left */
-.about-hero-left{
-  background:var(--cream);
-  padding:2.5rem 3rem;
-  display:flex;flex-direction:column;justify-content:space-between;
-  border-right:2px solid var(--bg);
-  position:relative;overflow:hidden;
-}
-.about-hero-left::after{
-  content:'02';position:absolute;bottom:-1.5rem;right:1.5rem;
-  font-family:var(--fh);font-weight:800;font-size:9rem;
-  color:rgba(0,0,0,0.04);line-height:1;pointer-events:none;
-}
-/* right side identical to home-right */
-.about-hero-right{display:grid;grid-template-rows:1fr 1fr auto;}
-.stat-row{display:grid;grid-template-columns:1fr 1fr;}
-/* Bio section below the bento */
-.about-bio{
-  background:var(--bg2);
-  display:grid;
-  grid-template-columns:1fr 380px;
-  border-top:1px solid var(--bb);
-}
-.bio-text{
-  padding:3rem;
-  border-right:2px solid var(--bg);
-  display:flex;flex-direction:column;gap:1rem;
-}
-.bio-kicker{font-family:var(--fm);font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:0.5rem}
-.bio-kicker::before{content:'';width:18px;height:1.5px;background:var(--amber)}
-.bio-pull{font-family:var(--fi);font-style:italic;font-size:clamp(1.2rem,2vw,1.7rem);line-height:1.25;letter-spacing:-0.02em;color:var(--cream)}
-.bio-pull em{color:var(--amber)}
-.bio-divider{height:1px;background:var(--bb)}
-.bio-p{font-size:0.875rem;color:var(--muted);line-height:1.8}
-.bio-p strong{color:var(--cream)}
-.bio-tags{display:flex;flex-wrap:wrap;gap:0.28rem;margin-top:0.5rem}
-.atag{padding:0.2rem 0.5rem;border-radius:3px;background:rgba(255,255,255,0.05);border:1px solid var(--bb);font-family:var(--fm);font-size:0.6rem;color:var(--muted);transition:all 0.15s;cursor:default}
-.atag:hover{background:rgba(232,176,48,0.1);border-color:rgba(232,176,48,0.3);color:var(--amber)}
-.bio-sidebar{background:var(--olive);display:flex;flex-direction:column}
-.bs-top{padding:1.5rem;background:var(--coral);flex-shrink:0}
-.bs-init{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:800;font-size:0.9rem;color:#fff;margin-bottom:0.7rem}
-.bs-top h3{font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:0.1rem}
-.bs-role{font-family:var(--fm);font-size:0.65rem;color:rgba(255,255,255,0.65)}
-.bs-rows{padding:0.3rem 0}
-.bsrow{display:flex;justify-content:space-between;padding:0.5rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.06);font-size:0.76rem}
-.bsrow:last-child{border-bottom:none}
-.bsrow .k{font-family:var(--fm);font-size:0.6rem;letter-spacing:0.06em;color:var(--olive-light)}
-.bsrow .v{font-weight:600;color:var(--cream)}
-.bsrow .v.tl{color:var(--teal)}
-.bsrow .v.am{color:var(--amber)}
-.bs-nums{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,0.08)}
-.bsn{padding:0.9rem 1.2rem;border-right:1px solid rgba(255,255,255,0.06)}
-.bsn:nth-child(even){border-right:none}
-.bsn .n{font-family:var(--fh);font-weight:800;font-size:1.5rem;color:var(--amber);line-height:1}
-.bsn .l{font-family:var(--fm);font-size:0.54rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--olive-light);margin-top:0.2rem;line-height:1.2}
-/* ═══════════════════════
-   PORTFOLIO — CLEAN BENTO CARDS
-═══════════════════════ */
-#pane-portfolio{overflow:hidden;}
-.port-layout{display:grid;grid-template-columns:180px 1fr;grid-template-rows:1fr;flex:1;min-height:0}
-.p-sidebar{
-  background:var(--olive);padding:2rem 1.5rem;
-  display:flex;flex-direction:column;
-  border-right:2px solid var(--bg);overflow:hidden;
-}
-.p-sidebar h2{font-family:var(--fh);font-weight:800;font-size:1.3rem;letter-spacing:-0.025em;line-height:1.15;color:var(--cream);margin-bottom:0.5rem;}
-.p-sidebar h2 em{font-family:var(--fi);font-style:italic;font-weight:400;color:var(--amber);}
-.p-sidebar p{font-size:0.75rem;color:var(--olive-light);line-height:1.65;margin-bottom:1.5rem;}
-.port-filter{display:flex;flex-direction:column;gap:0.3rem;margin-top:auto;}
-.pf{padding:0.45rem 0.7rem;border-radius:4px;font-family:var(--fm);font-size:0.6rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--olive-light);cursor:pointer;transition:all 0.15s;background:transparent;border:1px solid transparent;text-align:left}
-.pf:hover{background:rgba(255,255,255,0.06);color:var(--cream);}
-.pf.active{background:rgba(232,176,48,0.15);color:var(--amber);border-color:rgba(232,176,48,0.3);}
-.port-area{overflow-y:auto;padding:1.5rem;}
-.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--bg);}
-/* FLAT BENTO CARDS */
+.fact:last-child{border-bottom:0}
+.fact .k{font-family:var(--fm);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey)}
+.fact .v{font-weight:600}
+.fact .v.am{color:var(--amber-text)}
+.fact .v a{border-bottom:1px solid var(--line)}
+.fact .v a:hover{color:var(--coral);border-color:var(--coral)}
+
+/* ══════════ 02 PORTFOLIO — cards → modals ══════════ */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:1080px){.pgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.pgrid{grid-template-columns:1fr}}
 .pc{
-  padding:1.5rem;display:flex;flex-direction:column;gap:0.55rem;
-  min-height:200px;transition:filter 0.15s;
-  color:inherit;position:relative;cursor:pointer;
+  background:var(--card);border:1px solid var(--line);border-radius:5px;
+  padding:22px 22px 18px;position:relative;overflow:hidden;cursor:pointer;
+  display:flex;flex-direction:column;gap:12px;min-height:230px;
+  box-shadow:0 1px 2px rgba(20,19,15,.06);
+  transition:transform .22s cubic-bezier(.22,1,.36,1),box-shadow .22s,border-color .22s;
 }
-.pc:hover{filter:brightness(1.07)}
-.pc-amber{background:var(--amber)}
-.pc-olive{background:var(--olive)}
-.pc-steel{background:var(--steel-light)}
-.pc-coral{background:var(--coral)}
-.pc-dark{background:#252520;border:1px solid rgba(255,255,255,0.08)}
-.pc-amber h3,.pc-amber p,.pc-amber .pc-cat{color:var(--on-amber)}
-.pc-amber .pt{background:rgba(0,0,0,0.1);border-color:rgba(0,0,0,0.15);color:rgba(0,0,0,0.6)}
-.pc-olive h3{color:var(--cream)}.pc-olive p,.pc-olive .pc-cat{color:var(--olive-light)}
-.pc-olive .pt{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.12);color:var(--olive-light)}
-.pc-steel h3{color:var(--cream)}.pc-steel p,.pc-steel .pc-cat{color:rgba(240,237,227,0.55)}
-.pc-steel .pt{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.12);color:rgba(240,237,227,0.5)}
-.pc-coral h3{color:var(--cream)}.pc-coral p,.pc-coral .pc-cat{color:rgba(240,237,227,0.7)}
-.pc-coral .pt{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15);color:rgba(240,237,227,0.65)}
-.pc-dark h3{color:rgba(240,237,227,0.55)}.pc-dark p,.pc-dark .pc-cat{color:rgba(240,237,227,0.35)}
-.pc-dark .pt{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.1);color:rgba(240,237,227,0.4)}
-.pc-cat{font-family:var(--fm);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:0.4rem}
-.cat-dot{width:6px;height:6px;border-radius:50%;background:currentColor;display:inline-block;animation:ring 1.8s ease-out infinite}
-.pc h3{font-size:0.9rem;font-weight:700;line-height:1.35;flex:1}
-.pc p{font-size:0.75rem;line-height:1.6}
-.pc p strong{color:inherit;opacity:0.85}
-.pc-tags{display:flex;flex-wrap:wrap;gap:0.25rem;margin-top:auto}
-.pt{padding:0.15rem 0.45rem;border-radius:3px;font-family:var(--fm);font-size:0.58rem;border:1px solid}
-.pc-arrow{position:absolute;top:1rem;right:1rem;font-size:0.9rem;opacity:0.4;transition:opacity 0.15s,transform 0.15s}
-.pc:hover .pc-arrow{opacity:1;transform:translate(2px,-2px)}
-/* ═══════════════════════
-   SKILLS
-═══════════════════════ */
-#pane-skills{}
-.sk-layout{display:grid;grid-template-columns:180px 1fr;grid-template-rows:1fr;flex:1;min-height:0}
-.sk-sidebar{background:var(--amber);padding:2rem 1.5rem;display:flex;flex-direction:column;border-right:2px solid var(--bg);overflow:hidden}
-.sk-sidebar h2{font-family:var(--fh);font-weight:800;font-size:1.3rem;letter-spacing:-0.025em;line-height:1.15;color:var(--on-amber);margin-bottom:0.5rem}
-.sk-sidebar h2 em{font-family:var(--fi);font-style:italic;font-weight:400}
-.sk-sidebar p{font-size:0.75rem;color:rgba(0,0,0,0.5);line-height:1.65}
-.sk-count{margin-top:auto;font-family:var(--fh);font-weight:800;font-size:3.5rem;color:rgba(0,0,0,0.15);line-height:1}
-.sk-count span{display:block;font-family:var(--fm);font-size:0.58rem;font-weight:400;color:rgba(0,0,0,0.4);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.2rem}
-.sk-area{overflow-y:auto;padding:1.5rem}
-.sk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--bg)}
-.skc{padding:1.5rem;background:var(--steel);transition:background 0.15s}
-.skc:hover{background:var(--steel-light)}
-.skc-cat{font-family:var(--fm);font-size:0.58rem;color:var(--amber);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem}
-.skc h4{font-size:0.85rem;font-weight:700;margin-bottom:0.75rem;color:var(--cream)}
-.sk-pills{display:flex;flex-wrap:wrap;gap:0.28rem}
-.skp{padding:0.18rem 0.48rem;border-radius:3px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);font-family:var(--fm);font-size:0.6rem;color:rgba(240,237,227,0.5)}
-/* ═══════════════════════
-   EXPERIENCE
-═══════════════════════ */
-#pane-experience{}
-.ex-layout{display:grid;grid-template-columns:180px 1fr;grid-template-rows:1fr;flex:1;min-height:0}
-.ex-sidebar{background:var(--steel);padding:2rem 1.5rem;display:flex;flex-direction:column;border-right:2px solid var(--bg);overflow:hidden}
-.ex-sidebar h2{font-family:var(--fh);font-weight:800;font-size:1.3rem;letter-spacing:-0.025em;line-height:1.15;color:var(--cream);margin-bottom:0.5rem}
-.ex-sidebar h2 em{font-family:var(--fi);font-style:italic;font-weight:400;color:var(--amber)}
-.ex-sidebar p{font-size:0.75rem;color:rgba(240,237,227,0.4);line-height:1.65}
-.ex-badges{margin-top:auto;display:flex;flex-direction:column;gap:0.6rem}
-.ex-badge{padding:0.7rem;background:rgba(232,176,48,0.1);border:1px solid rgba(232,176,48,0.25);border-radius:5px}
-.ex-badge .en{font-family:var(--fh);font-weight:800;font-size:1.5rem;color:var(--amber);line-height:1}
-.ex-badge .el{font-family:var(--fm);font-size:0.58rem;color:rgba(232,176,48,0.6);letter-spacing:0.08em;text-transform:uppercase;margin-top:0.2rem}
-.ex-area{padding:1rem 1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-content:start;overflow:hidden;height:100%}
-.exp-card{background:var(--cream);border-radius:6px;overflow:hidden}
-.exp-head{padding:1rem 1.5rem;background:var(--cream2);display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid rgba(0,0,0,0.1)}
-.exp-head-l .co{font-family:var(--fm);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral);margin-bottom:0.3rem}
-.exp-head-l h3{font-size:0.95rem;font-weight:700;color:var(--on-cream)}
-.exp-head-r{text-align:right;font-family:var(--fm);font-size:0.62rem;color:rgba(0,0,0,0.4);line-height:1.6}
-.exp-head-r strong{display:block;color:var(--on-cream);font-weight:600;font-family:var(--fh)}
-.exp-body{padding:1rem 1.5rem}
-.exp-body ul{list-style:none;display:flex;flex-direction:column;gap:0.4rem}
-.exp-body li{font-size:0.78rem;color:rgba(0,0,0,0.6);padding-left:1rem;position:relative;line-height:1.6}
-.exp-body li::before{content:'';position:absolute;left:0;top:0.62em;width:5px;height:5px;border-radius:50%;background:var(--coral)}
-/* ═══════════════════════
-   CERTS
-═══════════════════════ */
-#pane-certs{}
-.cert-layout{display:grid;grid-template-columns:180px 1fr;grid-template-rows:1fr;flex:1;min-height:0}
-.cert-sidebar{background:var(--coral);padding:2rem 1.5rem;display:flex;flex-direction:column;border-right:2px solid var(--bg);overflow:hidden}
-.cert-sidebar h2{font-family:var(--fh);font-weight:800;font-size:1.3rem;letter-spacing:-0.025em;line-height:1.15;color:var(--cream);margin-bottom:0.5rem}
-.cert-sidebar h2 em{font-family:var(--fi);font-style:italic;font-weight:400;color:var(--amber)}
-.cert-sidebar p{font-size:0.75rem;color:rgba(240,237,227,0.65);line-height:1.65;margin-bottom:1rem}
-.cert-analogy{padding:0.8rem;background:rgba(0,0,0,0.15);border-radius:4px;font-size:0.7rem;color:rgba(240,237,227,0.6);line-height:1.6}
-.cert-analogy strong{color:var(--cream)}
-.cert-count{margin-top:auto;font-family:var(--fh);font-weight:800;font-size:3.5rem;color:rgba(0,0,0,0.15);line-height:1}
-.cert-count span{display:block;font-family:var(--fm);font-size:0.58rem;font-weight:400;color:rgba(240,237,227,0.4);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.2rem}
-.cert-area{overflow-y:auto;padding:1.5rem}
-.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--bg)}
-.cc{padding:1.4rem;display:flex;flex-direction:column;gap:0.55rem;min-height:130px;transition:filter 0.15s}
-.cc:hover{filter:brightness(1.07)}
-.cc-amber{background:var(--amber-bg);border:1px solid rgba(232,176,48,0.25)}
-.cc-amber h4{color:var(--amber)}.cc-amber .cc-iss{color:rgba(232,176,48,0.5)}
-.cc-steel{background:var(--steel)}
-.cc-steel h4{color:var(--cream)}.cc-steel .cc-iss{color:var(--muted)}
-.cc-ico{width:28px;height:28px;border-radius:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:13px}
-.cc-amber .cc-ico{background:rgba(232,176,48,0.12);border-color:rgba(232,176,48,0.3)}
-.cc h4{font-size:0.82rem;font-weight:700;line-height:1.3;flex:1}
-.cc-iss{font-family:var(--fm);font-size:0.6rem}
-.cc-pill{display:inline-flex;align-items:center;gap:0.3rem;padding:0.13rem 0.42rem;border-radius:3px;font-family:var(--fm);font-size:0.56rem;width:fit-content;margin-top:auto}
-.cp-done{background:rgba(255,255,255,0.05);color:rgba(240,237,227,0.35);border:1px solid rgba(255,255,255,0.08)}
-.cp-next{background:rgba(20,184,130,0.12);color:var(--teal);border:1px solid rgba(20,184,130,0.3)}
-.cp-dot{width:4px;height:4px;border-radius:50%;background:currentColor}
-.cp-next .cp-dot{animation:ring 1.8s ease-out infinite}
-/* ═══════════════════════
-   CONTACT
-═══════════════════════ */
-#pane-contact{}
-.con-layout{display:grid;grid-template-columns:1fr 380px;grid-template-rows:1fr;flex:1;min-height:0}
-.con-left{padding:4rem 3rem;display:flex;flex-direction:column;justify-content:center;border-right:2px solid var(--bg2)}
-.con-kicker{font-family:var(--fm);font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--amber);margin-bottom:1.2rem}
-.con-big{font-family:var(--fh);font-weight:800;font-size:clamp(2.8rem,6vw,5rem);line-height:0.95;letter-spacing:-0.035em;margin-bottom:1.2rem}
-.con-big em{font-family:var(--fi);font-style:italic;font-weight:400;color:var(--amber)}
-.con-left p{font-size:0.9rem;color:var(--muted);line-height:1.8;max-width:400px;margin-bottom:2rem}
-.con-right{background:var(--steel);display:flex;flex-direction:column;justify-content:center;padding:3rem 2.5rem}
-.con-status{display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--fm);font-size:0.62rem;color:var(--teal);margin-bottom:1.5rem}
-.con-lbl{font-family:var(--fm);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem}
-.c-item{display:flex;align-items:center;gap:0.9rem;padding:0.85rem 0;border-bottom:1px solid var(--bb)}
-.c-item:last-child{border-bottom:none}
-.c-ico{width:34px;height:34px;border-radius:6px;background:rgba(255,255,255,0.05);border:1px solid var(--bb);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
-.c-lbl{font-family:var(--fm);font-size:0.58rem;color:rgba(240,237,227,0.3);text-transform:uppercase;letter-spacing:0.08em}
-.c-val{font-size:0.85rem;font-weight:600;color:var(--cream)}
-.c-val a{color:var(--amber);text-decoration:none}
-.c-val a:hover{text-decoration:underline}
-/* ── FOOTER ── */
-.footer-strip{
-  position:fixed;bottom:0;left:0;right:0;
-  height:var(--foot);z-index:100;
-  background:var(--bg2);border-top:1px solid var(--bb);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 1.5rem;
+.pc::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--acc,var(--ink))}
+.pc:hover,.pc:focus-visible{
+  transform:translateY(-5px);outline:none;border-color:var(--acc,var(--ink));
+  box-shadow:0 18px 36px -16px rgba(20,19,15,.4);
 }
-.footer-strip span{font-family:var(--fm);font-size:0.55rem;letter-spacing:0.07em;text-transform:uppercase;color:rgba(240,237,227,0.2)}
-.footer-strip .fa{color:rgba(232,176,48,0.5)}
-.footer-strip .fa a{color:inherit;text-decoration:none}
-/* ═══════════════════════
-   MODAL — z-index:9999, fixed to body, NOT inside any pane
-═══════════════════════ */
+.pc::before{
+  content:"";position:absolute;left:0;right:0;top:-56px;height:50px;pointer-events:none;
+  background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--acc,var(--teal)) 14%,transparent),transparent);
+  opacity:0;
+}
+.pc:hover::before,.pc:focus-visible::before{animation:pcscan .75s ease-out}
+@keyframes pcscan{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(320px)}}
+@media(prefers-reduced-motion:reduce){.pc:hover::before,.pc:focus-visible::before{animation:none}}
+.pc .pc-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.pc .pnum{font-family:var(--fd);font-style:italic;font-size:24px;font-weight:560;color:var(--acc,var(--ink))}
+.pc h3{font-size:18px;font-weight:700;letter-spacing:-.015em;line-height:1.25}
+.pc p{font-size:13.5px;color:var(--grey);flex:1}
+.pc .arrow{position:absolute;top:16px;right:18px;font-size:15px;opacity:0;transform:translate(-4px,4px);transition:opacity .2s,transform .2s;color:var(--acc,var(--ink))}
+.pc:hover .arrow,.pc:focus-visible .arrow{opacity:1;transform:none}
+.ptags{display:flex;flex-wrap:wrap;gap:5px}
+.pt{font-family:var(--fm);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:2px;padding:3px 7px;color:var(--grey)}
+.status{font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:7px}
+.pip{width:6px;height:6px;border-radius:50%}
+.st-live{color:var(--teal-text)}.st-live .pip{background:var(--teal);animation:ring 1.8s ease-out infinite}
+.st-build{color:var(--coral)}.st-build .pip{background:var(--coral)}
+.st-dao{color:var(--amber-text)}.st-dao .pip{background:var(--amber)}
+.st-soon{color:var(--grey)}.st-soon .pip{background:#b8b09a}
+
+/* ══════════ 03 ABOUT ══════════ */
+.about-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(300px,4fr);gap:clamp(24px,4vw,56px);align-items:start}
+@media(max-width:980px){.about-grid{grid-template-columns:1fr}}
+.about-copy p{color:var(--grey);margin-bottom:16px;max-width:62ch;font-size:15.5px}
+.about-copy p b{color:var(--ink);font-weight:600}
+.kw{display:flex;flex-wrap:wrap;gap:7px;margin-top:24px}
+.kw span{
+  font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--ink);border-radius:2px;padding:5px 10px;background:var(--card);
+  transition:background .15s,color .15s;
+}
+.kw span:hover{background:var(--ink);color:var(--cream)}
+.side-card{border:1px solid var(--ink);border-radius:5px;background:var(--card);overflow:hidden;box-shadow:0 10px 26px -14px rgba(20,19,15,.3)}
+.avail{
+  display:flex;align-items:center;gap:9px;padding:12px 18px;border-bottom:1px solid var(--line);
+  font-family:var(--fm);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-text);
+  background:rgba(20,184,130,.06);
+}
+.card-top{display:flex;align-items:center;gap:14px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.avatar{
+  width:46px;height:46px;border-radius:3px;background:var(--ink);color:var(--amber);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fd);font-style:italic;font-weight:600;font-size:17px;
+}
+.card-top h4{font-size:16px;font-weight:700}
+.card-top .kicker{font-size:9.5px;letter-spacing:.16em;margin-top:2px}
+.side-card .fact{padding:10px 18px;grid-template-columns:96px 1fr}
+.mini{display:grid;grid-template-columns:repeat(4,1fr);margin-top:10px;border:1px solid var(--ink);border-radius:5px;overflow:hidden;background:var(--card)}
+.mini div{padding:16px 8px;text-align:center;border-right:1px solid var(--line)}
+.mini div:last-child{border-right:0}
+.mini b{display:block;font-family:var(--fd);font-style:italic;font-weight:560;font-size:26px}
+.mini span{font-family:var(--fm);font-size:9px;color:var(--grey);text-transform:uppercase;letter-spacing:.1em}
+
+/* ══════════ 04 SKILLS ══════════ */
+.skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:1080px){.skill-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.skill-grid{grid-template-columns:1fr}}
+.skill{
+  background:var(--card);border:1px solid var(--line);border-radius:5px;padding:22px;
+  border-top:5px solid var(--acc,var(--ink));
+  transition:transform .22s cubic-bezier(.22,1,.36,1),box-shadow .22s;
+}
+.skill:hover{transform:translateY(-4px);box-shadow:0 16px 32px -16px rgba(20,19,15,.35)}
+.skill .kicker{font-size:9.5px;color:var(--acc-t,var(--grey))}
+.skill h4{font-family:var(--fd);font-style:italic;font-weight:560;font-size:22px;margin:6px 0 14px}
+.skill ul{list-style:none}
+.skill li{font-size:13.5px;color:var(--grey);padding:6px 0;border-bottom:1px solid var(--line)}
+.skill li:last-child{border-bottom:0}
+
+/* ══════════ 05 EXPERIENCE ══════════ */
+.xp{
+  display:grid;grid-template-columns:220px 1fr;gap:clamp(20px,3.5vw,48px);
+  background:var(--card);border:1px solid var(--line);border-radius:5px;
+  padding:clamp(22px,3vw,36px);margin-bottom:16px;
+  border-left:5px solid var(--acc,var(--ink));
+}
+@media(max-width:860px){.xp{grid-template-columns:1fr}}
+.xp-when{font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);line-height:2}
+.xp-when b{color:var(--ink)}
+.xp .org{font-family:var(--fm);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--grey)}
+.xp h3{font-family:var(--fd);font-weight:480;font-size:clamp(24px,2.6vw,32px);margin:6px 0 16px;letter-spacing:-.01em}
+.xp ul{list-style:none;max-width:72ch}
+.xp li{position:relative;padding:8px 0 8px 24px;color:var(--grey);font-size:14px;border-bottom:1px solid var(--line)}
+.xp li:last-child{border-bottom:0}
+.xp li::before{content:"—";position:absolute;left:0;color:var(--acc,var(--coral))}
+.xp li b{color:var(--ink);font-weight:600}
+
+/* ══════════ 06 CERTS ══════════ */
+.cert-note{
+  font-family:var(--fm);font-size:12px;color:var(--grey);
+  border-left:3px solid var(--amber);padding:4px 0 4px 16px;
+  margin:20px 0 34px;max-width:70ch;line-height:1.8;
+}
+.cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:820px){.cert-grid{grid-template-columns:1fr}}
+.cert{
+  display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start;
+  background:var(--card);border:1px solid var(--line);border-radius:4px;padding:18px 20px;
+  transition:transform .2s,box-shadow .2s;
+}
+.cert:hover{transform:translateY(-3px);box-shadow:0 14px 28px -16px rgba(20,19,15,.35)}
+.cert h4{font-size:15px;font-weight:700;letter-spacing:-.01em;line-height:1.3}
+.cert p{font-size:12px;color:var(--grey);margin-top:4px;line-height:1.5}
+.cert .st{font-family:var(--fm);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;padding:3px 8px;border-radius:2px}
+.st--done{color:var(--teal-text);border:1px solid rgba(20,184,130,.4);background:rgba(20,184,130,.07)}
+.st--plan{color:var(--amber-text);border:1px solid rgba(232,176,48,.55);background:rgba(232,176,48,.12)}
+
+/* ══════════ 07 CONTACT ══════════ */
+.mail-link{
+  display:inline-block;font-family:var(--fd);font-style:italic;font-weight:560;
+  font-size:clamp(24px,4.4vw,54px);letter-spacing:-.02em;
+  border-bottom:3px solid var(--ink);padding-bottom:6px;margin-top:8px;
+  transition:color .2s,border-color .2s;
+}
+.mail-link:hover{color:var(--coral);border-color:var(--coral)}
+.contact-p{color:var(--grey);max-width:52ch;margin:18px 0 28px;font-size:16px}
+.contact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr 1fr}}
+.cg{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:18px 20px}
+.cg .k{font-family:var(--fm);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey);display:block;margin-bottom:8px}
+.cg .v{font-size:14px;font-weight:600;line-height:1.7}
+.cg .v a{border-bottom:1px solid var(--line)}
+.cg .v a:hover{color:var(--coral);border-color:var(--coral)}
+
+/* ══════════ FOOTER STRIP ══════════ */
+footer{
+  position:fixed;bottom:0;left:0;right:0;height:var(--foot);z-index:100;
+  background:#18160f;color:rgba(240,237,227,.5);
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:0 18px;font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;
+  overflow:hidden;white-space:nowrap;
+}
+footer .quote{font-style:italic;color:rgba(232,176,48,.7);overflow:hidden;text-overflow:ellipsis}
+footer a{color:rgba(240,237,227,.7);text-transform:uppercase}
+footer a:hover{color:var(--amber)}
+@media(max-width:700px){footer .hidem{display:none}}
+
+/* ══════════ MODAL ══════════ */
 .modal-overlay{
-  position:fixed;
-  top:0;left:0;right:0;bottom:0;
-  z-index:9999;
-  background:rgba(0,0,0,0.8);
-  backdrop-filter:blur(8px);
-  display:none; /* hidden until .open */
-  align-items:center;
-  justify-content:center;
-  padding:1.5rem;
+  position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;
+  background:rgba(20,19,15,.6);backdrop-filter:blur(4px);padding:22px;
 }
 .modal-overlay.open{display:flex}
-@keyframes modalIn{from{opacity:0;transform:scale(0.95) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes modalIn{from{opacity:0;transform:scale(.97) translateY(12px)}to{opacity:1;transform:none}}
 .modal-panel{
-  width:100%;max-width:1080px;max-height:88vh;
-  background:var(--bg2);
-  border:1px solid rgba(240,237,227,0.14);
-  border-radius:10px;overflow:hidden;
-  display:flex;flex-direction:column;
-  animation:modalIn 0.2s ease;
+  background:var(--paper);border:1px solid var(--ink);border-radius:6px;
+  width:min(1080px,100%);max-height:90vh;display:flex;flex-direction:column;
+  animation:modalIn .22s cubic-bezier(.22,1,.36,1);
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.5);overflow:hidden;
 }
-.modal-header{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.6rem;flex-shrink:0;border-bottom:1px solid rgba(240,237,227,0.1)}
-.modal-header-l{display:flex;align-items:center;gap:1rem;min-width:0}
-.modal-badge{display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--fm);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.6rem;border-radius:3px;flex-shrink:0}
-.mb-live{background:rgba(20,184,130,0.15);color:var(--teal);border:1px solid rgba(20,184,130,0.3)}
-.mb-build{background:rgba(212,56,32,0.15);color:#e07060;border:1px solid rgba(212,56,32,0.3)}
-.mb-dao{background:rgba(232,176,48,0.12);color:var(--amber);border:1px solid rgba(232,176,48,0.3)}
-.mb-soon{background:rgba(240,237,227,0.06);color:var(--muted);border:1px solid var(--bb)}
-.mb-dot{width:5px;height:5px;border-radius:50%;background:currentColor;display:inline-block}
+@media(prefers-reduced-motion:reduce){.modal-panel{animation:none}}
+.modal-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 22px;border-bottom:2px solid var(--ink);flex-shrink:0}
+.modal-header-l{display:flex;align-items:center;gap:13px;min-width:0}
+.modal-badge{
+  font-family:var(--fm);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  padding:4px 10px;border:1px solid;border-radius:2px;white-space:nowrap;flex-shrink:0;
+  display:inline-flex;align-items:center;gap:7px;
+}
+.modal-badge .mb-dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.mb-live{color:var(--teal-text);border-color:var(--teal);background:rgba(20,184,130,.08)}
 .mb-live .mb-dot{animation:ring 1.8s ease-out infinite}
-.modal-title{font-family:var(--fh);font-weight:700;font-size:1rem;color:var(--cream);line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.modal-close{width:32px;height:32px;border-radius:6px;background:rgba(240,237,227,0.06);border:1px solid var(--bb);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);font-size:1rem;transition:all 0.15s;flex-shrink:0;margin-left:1rem}
-.modal-close:hover{background:rgba(240,237,227,0.14);color:var(--cream)}
-.modal-body{flex:1;overflow-y:auto;display:grid;grid-template-columns:1fr 400px;min-height:0}
-.modal-body::-webkit-scrollbar{width:4px}
-.modal-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.12);border-radius:2px}
-.modal-visuals{border-right:1px solid rgba(240,237,227,0.1);padding:1.4rem;display:flex;flex-direction:column;gap:1rem;overflow-y:auto}
-.modal-img{width:100%;border-radius:6px;overflow:hidden;border:1px solid;flex-shrink:0}
-.modal-img-placeholder{width:100%;display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;overflow:hidden;}
-.modal-img-placeholder img{width:100%;height:100%;object-fit:cover;display:block;}.modal-img-caption{padding:0.45rem 0.7rem;background:rgba(240,237,227,0.04);border-top:1px solid rgba(240,237,227,0.08);font-family:var(--fm);font-size:0.6rem;color:var(--muted);line-height:1.5}
+.mb-build{color:var(--coral);border-color:var(--coral);background:rgba(212,56,32,.07)}
+.mb-dao{color:var(--amber-text);border-color:var(--amber);background:rgba(232,176,48,.12)}
+.mb-soon{color:var(--grey);border-color:var(--line);background:var(--card)}
+.modal-title{font-family:var(--fd);font-weight:520;font-size:18px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.modal-close{
+  width:34px;height:34px;flex-shrink:0;cursor:pointer;border-radius:3px;
+  background:none;border:1px solid var(--line);color:var(--grey);font-size:14px;line-height:1;
+  transition:background .15s,color .15s;
+}
+.modal-close:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.modal-body{flex:1;overflow-y:auto;display:grid;grid-template-columns:5fr 4fr;min-height:0}
+.modal-visuals{border-right:1px solid var(--line);padding:22px;display:flex;flex-direction:column;gap:13px;background:var(--paper2)}
+.img-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:13px}
+.modal-img{border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--card)}
+.modal-img-placeholder{
+  width:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;
+  font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;text-align:center;
+}
+.modal-img-placeholder img{width:100%;height:100%;object-fit:cover;display:block}
 .modal-img-lg .modal-img-placeholder{min-height:260px}
 .modal-img-sm .modal-img-placeholder{min-height:130px}
-.img-amber {background:var(--amber-bg);border-color:rgba(232,176,48,0.2)}
-.img-amber {color:rgba(232,176,48,0.3)}
-.img-olive {background:var(--olive);border-color:rgba(138,152,112,0.2)}
-.img-olive {color:rgba(138,152,112,0.4)}
-.img-steel {background:var(--steel);border-color:rgba(240,237,227,0.08)}
-.img-coral {background:var(--coral-bg);border-color:rgba(212,56,32,0.2)}
-.img-coral {color:rgba(212,56,32,0.35)}
-.img-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.modal-info{padding:1.6rem;display:flex;flex-direction:column;gap:1.2rem;overflow-y:auto}
-.mi-label{font-family:var(--fm);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--amber);margin-bottom:0.4rem;display:flex;align-items:center;gap:0.35rem}
-.mi-label::before{content:'//';opacity:0.4}
-.mi-text{font-size:0.85rem;color:var(--muted);line-height:1.78}
-.mi-text p{margin-bottom:0.65rem}
+.img-amber .modal-img-placeholder{background:#f6e7bd;color:var(--amber-text)}
+.img-olive .modal-img-placeholder{background:#e2e5d7;color:var(--olive)}
+.img-steel .modal-img-placeholder{background:#dde1e9;color:var(--steel)}
+.img-coral .modal-img-placeholder{background:#f6ded8;color:var(--coral)}
+.modal-img-caption{padding:7px 12px;border-top:1px solid var(--line);font-family:var(--fm);font-size:9.5px;letter-spacing:.05em;color:var(--grey)}
+.modal-info{padding:22px;display:flex;flex-direction:column;gap:18px}
+.mi-label{font-family:var(--fm);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);margin-bottom:9px}
+.mi-text{font-size:13.5px;color:#4a463b;line-height:1.6}
+.mi-text p{margin-bottom:9px}
 .mi-text p:last-child{margin-bottom:0}
-.mi-text strong{color:var(--cream)}
-.mi-divider{height:1px;background:rgba(240,237,227,0.08)}
-.mi-tags{display:flex;flex-wrap:wrap;gap:0.3rem}
-.mi-tag{padding:0.2rem 0.5rem;border-radius:3px;background:rgba(240,237,227,0.05);border:1px solid rgba(240,237,227,0.1);font-family:var(--fm);font-size:0.6rem;color:var(--muted)}
-.mi-tag.am{background:rgba(232,176,48,0.08);border-color:rgba(232,176,48,0.25);color:var(--amber)}
-.mi-tag.tl{background:rgba(20,184,130,0.08);border-color:rgba(20,184,130,0.25);color:var(--teal)}
-.mi-meta{display:flex;flex-direction:column}
-.mi-mrow{display:flex;justify-content:space-between;font-size:0.78rem;padding:0.38rem 0;border-bottom:1px solid rgba(240,237,227,0.06)}
-.mi-mrow:last-child{border-bottom:none}
-.mi-mrow .mk{font-family:var(--fm);font-size:0.6rem;color:var(--muted)}
-.mi-mrow .mv{font-weight:600;color:var(--cream)}
-.modal-actions{border-top:1px solid rgba(240,237,227,0.1);padding:0.9rem 1.6rem;display:flex;align-items:center;gap:0.65rem;flex-wrap:wrap;flex-shrink:0;background:rgba(0,0,0,0.2)}
-.ma-btn{display:inline-flex;align-items:center;gap:0.45rem;padding:0.5rem 1rem;border-radius:5px;font-family:var(--fm);font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all 0.15s;white-space:nowrap;border:none}
-.ma-p{background:var(--amber);color:#0b0b09;font-weight:600}
-.ma-p:hover{opacity:0.88}
-.ma-s{background:rgba(240,237,227,0.07);color:var(--cream);border:1px solid rgba(240,237,227,0.12)}
-.ma-s:hover{background:rgba(240,237,227,0.12)}
-.ma-g{background:transparent;color:var(--muted);border:1px solid var(--bb)}
-.ma-g:hover{color:var(--cream);border-color:rgba(240,237,227,0.2)}
-@media(max-width:700px){.modal-body{grid-template-columns:1fr}.modal-visuals{border-right:none;border-bottom:1px solid rgba(240,237,227,0.1)}.modal-panel{max-height:94vh}}
-/* ── MOBILE ── */
-@media(max-width:900px){
-  html,body{overflow:auto}
-  .pane-wrap{position:relative;top:var(--nav);height:auto;bottom:auto}
-  .tab-pane{height:auto}
-  .port-layout,.sk-layout,.ex-layout,.cert-layout,.con-layout,.about-hero-block,.about-bio{grid-template-columns:1fr}
-  .home-grid{grid-template-columns:1fr 280px}
-  .p-sidebar,.sk-sidebar,.ex-sidebar,.cert-sidebar{display:none}
-  .port-grid,.sk-grid,.cert-grid{grid-template-columns:1fr 1fr}
-  .nav-tabs{overflow-x:auto}
-  .footer-strip{display:none}
-  #pane-home{overflow:auto}
+.mi-text strong{color:var(--ink)}
+.mi-divider{height:1px;background:var(--line)}
+.mi-tags{display:flex;flex-wrap:wrap;gap:6px}
+.mi-tag{font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:2px;padding:4px 9px;color:var(--grey)}
+.mi-tag.am{border-color:var(--amber);color:var(--amber-text);background:rgba(232,176,48,.12)}
+.mi-tag.tl{border-color:var(--teal);color:var(--teal-text);background:rgba(20,184,130,.08)}
+.mi-meta{border-top:1px solid var(--line)}
+.mi-mrow{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:12.5px}
+.mi-mrow .mk{font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--grey)}
+.mi-mrow .mv{font-weight:600}
+.modal-actions{border-top:2px solid var(--ink);padding:13px 22px;flex-shrink:0;display:flex;gap:10px;flex-wrap:wrap;background:var(--card)}
+.ma-btn{
+  font-family:var(--fm);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  padding:11px 20px;border-radius:3px;border:1px solid transparent;
+  transition:transform .15s,opacity .15s,background .15s,color .15s;
 }
-@media(max-width:560px){.port-grid,.sk-grid,.cert-grid{grid-template-columns:1fr}}
+.ma-btn:hover{transform:translateY(-2px)}
+.ma-p{background:var(--amber);color:var(--ink);font-weight:700}
+.ma-p:hover{opacity:.85}
+.ma-s{background:none;border-color:var(--ink);color:var(--ink)}
+.ma-s:hover{background:var(--ink);color:var(--cream)}
+@media(max-width:760px){
+  .modal-body{grid-template-columns:1fr}
+  .modal-visuals{border-right:0;border-bottom:1px solid var(--line)}
+  .modal-title{white-space:normal;font-size:15px}
+}
 </style>
 </head>
 <body>
-<!-- MENU ABOVE ALL -->
+
 <nav>
-  <a class="logo-wrap" href="#home" onclick="showTab('home');return false">
-    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" style="flex-shrink:0">
-      <rect width="30" height="30" rx="7" fill="#e8b030"/>
-      <circle cx="13" cy="13" r="5" stroke="#0b0b09" stroke-width="2" fill="none"/>
-      <line x1="17" y1="17" x2="22" y2="22" stroke="#0b0b09" stroke-width="2.2" stroke-linecap="round"/>
-      <circle cx="13" cy="13" r="1.6" fill="#0b0b09" opacity="0.3"/>
-    </svg>
-    <div><div class="logo-name">ajatau</div><div class="logo-sub">AML · Web3</div></div>
-  </a>
-  <div class="nav-tabs">
-    <button class="nav-tab active" data-tab="home" onclick="showTab('home')">Home</button>
-    <button class="nav-tab" data-tab="portfolio" href="#portfolio" onclick="showTab('portfolio')">Portfolio</button>
-    <button class="nav-tab" data-tab="about" href="#about" onclick="showTab('about')">Who's This?</button>
-    <button class="nav-tab" data-tab="skills" href="#skills" onclick="showTab('skills')">Skills</button>
-    <button class="nav-tab" data-tab="experience" href="#experience" onclick="showTab('experience')">Experience</button>
-    <button class="nav-tab" data-tab="certs" href="#certs" onclick="showTab('certs')">Certs</button>
-    <button class="nav-tab" data-tab="contact" href="#contact" onclick="showTab('contact')">Contact</button>
+  <div class="logo" data-tab="home" role="button" tabindex="0" aria-label="Home">
+    <span class="lg">ajatau</span>
+    <span class="sub">AML · Web3</span>
   </div>
-  <div class="nav-right"><a class="btn-hire" href="mailto:gintare@ajatauaml.com">Hire Me &#x2192;</a></div>
+  <div class="tabs" role="tablist">
+    <button class="nav-tab t-cream active" data-tab="home" role="tab" aria-selected="true">Home</button>
+    <button class="nav-tab t-amber" data-tab="portfolio" role="tab" aria-selected="false">Portfolio</button>
+    <button class="nav-tab t-paper" data-tab="about" role="tab" aria-selected="false">Who's This?</button>
+    <button class="nav-tab t-steel" data-tab="skills" role="tab" aria-selected="false">Skills</button>
+    <button class="nav-tab t-coral" data-tab="experience" role="tab" aria-selected="false">Experience</button>
+    <button class="nav-tab t-dark" data-tab="certs" role="tab" aria-selected="false">Certs</button>
+    <button class="nav-tab t-teal" data-tab="contact" role="tab" aria-selected="false">Contact</button>
+  </div>
+  <a class="hire" href="mailto:gintare@ajatauaml.com">Hire me →</a>
 </nav>
-<!-- END OF THE NAVIGATION MENU -->
-<div class="pane-wrap">
-  <!-- This is the hidden pane that the button looks for -->
-<!-- HOME: vertical split — left: hero / right: 2x2 stats bento -->
-<div id="pane-home" class="tab-pane active">
-  <div class="home-grid">
-    <div class="home-left">
+
+<main>
+
+<!-- ══════════ 01 HOME ══════════ -->
+<div class="pane active" id="pane-home">
+  <div class="pane-in">
+    <div class="ghost">01</div>
+    <div class="home-grid">
       <div>
-        <div class="alert-pill">
-          <span class="blip-wrap"><span class="blip-r2"></span><span class="blip-r1"></span><span class="blip-core"></span></span>
-          Available for remote contracts &middot; Lithuania
+        <div class="tmx rv" style="--i:0" role="status" aria-label="Record cleared: 17,473 alerts at 97% audited quality. Available for remote, async, in-house and B2B contracts.">
+          <div class="tmx-head">
+            <span class="tmx-statl">
+              <span class="tma-pip"></span>
+              <span class="tmx-state" aria-hidden="true">
+                <span class="tmx-scan">Screening<span class="c">&#9613;</span></span>
+                <span class="tmx-done">&#10003; Cleared</span>
+              </span>
+            </span>
+            <span class="tmx-year">2026 &middot; Q3</span>
+          </div>
+          <div class="tmx-body">
+            <div class="tmx-scanwrap" aria-hidden="true"><div>
+            <div class="tmx-sr">
+              <span class="ic"><span class="sp"></span></span>
+              <span class="tmx-skills" aria-hidden="true">
+                <span style="--t:0.4s;--d:1.79s">2+ years AML function @ Nordic Tier&nbsp;1 bank</span>
+                <span style="--t:2.29s;--d:1.79s">Sanctions screening &mdash; 6,790 cases at 98.58% audited quality</span>
+                <span style="--t:4.18s;--d:1.79s">Transaction monitoring &mdash; 10,683 cases at 96.15% audited quality</span>
+                <span style="--t:6.07s;--d:1.19s">AML &middot; KYC / KYB</span>
+                <span style="--t:7.36s;--d:1.29s">UBO &middot; PEP &middot; risk assessments</span>
+                <span style="--t:8.75s;--d:1.19s">EDD &middot; SoF / SoW</span>
+                <span style="--t:10.04s;--d:1.54s">3 AI compliance automation tools built</span>
+                <span style="--t:11.68s;--d:1.54s">Blockchain tracing &mdash; Etherscan, Arkham, MetaSleuth &middot; OSINT</span>
+                <span style="--t:13.32s;--d:1.92s">Documentation WG Lead @ Pesa Play DAO (Kambria DEP&nbsp;2)</span>
+                <span style="--t:15.34s;--d:1.79s">GDPR &middot; FATF 40 &middot; OFAC &middot; EU AMLD &middot; Nordic FIU</span>
+                <span style="--t:17.23s;--d:1.67s">Sumsub certifications &middot; 25.5 CPD hours &middot; Anthropic certifications</span>
+                <span style="--t:19.0s;--d:1.29s">Google Data Analytics Specialization</span>
+                <span style="--t:20.39s;--d:1.42s">Google Advanced Data Analytics Specialization</span>
+                <span style="--t:21.91s;--d:1.29s">Google AI Professional Specialization</span>
+                <span style="--t:23.3s;--d:1.54s">Google Project Management Foundations &middot; Business Intelligence</span>
+              </span>
+            </div>
+            <div class="tmx-line"></div>
+            </div></div>
+            <div class="tmx-final"><div><p>17,473 cleared alerts &middot; 97% audited quality &middot; 2+ years @ a Nordic Tier-1 bank &middot; 4 months bookkeeping + compliance documentation @ Pesa Play DAO (Kambria DEP&nbsp;2) &middot; AI compliance tools built</p></div></div>
+            <div class="tmx-verdict"><span class="vd">&#10003;</span>Available for: remote &middot; async &middot; in-house &middot; B2B</div>
+          </div>
+          <div class="tmx-meter" aria-hidden="true"><span></span></div>
         </div>
-        <p class="hero-kicker" style="margin-top:1rem">AML &middot; Web3 &middot; RegTech</p>
-        <h1 class="hero-name">Gintarė<span class="hero-surname">Jatautytė</span></h1>
+        <div class="kicker rv" style="--i:1;margin-top:14px">AML · Web3 · RegTech</div>
+        <h1 class="hero-name rv" style="--i:2">Gintarė<span class="l2">Jatautytė</span></h1>
+        <p class="hero-role rv" style="--i:3">AML Practitioner &amp; AI Compliance Tool Builder.</p>
+        <p class="hero-p rv" style="--i:4">2+ years inside the actual AML function of a major Nordic Tier&nbsp;1 bank &mdash; 17,473 cases at 97% audited quality.</p>
+        <p class="hero-p rv" style="--i:5">Now building the practitioner's answer to what FIS and Anthropic announced as their Financial Crimes AI Agent — an agentic SAR generator, built independently from the inside.</p>
+        <p class="hero-claim rv" style="--i:6">Pattern recognition is my thing.<br><em>Dirty money doesn't stand a chance.</em></p>
+        <div class="btn-row rv" style="--i:7">
+          <button class="btn btn--solid" data-tab="portfolio">View Portfolio</button>
+          <a class="btn btn--ghost" href="mailto:gintare@ajatauaml.com">Let's talk</a>
+        </div>
       </div>
       <div>
-        <div class="hero-desc"> <h3>AML Practitioner & AI Compliance Tool Builder.</h3> <p>2+ years inside the actual AML team of a major Nordic Tier 1 bank.</p>  <p>Now building the practitioner&apos;s answer to what FIS and Anthropic announced as their Financial Crimes AI Agent - an agentic SAR generator, built independently from the inside. </p> <p>Pattern recognition is my thing.</p> <p>Dirty money doesn&apos;t stand a chance.</p></div>
-        <div class="hero-actions">
-          <a class="btn-dark" href="#portfolio" onclick="showTab('portfolio');return false">View Portfolio</a>
-          <a class="btn-ghost-dark" href="mailto:gintare@ajatauaml.com">Let&apos;s talk</a>
-        </div>
-      </div>
-    </div>
-    <div class="home-right">
-      <div class="stat-row">
-        <div class="stat-block sb-amber"><div class="stat-l">AML experience</div><div class="stat-n">2+ years</div></div>
-        <div class="stat-block sb-olive"><div class="stat-l">Quality score</div><div class="stat-n"><p>97% Quality,</p> <p>17,000+ Cleared Alerts</p> </div></div>
-      </div>
-      <div class="stat-row">
-        <div class="stat-block sb-steel"><div class="stat-l">Certifications and Eduction</div><div class="stat-n"><p>21+ Certs,</p> <p>25+ CPD-Accredited Hours</p></div></div>
-        <div class="stat-block sb-coral"><div class="stat-l"><p>Applied AI Prototyping</p><p>Python,</p> <p>SQL, </p> <p>Claude API,</p>  <p>Anthropic MCP</p></div><div class="stat-n"><p>3 Live </p> <p>Compliace Tools</p></div> </div>
-      </div>
-      <div class="home-profile">
-        <div class="hp-row"><span class="k">Location</span><span class="v">Lithuania &middot; Remote</span></div>
-        <div class="hp-row"><span class="k">Timezone</span><span class="v">EMEA &middot; UTC+2/3</span></div>
-        <div class="hp-row"><span class="k">Open to</span><span class="v tl">Remote &middot; B2B &middot; DAO</span></div>
-        <div class="hp-row"><span class="k">Email</span><span class="v am">gintare@ajatauaml.com</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- PORTFOLIO -->
-<div id="pane-portfolio" class="tab-pane">
-  <div class="port-layout">
-    <div class="p-sidebar">
-      <h2>Real cases.<br><em>Documented.</em></h2>
-      <p>Nordic bank investigations, Web3 builds, and AI tools in progress.</p>
-      <div class="port-filter">
-        <button class="pf active">All (7)</button>
-        <button class="pf">Live (6)</button>
-        <button class="pf">Building (7)</button>
-        <button class="pf">Coming soon (1)</button>
-      </div>
-    </div>
-    <div class="port-area">
-      <div class="port-grid">
-        <!-- CARD 1: AML Automation — Beta Live (amber) -->
-        <div class="pc pc-amber" onclick="openModal('live1')">
-          <div class="pc-cat"><span class="cat-dot"></span>Live</div>
-          <h3>Agentic SAR Generator &mdash; Python &amp; SQL Scripts</h3>
-          <p>Targets the same core workflow FIS and Anthropic announced as their Financial Crimes AI Agent: automated evidence assembly and SAR narrative generation with human-in-the-loop review. Built independently, from the practitioner side. Sanctions screening helper (OFAC SDN patterns), SQL anomaly detection, GenAI narrative generation via streaming Claude API.</p>
-          <div class="pc-tags">
-            <span class="pt">GenAI API</span><span class="pt">Python</span><span class="pt">SQL</span>
-            <span class="pt">RegTech</span><span class="pt"> SAR / STR Drafting</span><span class="pt">OFAC Screening</span>
+        <div class="bento">
+          <div class="tile tile-amber rv" style="--i:2">
+            <span class="tl">AML experience</span>
+            <span class="tv"><span class="big"><span data-count="2">2</span>+ years</span></span>
+          </div>
+          <div class="tile tile-olive rv" style="--i:3">
+            <span class="tl">Quality score</span>
+            <span class="tv"><span data-count="97">97</span>% Quality,<br><span data-count="17473" data-fmt="k">17,473</span> Cleared Alerts</span>
+          </div>
+          <div class="tile tile-steel rv" style="--i:4">
+            <span class="tl">Certifications and Education</span>
+            <span class="tv"><span data-count="21">21</span>+ Certs,<br>25.5 CPD-Accredited Hours</span>
+          </div>
+          <div class="tile tile-coral rv" style="--i:5">
+            <span class="tl">Applied AI Prototyping</span>
+            <span class="stack">Python,<br>SQL,<br>Claude API,<br>Anthropic MCP</span>
+            <span class="tv"><span data-count="3">3</span> Live Compliance Tools</span>
           </div>
         </div>
-        <!-- CARD 2: Kambria DAO (olive) -->
-        <div class="pc pc-olive" onclick="openModal('dao1')">
-          <div class="pc-cat"><span class="cat-dot"></span>DAO &middot; Documentation Working Group Lead</div>
-          <h3>Kambria Participant-Proposed DAO &mdash; DEP 2 </h3>
-          <p>Selected as Documentation &amp; Working group lead(May 2026 - Present). Applying AML/MiCA expertise to tokenomics risk assessment and decentralised treasury governance design, documentation systems, bookkeeping, reporting results.</p>
-          <div class="pc-tags"><span class="pt">DAO</span><span class="pt">MiCA</span><span class="pt">Web3</span><span class="pt">AML</span><span class="pt">Documentation and Reporting</span></div>
-        </div>
-        <!-- CARD 3: Policy Reader — Beta Live (steel) -->
-        <div class="pc pc-steel" onclick="openModal('build1')">
-          <div class="pc-cat"><span class="cat-dot"></span>Live</div>
-          <h3>Policy Reader &mdash; Compliance Document Analyser</h3>
-          <p>Dual-mode AI tool. <strong>Compare mode:</strong> inline strikethrough/highlight shows diff between policy versions. <strong>Analyse mode:</strong> extracts every rule, threshold, and restriction into a searchable keyword-grouped database. Beta v1.0</p>
-          <div class="pc-tags">
-            <span class="pt">Claude API</span><span class="pt">React</span><span class="pt">AMLD6</span>
-            <span class="pt">Regulations/Policy</span><span class="pt">Rule Extraction</span><span class="pt">Rule Tuning</span>
-          </div>
-        </div>
-        <!-- CARD 4: Scam Investigator - Beta Live -->
-        <div class="pc pc-amber" onclick="openModal('build2')">
-          <div class="pc-cat"><span class="cat-dot"></span>Live</div>
-          <h3> Scam Investigator - KYB Verification Tool</h3>
-          <p>Validity of companies investigated with the help of Claude API by research of the company in registries, official documentation, and media. Human-in-loop.</p>
-          <div class="pc-tags">
-            <span class="pt">GenAI API</span><span class="pt">KYC/KYB</span><span class="pt">Fraud</span><span class="pt">Scam</span>
-            <span class="pt">RegTech</span><span class="pt">Documentation</span><span class="pt">OSINT</span>
-          </div>
-        </div>
-        
-        <!-- CARD 4: Knowledge Base — Draft Live (coral) -->
-        <div class="pc pc-coral" onclick="openModal('build3')">
-          <div class="pc-cat"><span class="cat-dot"></span>Live</div>
-          <h3>Anti Financial Crime Knowledge Base &mdash; Compliance Guides</h3>
-          <p><strong>6 Published Guides:</strong> AML/KYC + PoF/W (CDD ladder SDD&rarr;EDD, PEP framework), AMLD6 (22 predicate offences), OFAC (SDN list, crypto wallet screening), MiCA (Travel Rule, CASP obligations), Fiat vs Web3 AML, DAO Policy (Tokens).</p>
-          <p><strong>2 Upcoming:</strong> AML Investigation Document Guide (all 32 L1/L2 framework documents) and Red Flag Investigation Guide (methodology). Draft v1.0.</p>
-          <div class="pc-tags">
-            <span class="pt">Regulations/Policy</span><span class="pt">Documentation</span><span class="pt">AMLD6</span>
-            <span class="pt">OFAC</span><span class="pt">MiCA</span><span class="pt">KYC</span>
-          </div>
-        </div>
-        <!-- CARD 5: Coming Soon (dark) -->
-        <div class="pc pc-steel" onclick="openModal('soon1')">
-          <div class="pc-cat"><span class="cat-dot"></span>Published &middot; LinkedIn</div>
-          <h3>Case Study &mdash; How Would You File a SAR? EUR 306M Laundering</h3>
-          <p>Full investigation flow from TxM alert to FIU filing on a EUR 306 million laundering scenario - every document, every decision point.</p>
-          <div class="pc-tags"><span class="pt">Case Study</span><span class="pt">SAR Filing</span><span class="pt">Escalation</span><span class="pt">FIU</span></div>
-        </div>
-        <!-- CARD 6: Coming Soon (dark) -->
-        <div class="pc pc-dark" onclick="openModal('soon2')">
-          <div class="pc-cat">Soon</div>
-          <h3>Case Study &mdash; Crypto Transaction Tracing</h3>
-          <p>On-chain case walkthrough: funds tracing, clustering, and fraud identification.</p>
-          <div class="pc-tags"><span class="pt">Crypto</span><span class="pt">OSINT</span><span class="pt">Blockchain</span>
-          <span class="pt">Etherscan</span><span class="pt">MetalSleuth</span><span class="pt">Arkham</span></div>
+        <div class="facts rv" style="--i:6">
+          <div class="fact"><span class="k">Location</span><span class="v">Lithuania · Remote</span></div>
+          <div class="fact"><span class="k">Timezone</span><span class="v">EMEA · UTC+2/3</span></div>
+          <div class="fact"><span class="k">Open to</span><span class="v am">Remote · Async · In-house · B2B</span></div>
+          <div class="fact"><span class="k">Email</span><span class="v"><a href="mailto:gintare@ajatauaml.com">gintare@ajatauaml.com</a></span></div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!-- WHO'S THIS: same bento top + scrollable bio -->
-<div id="pane-about" class="tab-pane">
-  <div class="about-hero-block">
-    <div class="about-hero-left">
-      <div>
-        <p class="hero-kicker">AML &middot; Web3 &middot; RegTech</p>
-        <h1 class="hero-name">Gintarė<span class="hero-surname">Jatautytė</span></h1>
-      </div>
-      <div>
-      <div class="hero-desc"> <h3>AML Practitioner & AI Compliance Tool Builder.</h3> <p>2+ years inside the actual AML team of a major Nordic Tier 1 bank.</p>  <p>Now also building the practitioner&apos;s answer to what FIS and Anthropic announced as their Financial Crimes AI Agent - an agentic SAR generator, built independently from the inside, KYB research automation, AML regulations update comparisons between old and new versions. </p> <p>Pattern recognition is my thing.</p> <p>Dirty money doesn&apos;t stand a chance.</p></div>
-        <div class="hero-actions">
-          <a class="btn-dark" href="#pane-portfolio" onclick="showTab('portfolio');return false">View Portfolio</a>
-          <a class="btn-ghost-dark" href="mailto:gintare@ajatauaml.com">Let&apos;s talk</a>
-        </div>
-      </div>
+
+<!-- ══════════ 02 PORTFOLIO ══════════ -->
+<div class="pane" id="pane-portfolio">
+  <div class="pane-in">
+    <div class="ghost">02</div>
+    <div class="sec-head rv" style="--i:0">
+      <span class="kicker">02 — Portfolio</span>
+      <span class="kicker">Alert queue: 7 hits · click to adjudicate</span>
     </div>
-    <div class="about-hero-right">
-      <div class="stat-row">
-        <div class="stat-block sb-amber"><div class="stat-l">AML experience</div><div class="stat-n">2+ years</div></div>
-        <div class="stat-block sb-olive"><div class="stat-l">Quality score</div><div class="stat-n"><p>97% Quality,</p> <p>17,000+ Cleared Alerts</p> </div></div>
-      </div>
-      <div class="stat-row">
-        <div class="stat-block sb-steel"><div class="stat-l">Certifications and Eduction</div><div class="stat-n"><p>21+ Certs,</p> <p>25+ CPD-Accredited Hours</p></div></div>
-        <div class="stat-block sb-coral"><div class="stat-l"><p>Applied AI Prototyping</p><p>Python,</p> <p>SQL, </p> <p>Claude API,</p>  <p>Anthropic MCP</p></div><div class="stat-n"><p>3 Live </p> <p>Compliace Tools</p></div> </div>
-      </div>
-      <div class="home-profile">
-        <div class="hp-row"><span class="k">Location</span><span class="v">Lithuania &middot; Remote</span></div>
-        <div class="hp-row"><span class="k">Timezone</span><span class="v">EMEA &middot; UTC+2/3</span></div>
-        <div class="hp-row"><span class="k">Open to</span><span class="v tl">Remote &middot; B2B &middot; DAO</span></div>
-        <div class="hp-row"><span class="k">Email</span><span class="v am">gintare@ajatauaml.com</span></div>
-      </div>
+    <div class="title-block rv" style="--i:1">
+      <h2 class="h-sec">Real cases. <em>Documented.</em></h2>
+      <p class="sec-sub">Nordic bank investigations, Web3 builds, and AI tools in progress.</p>
     </div>
-  </div>
-  <!-- Scroll down for more -->
-  <div class="about-bio">
-    <div class="bio-text">
-      <div class="bio-kicker">Who&apos;s This?</div>
-      <h2 class="bio-pull">Not the back office.<br>The team that decides if<br>the money is <em>actually clean.</em></h2>
-      <div class="bio-divider"></div>
-      <p class="bio-p">Two years inside the actual AML function of a major Nordic Tier 1 bank &mdash; running live transaction monitoring across <strong>Finland, Denmark, and Sweden</strong>. OFAC alerts, CDD/EDD, SAR/STR filing, adverse media, OSINT. The real thing.</p>
-      <p class="bio-p"><strong>97%+ quality score</strong> across every monthly assessment. Not a box-ticking exercise &mdash; I actually notice things. The pattern that&apos;s slightly off. The business model that doesn&apos;t add up. That&apos;s the job, and I genuinely like it.</p>
-      <p class="bio-p">Now also building at the intersection of <strong>AML, AI automation, and blockchain tracing skills</strong>. My flagship build is an <strong>agentic SAR generator</strong> on the Claude API - automated evidence assembly and SAR narrative generation with human-in-the-loop review. It targets the same core workflow <strong>FIS and Anthropic</strong> announced as their Financial Crimes AI Agent, built independently from the practitioner side.</p>
-      <p class="bio-p">Four POSTECH blockchain certs. MiCA training. GenAI for fraud detection cert. Data Analytics Specialisation from Google. Python and SQL in progress. CAMS next.</p>
-      <div class="bio-tags">
-        <span class="atag">Sanctions Screening</span><span class="atag">AML/CTF</span><span class="atag">CDD/EDD</span><span class="atag">OSINT</span><span class="atag">Crypto Regulation</span><span class="atag">DeFi/Banking Environments</span><span class="atag">GenAI</span><span class="atag">RBA</span><span class="atag">Documentation and Reporting</span><span class="atag">PEP</span><span class="atag">Blockchain Analytics</span>
+    <div class="pgrid">
+      <div class="pc rv" style="--acc:var(--amber);--i:2" data-key="live1" role="button" tabindex="0" aria-label="Open case study: Agentic SAR Generator">
+        <span class="arrow">↗</span>
+        <div class="pc-top"><span class="pnum">01</span><span class="status st-live"><span class="pip"></span>Cleared · Beta Live</span></div>
+        <h3>Agentic SAR Generator — Python &amp; SQL Scripts</h3>
+        <p>Automated evidence assembly and SAR narrative generation with human-in-the-loop review — the same core workflow FIS and Anthropic announced, built independently from the practitioner side.</p>
+        <div class="ptags"><span class="pt">GenAI API</span><span class="pt">Python</span><span class="pt">SQL</span><span class="pt">SAR/STR</span><span class="pt">OFAC</span></div>
       </div>
-    </div>
-    <div class="bio-sidebar">
-      <div class="bs-top">
-        <div class="alert-pill" style="margin-bottom:0.8rem;font-size:0.62rem;padding:0.38rem 0.75rem">
-          <span class="blip-wrap"><span class="blip-r1"></span><span class="blip-core"></span></span>
-          Available now
-        </div>
-        <div class="bs-init">GJ</div>
-        <h3>Gintarė Jatautytė</h3>
-        <div class="bs-role">AML Officer &middot; Compliance</div>
+      <div class="pc rv" style="--acc:var(--olive-light);--i:3" data-key="dao1" role="button" tabindex="0" aria-label="Open case study: Pesa Play DAO, Documentation Working Group Lead">
+        <span class="arrow">↗</span>
+        <div class="pc-top"><span class="pnum">02</span><span class="status st-dao"><span class="pip"></span>WG Lead · Active</span></div>
+        <h3>Pesa Play DAO — Documentation WG Lead (Kambria DEP 2)</h3>
+        <p>Documentation Working Group Lead since May 2026 (volunteer). Bookkeeping review, consent and data-protection framework, and a designed crypto-to-fiat off-ramp SOP with segregation of duties.</p>
+        <div class="ptags"><span class="pt">DAO</span><span class="pt">MiCA</span><span class="pt">Bookkeeping</span><span class="pt">Documentation</span></div>
       </div>
-      <div class="bs-rows">
-        <div class="bsrow"><span class="k">Location</span><span class="v">Lithuania &middot; Remote</span></div>
-        <div class="bsrow"><span class="k">Role</span><span class="v">AML Officer &middot; ex-Transcom (Tier 1 Nordic Bank AML function)</span></div>
-        <div class="bsrow"><span class="k">Timezone</span><span class="v">EMEA &middot; EET/EEST</span></div>
-        <div class="bsrow"><span class="k">Languages</span><span class="v">LT &middot; EN</span></div>
-        <div class="bsrow"><span class="k">Quality</span><span class="v tl">97%+ always</span></div>
-        <div class="bsrow"><span class="k">Open to</span><span class="v am">B2B &middot; DAO</span></div>
+      <div class="pc rv" style="--acc:var(--steel);--i:4" data-key="build1" role="button" tabindex="0" aria-label="Open case study: Policy Reader">
+        <span class="arrow">↗</span>
+        <div class="pc-top"><span class="pnum">03</span><span class="status st-build"><span class="pip"></span>Cleared · Beta Live</span></div>
+        <h3>Policy Reader — Compliance Document Analyser</h3>
+        <p>Dual-mode AI tool. Compare mode: inline diff between policy versions. Analyse mode: every rule, threshold, and restriction extracted into a searchable database.</p>
+        <div class="ptags"><span class="pt">Claude API</span><span class="pt">React</span><span class="pt">AMLD6</span><span class="pt">MiCA</span></div>
       </div>
-      <div class="bs-nums">
-        <div class="bsn"><div class="n">2+</div><div class="l">Years AML</div></div>
-        <div class="bsn"><div class="n">3</div><div class="l">Jurisdictions</div></div>
-        <div class="bsn"><div class="n">4</div><div class="l">Blockchain certs</div></div>
-        <div class="bsn"><div class="n">9+</div><div class="l">Certs total</div></div>
+      <div class="pc rv" style="--acc:var(--amber);--i:5" data-key="build2" role="button" tabindex="0" aria-label="Open case study: Scam Investigator">
+        <span class="arrow">↗</span>
+        <div class="pc-top"><span class="pnum">04</span><span class="status st-build"><span class="pip"></span>Cleared · Beta Live</span></div>
+        <h3>Scam Investigator — KYB Verification</h3>
+        <p>Enter the information you were given; the tool investigates the company and returns what it found <b>with the sources behind each finding</b>. The verdict is a human sign-off.</p>
+        <div class="ptags"><span class="pt">GenAI API</span><span class="pt">KYB</span><span class="pt">Fraud</span><span class="pt">OSINT</span></div>
+      </div>
+      <div class="pc rv" style="--acc:var(--coral);--i:6" data-key="build3" role="button" tabindex="0" aria-label="Open case study: Anti Financial Crime Knowledge Base">
+        <span class="arrow">↗</span>
+        <div class="pc-top"><span class="pnum">05</span><span class="status st-build"><span class="pip"></span>Cleared · Draft Live</span></div>
+        <h3>Anti Financial Crime Knowledge Base — Compliance Guides</h3>
+        <p>6 published guides: AML/KYC + PoF/W, AMLD6, OFAC, MiCA, Fiat vs Web3 AML, DAO Policy. 2 upcoming: AML Investigation Documents and Red Flag methodology.</p>
+        <div class="ptags"><span class="pt">Policy</span><span class="pt">AMLD6</span><span class="pt">OFAC</span><span class="pt">MiCA</span><span class="pt">KYC</span></div>
+      </div>
+      <div class="pc rv" style="--acc:var(--steel);--i:7" data-key="soon1" role="button" tabindex="0" aria-label="Open case study: EUR 306M SAR filing">
+        <span class="arrow">↗</span>
+        <div class="pc-top"><span class="pnum">06</span><span class="status st-live"><span class="pip"></span>Case Study · Published</span></div>
+        <h3>Case Study — How Would You File a SAR? EUR 306M Laundering</h3>
+        <p>Full investigation flow from TxM alert to FIU filing on a EUR 306 million laundering scenario — every document, every decision point.</p>
+        <div class="ptags"><span class="pt">Case Study</span><span class="pt">SAR Filing</span><span class="pt">FIU</span></div>
+      </div>
+      <div class="pc rv" style="--acc:#b8b09a;--i:8" data-key="soon2" role="button" tabindex="0" aria-label="Open case study: Crypto Transaction Tracing">
+        <span class="arrow">↗</span>
+        <div class="pc-top"><span class="pnum">07</span><span class="status st-soon"><span class="pip"></span>Under Review · Soon</span></div>
+        <h3>Case Study — Crypto Transaction Tracing</h3>
+        <p>On-chain OSINT walkthrough: wallet tracing, address clustering, and illicit fund identification.</p>
+        <div class="ptags"><span class="pt">Crypto</span><span class="pt">OSINT</span><span class="pt">Blockchain</span></div>
       </div>
     </div>
   </div>
 </div>
-<!-- SKILLS -->
-<div id="pane-skills" class="tab-pane">
-  <div class="sk-layout">
-    <div class="sk-sidebar">
-      <h2>From OFAC<br>to <em>on-chain.</em></h2>
-      <p style="margin-top:0.5rem">Full toolkit &mdash; regulations, investigations, tools, tech.</p>
-      <div class="sk-count">40<span>Skills</span></div>
+
+<!-- ══════════ 03 WHO'S THIS ══════════ -->
+<div class="pane" id="pane-about">
+  <div class="pane-in">
+    <div class="ghost">03</div>
+    <div class="sec-head rv" style="--i:0">
+      <span class="kicker">03 — Who's This?</span>
+      <span class="kicker">The engine room</span>
     </div>
-    <div class="sk-area">
-      <div class="sk-grid">
-        <div class="skc"><p class="skc-cat">Core Compliance</p><h4>Financial Crime</h4><div class="sk-pills"><span class="skp">AML/CTF</span><span class="skp">CDD/EDD</span><span class="skp">SAR/STR/UAR</span><span class="skp">PEP</span><span class="skp">SoF/SoW</span><span class="skp">RBA</span><span class="skp">UBO</span><span class="skp">Due Diligence</span><span class="skp">Risk Scoring</span></div></div>
-        <div class="skc"><p class="skc-cat">Regulatory Frameworks</p><h4>Regulations</h4><div class="sk-pills"><span class="skp">OFAC SDN List</span><span class="skp">EU AMLD</span><span class="skp">FATF 40</span><span class="skp">EU Consolidated Sanctions</span><span class="skp">UN Sanctions</span><span class="skp">MiCA</span><span class="skp">GDPR</span></div></div>
-        <div class="skc"><p class="skc-cat">Investigations</p><h4>TM &amp; OSINT</h4><div class="sk-pills"><span class="skp">Live Alert Triaging</span><span class="skp">Cross-Border Payments</span><span class="skp">OSINT</span><span class="skp">Adverse Media</span><span class="skp">Anomaly Detection</span><span class="skp">Corporate Registry Analysis</span><span class="skp">TM Software (&equiv; inside company software, Actimize, AMLYZE)</span></div></div>
-        <div class="skc"><p class="skc-cat">Blockchain &amp; Crypto</p><h4>On-Chain</h4><div class="sk-pills"><span class="skp">Etherscan / MetaSleuth / Mempool / Arkham </span> <span>Chainalysis / TRM Labs/ Elliptic</span><span class="skp">DeFi Compliance</span><span class="skp">Crypto-Asset Risk</span><span class="skp">VASP / CASP</span><span class="skp">Travel Rule</span><span class="skp">Tokenomics Risk</span></div></div>
-        <div class="skc"><p class="skc-cat">Data &amp; Analytics</p><h4>Technical</h4><div class="sk-pills"><span class="skp">SQL</span><span class="skp">Python (SAR drafting app, Policy reader app)</span><span class="skp">AWS</span><span class="skp">Tableau</span><span class="skp">Google Sheets</span><span class="skp">Google Data Analytics Specialization &#x2713;</span></div></div>
-        <div class="skc"><p class="skc-cat">AI &amp; RegTech</p><h4>Emerging Tech</h4><div class="sk-pills"><span class="skp">Anthropic API</span><span class="skp">Model Context Protocol (MCP)</span><span class="skp">Claude Code</span><span class="skp">Sumsub (KYC/KYB)</span><span class="skp">GenAI for Fraud Detection &#x2713;</span><span class="skp">AI Workflow Automation</span><span class="skp">Pattern Recognition</span><span class="skp">DAO Governance</span></div></div>
+    <div class="title-block rv" style="--i:1">
+      <h2 class="h-sec">Not the back office.<br>The team that decides if<br>the money is <em>actually clean.</em></h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-copy rv" style="--i:2">
+        <p>Two years inside the actual AML function of a major Nordic Tier&nbsp;1 bank — running live transaction monitoring across <b>Finland, Denmark, and Sweden</b>. OFAC alerts, CDD/EDD, SAR/STR escalation, adverse media, OSINT. The real thing.</p>
+        <p><b>17,473 cases at 97% audited quality</b> over 25 months — 10,683 transaction monitoring cases at 96.15% and 6,790 sanctions cases at 98.58%. Not a box-ticking exercise — I actually notice things. The pattern that's slightly off. The business model that doesn't add up. That's the job, and I genuinely like it.</p>
+        <p>Now building at the intersection of <b>AML, AI automation, and Web3</b>. My flagship build is an <b>agentic SAR generator</b> on the Claude API — automated evidence assembly and SAR narrative generation with human-in-the-loop review. It targets the same core workflow <b>FIS and Anthropic</b> announced as their Financial Crimes AI Agent, built independently from the practitioner side.</p>
+        <p>Also <b>Documentation Working Group Lead at Pesa Play DAO</b> (a project inside Kambria's DEP 2 programme, volunteer) since May 2026 — four months of bookkeeping review and compliance documentation: consent and child-data protection framework, a designed crypto-to-fiat off-ramp SOP with segregation of duties, weekly independent treasury review.</p>
+        <p>21+ certifications: Sumsub stack (25.5 CPD-accredited hours), Anthropic stack, four POSTECH blockchain certs, MiCA, GenAI for fraud detection, UPenn regulatory compliance, and five Google specialisations. CAMS planned October 2026.</p>
+        <div class="kw">
+          <span>OFAC</span><span>AML/CTF</span><span>CDD/EDD</span><span>OSINT</span><span>MiCA</span><span>DeFi</span><span>GenAI</span><span>RBA</span><span>Nordic FIU</span><span>FATF</span><span>SAR/STR</span><span>PEP Screening</span><span>Blockchain Analytics</span><span>VASP</span><span>KYB</span><span>UBO</span><span>Transaction Monitoring</span>
+        </div>
+      </div>
+      <div>
+        <div class="side-card rv" style="--i:3">
+          <div class="avail"><span class="dot"></span>KYC Verified · Subject Active · No Hits</div>
+          <div class="card-top">
+            <div class="avatar">GJ</div>
+            <div>
+              <h4>Gintarė Jatautytė</h4>
+              <div class="kicker">AML Officer · Web3 Compliance</div>
+            </div>
+          </div>
+          <div class="fact"><span class="k">Location</span><span class="v">Lithuania · Remote</span></div>
+          <div class="fact"><span class="k">Role</span><span class="v">AML Practitioner · RegTech Builder</span></div>
+          <div class="fact"><span class="k">Timezone</span><span class="v">EMEA · EET/EEST</span></div>
+          <div class="fact"><span class="k">Languages</span><span class="v">LT · EN</span></div>
+          <div class="fact"><span class="k">Quality</span><span class="v" style="color:var(--teal-text)">97% audited</span></div>
+          <div class="fact"><span class="k">Open to</span><span class="v am">Remote · Async · In-house · B2B</span></div>
+        </div>
+        <div class="mini rv" style="--i:4">
+          <div><b>2+</b><span>Years AML</span></div>
+          <div><b>3</b><span>Jurisdictions</span></div>
+          <div><b>17,473</b><span>Cases cleared</span></div>
+          <div><b>21+</b><span>Certs total</span></div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<!-- EXPERIENCE -->
-<div id="pane-experience" class="tab-pane">
-  <div class="ex-layout">
-    <div class="ex-sidebar">
-      <h2>Two years in the<br><em>engine room.</em></h2>
-      <p style="margin-top:0.5rem">Not support. The team that decides what&apos;s clean.</p>
-      <div class="ex-badges">
-        <div class="ex-badge"><div class="en">2+</div><div class="el">Years</div></div>
-        <div class="ex-badge"><div class="en">97%+</div><div class="el">Quality score</div></div>
+
+<!-- ══════════ 04 SKILLS ══════════ -->
+<div class="pane" id="pane-skills">
+  <div class="pane-in">
+    <div class="ghost">04</div>
+    <div class="sec-head rv" style="--i:0">
+      <span class="kicker">04 — Skills</span>
+      <span class="kicker">53 skills · 6 domains</span>
+    </div>
+    <div class="title-block rv" style="--i:1">
+      <h2 class="h-sec">From OFAC to <em>on-chain.</em></h2>
+      <p class="sec-sub">Full toolkit — regulations, investigations, tools, tech.</p>
+    </div>
+    <div class="skill-grid">
+      <div class="skill rv" style="--acc:var(--amber);--acc-t:var(--amber-text);--i:2">
+        <span class="kicker">Core Compliance</span>
+        <h4>Financial Crime</h4>
+        <ul><li>AML/CTF</li><li>CDD/EDD</li><li>SAR/STR/UAR</li><li>PEP Screening</li><li>SoF/SoW</li><li>RBA</li><li>UBO / Beneficial Ownership</li><li>KYC / KYB</li><li>Alert Adjudication</li><li>Risk Scoring</li></ul>
+      </div>
+      <div class="skill rv" style="--acc:var(--steel);--acc-t:var(--steel);--i:3">
+        <span class="kicker">Regulatory Frameworks</span>
+        <h4>Regulations</h4>
+        <ul><li>OFAC SDN List</li><li>EU AMLD</li><li>FATF 40</li><li>EU Consolidated Sanctions</li><li>UN Sanctions</li><li>EU MiCA</li><li>GDPR</li><li>Nordic FIU</li></ul>
+      </div>
+      <div class="skill rv" style="--acc:var(--coral);--acc-t:var(--coral);--i:4">
+        <span class="kicker">Investigations</span>
+        <h4>TM &amp; OSINT</h4>
+        <ul><li>Live Alert Triaging</li><li>Cross-Border Payments</li><li>OSINT</li><li>Adverse Media</li><li>Anomaly Detection</li><li>Corporate Registry Analysis</li><li>TM Software (≡ Actimize)</li><li>Unit21 (familiar)</li></ul>
+      </div>
+      <div class="skill rv" style="--acc:var(--olive-light);--acc-t:var(--olive);--i:5">
+        <span class="kicker">Blockchain &amp; Crypto</span>
+        <h4>On-Chain</h4>
+        <ul><li>Etherscan</li><li>Arkham</li><li>MetaSleuth</li><li>Mempool.space</li><li>Chainalysis / TRM / Elliptic (theory)</li><li>DeFi Compliance</li><li>Crypto-Asset Risk</li><li>VASP / CASP</li><li>Travel Rule</li><li>Tokenomics Risk</li></ul>
+      </div>
+      <div class="skill rv" style="--acc:var(--teal);--acc-t:var(--teal-text);--i:6">
+        <span class="kicker">Data &amp; Analytics</span>
+        <h4>Technical</h4>
+        <ul><li>SQL</li><li>Python (SAR drafting app, Policy Reader app)</li><li>AWS</li><li>Tableau</li><li>Google Sheets</li><li>Google Data Analytics ✓</li><li>Google Advanced Data Analytics ✓</li><li>Google Business Intelligence ✓</li></ul>
+      </div>
+      <div class="skill rv" style="--acc:var(--ink);--acc-t:var(--ink);--i:7">
+        <span class="kicker">AI &amp; RegTech</span>
+        <h4>Emerging Tech</h4>
+        <ul><li>Anthropic API</li><li>Model Context Protocol (MCP)</li><li>Claude Code</li><li>Sumsub (KYC/KYB)</li><li>GenAI Fraud Detection ✓</li><li>AI Workflow Automation</li><li>Google AI Professional ✓</li><li>Pattern Recognition</li><li>DAO Governance</li></ul>
       </div>
     </div>
-    <div class="ex-area">
-      <div class="exp-card">
-        <div class="exp-head"><div class="exp-head-l"><div class="co">UAB &ldquo;Transcom&rdquo; &mdash; Major Nordic Tier 1 Bank</div><h3>AML Officer</h3></div><div class="exp-head-r"><strong>May 2024 &mdash; December 2025</strong>Lithuania &middot; Remote</div></div>
-        <div class="exp-body"><ul>
-          <li>Live and batch Transaction Monitoring (TM) across Nordic jurisdictions &mdash; Finland, Denmark, Sweden &mdash; on a proprietary Tier 1 bank TM platform (Actimize-equivalent), escalating patterns consistent with structuring, layering, and self-funding typologies.</li>
+  </div>
+</div>
+
+<!-- ══════════ 05 EXPERIENCE ══════════ -->
+<div class="pane" id="pane-experience">
+  <div class="pane-in">
+    <div class="ghost">05</div>
+    <div class="sec-head rv" style="--i:0">
+      <span class="kicker">05 — Experience</span>
+      <span class="kicker">2+ years · 17,473 cases · 97% audited quality</span>
+    </div>
+    <div class="title-block rv" style="--i:1">
+      <h2 class="h-sec">Two years in the <em>engine room.</em></h2>
+      <p class="sec-sub">Not support. The team that decides what's clean.</p>
+    </div>
+
+    <article class="xp rv" style="--acc:var(--olive-light);--i:2">
+      <div class="xp-when"><b>May 2026 — Present</b><br>Remote · Async · Volunteer</div>
+      <div>
+        <p class="org">Pesa Play DAO — Kambria DEP 2 programme</p>
+        <h3>Documentation Working Group Lead</h3>
+        <ul>
+          <li>Lead of WG4 (Documentation): assessment instruments, consent forms, data ownership and results reporting for a financial-literacy education pilot.</li>
+          <li>Bookkeeping and independent weekly treasury review under a four-eyes model — reviewer never holds or moves funds.</li>
+          <li>Designed a <b>crypto-to-fiat off-ramp SOP</b> with segregation of duties and per-conversion documentation (draft, pending DAO adoption).</li>
+          <li>Child-data protection framework: anonymised participant IDs, consent-gated media, media clearance checklist anchored in Kenya's Data Protection Act 2019.</li>
+          <li>Applied MiCA frameworks to the token classification question — transferability and purchasability as the trigger for Title II obligations.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="xp rv" style="--acc:var(--coral);--i:3">
+      <div class="xp-when"><b>May 2024 — Dec 2025</b><br>Lithuania · Remote</div>
+      <div>
+        <p class="org">UAB "Transcom" — Major Nordic Tier 1 Bank</p>
+        <h3>AML Officer</h3>
+        <ul>
+          <li>Live and batch Transaction Monitoring (TM) across Nordic jurisdictions — Finland, Denmark, Sweden — on a proprietary Tier 1 bank TM platform (Actimize-equivalent), escalating patterns consistent with structuring, layering, and self-funding typologies.</li>
           <li>SoF / SoW verification as part of Enhanced Due Diligence (EDD) for high-risk customers and complex entity structures, including beneficial ownership analysis.</li>
           <li>Risk-Based Approach (RBA) applied to customer risk scoring, incorporating KYC validation, business model and account activity analysis.</li>
           <li>Adverse media screening and OSINT for PEP, sanctions, and reputational risk identification.</li>
-          <li>SAR/STR and UAR reporting to the Financial Intelligence Unit (FIU).</li>
-          <li>Sustained <strong>96%+ quality score</strong> across every monthly assessment.</li>
-        </ul></div>
+          <li>SAR/STR and UAR escalation into the Financial Intelligence Unit (FIU) reporting chain.</li>
+          <li><b>10,683 transaction monitoring cases at 96.15% audited quality</b> across every monthly assessment.</li>
+        </ul>
       </div>
-      <div class="exp-card">
-        <div class="exp-head"><div class="exp-head-l"><div class="co">UAB &ldquo;Transcom&rdquo; &mdash; Major Nordic Tier 1 Bank</div><h3>Data Coordinator Specialist</h3></div><div class="exp-head-r"><strong>Dec 2023 &mdash; May 2024</strong>Lithuania &middot; Remote</div></div>
-        <div class="exp-body"><ul>
-          <li>OFAC sanctions alert review and adjudication &mdash; exception-handling protocols for complex multi-jurisdictional escalations.</li>
+    </article>
+
+    <article class="xp rv" style="--acc:var(--steel);--i:4">
+      <div class="xp-when"><b>Dec 2023 — May 2024</b><br>Lithuania · Remote</div>
+      <div>
+        <p class="org">UAB "Transcom" — Major Nordic Tier 1 Bank</p>
+        <h3>Data Coordinator Specialist</h3>
+        <ul>
+          <li>OFAC sanctions alert review and adjudication — exception-handling protocols for complex multi-jurisdictional escalations.</li>
           <li>Customer Due Diligence (CDD): client ID, documentation review, and risk profiling per EU AMLD and Nordic FIU requirements.</li>
           <li>Adverse media and negative news screening via OSINT to surface reputational, sanctions, and financial crime indicators.</li>
           <li>Sanctions compliance support across OFAC, EU Consolidated Sanctions List, and UN Sanctions frameworks.</li>
+          <li><b>6,790 OFAC sanctions cases at 98.58% audited quality</b> across every monthly assessment.</li>
           <li>Cross-departmental collaboration on complex financial crime investigations.</li>
-           <li>Sustained <strong>98%+ quality score</strong> across every monthly assessment.</li>
-        </ul></div>
+        </ul>
       </div>
+    </article>
+
+  </div>
+</div>
+
+<!-- ══════════ 06 CERTS ══════════ -->
+<div class="pane" id="pane-certs">
+  <div class="pane-in">
+    <div class="ghost">06</div>
+    <div class="sec-head rv" style="--i:0">
+      <span class="kicker">06 — Certifications</span>
+      <span class="kicker">21+ certs · 25.5 CPD hours</span>
+    </div>
+    <div class="title-block rv" style="--i:1">
+      <h2 class="h-sec">Certified in finding <em>filth.</em></h2>
+      <p class="sec-sub">The criminals call it laundering. My job is proving the laundry's still dirty.</p>
+      <p class="cert-note"><b>AML = anti-money laundering.</b> "Laundering" = washing. I prove it's not clean. These are my cleaning credentials.</p>
+    </div>
+    <div class="cert-grid">
+      <div class="cert rv" style="--i:2"><div><h4>CAMS — Certified Anti-Money Laundering Specialist</h4><p>ACAMS · Global Gold Standard</p></div><span class="st st--plan">Planned Oct 2026</span></div>
+      <div class="cert rv" style="--i:3"><div><h4>Blockchain Specialisation (×4)</h4><p>POSTECH · Coursera</p></div><span class="st st--done">Completed</span></div>
+      <div class="cert rv" style="--i:4"><div><h4>EU MiCA Regulatory Framework</h4><p>Markets in Crypto-Assets</p></div><span class="st st--done">Completed</span></div>
+      <div class="cert rv" style="--i:5"><div><h4>Sumsub Certification Stack</h4><p>CPD-accredited (25.5 CPD hrs): AML Fundamentals, Fraud Prevention, User Verification, Travel Rule, Business Verification Fundamentals &amp; Advanced, Transaction Monitoring</p></div><span class="st st--done">Completed</span></div>
+      <div class="cert rv" style="--i:6"><div><h4>Anthropic Certification Stack</h4><p>Intro to Model Context Protocol, MCP: Advanced Topics, Claude with the Anthropic API, Claude Code 101 &amp; Claude Code in Action, AI Fluency: Framework &amp; Foundations, Introduction to Claude Cowork</p></div><span class="st st--done">Completed</span></div>
+      <div class="cert rv" style="--i:7"><div><h4>GenAI for Fraud Detection &amp; Compliance</h4><p>Coursera</p></div><span class="st st--done">Completed</span></div>
+      <div class="cert rv" style="--i:8"><div><h4>Google Specialisations (×5)</h4><p>Data Analytics · Advanced Data Analytics · AI Professional · Project Management Foundations · Business Intelligence</p></div><span class="st st--done">Completed</span></div>
+      <div class="cert rv" style="--i:9"><div><h4>Regulatory Compliance Specialisation</h4><p>University of Pennsylvania</p></div><span class="st st--done">Completed</span></div>
+      <div class="cert rv" style="--i:10"><div><h4>Suspicious Transaction Reporting (STR)</h4><p>SkillsUp · US Standard</p></div><span class="st st--done">Completed</span></div>
+      <div class="cert rv" style="--i:11"><div><h4>Protecting Against ML &amp; Terrorist Financing</h4><p>SkillsUp · US Standard</p></div><span class="st st--done">Completed</span></div>
+      <div class="cert rv" style="--i:12"><div><h4>GDPR — General Data Protection Regulation</h4><p>EU Data Protection Framework</p></div><span class="st st--done">Completed</span></div>
     </div>
   </div>
 </div>
-<!-- CERTS -->
-<div id="pane-certs" class="tab-pane">
-  <div class="cert-layout">
-    <div class="cert-sidebar">
-      <h2>Certified in<br>finding <em>filth.</em></h2>
-      <p>The criminals call it laundering. My job is proving the laundry&apos;s still dirty.</p>
-      <div class="cert-analogy"><strong>AML = anti-money laundering.</strong> &ldquo;Laundering&rdquo; = washing. I prove it&apos;s not clean. These are my cleaning credentials.</div>
-      <div class="cert-count">11<span>Certifications</span></div>
+
+<!-- ══════════ 07 CONTACT ══════════ -->
+<div class="pane" id="pane-contact">
+  <div class="pane-in">
+    <div class="ghost">07</div>
+    <div class="sec-head rv" style="--i:0">
+      <span class="kicker">07 — Contact</span>
+      <span class="tmc"><span class="dot"></span>Case status: Open · Available now · LT · EMEA</span>
     </div>
-    <div class="cert-area">
-      <div class="cert-grid">
-        <div class="cc cc-amber"><div class="cc-ico">&#x1F3AF;</div><h4>CAMS &mdash; Certified Anti-Money Laundering Specialist</h4><div class="cc-iss">ACAMS &middot; Global Gold Standard</div><div class="cc-pill cp-next"><span class="cp-dot"></span>Planned October 2026</div></div>
-        <div class="cc cc-steel"><div class="cc-ico">&#x26D3;</div><h4>Blockchain Specialisation (&times;4)</h4><div class="cc-iss">POSTECH &middot; Coursera</div><div class="cc-pill cp-done">Completed</div></div>
-        <div class="cc cc-steel"><div class="cc-ico">&#x1FA99;</div><h4>EU MiCA Regulatory Framework</h4><div class="cc-iss">Markets in Crypto-Assets</div><div class="cc-pill cp-done">Completed</div></div>
-        <div class="cc cc-steel"><div class="cc-ico">&#x1FA99;</div><h4>Sumsub's Certification Stack</h4><div class="cc-iss">CPD-accredited (25.5 CPD hrs): AML Fundamentals, Fraud Prevention, User Verification, Travel Rule, Business Verification Fundamentals, Business Verification Advanced, Transaction Monitoring</div><div class="cc-pill cp-done">Completed</div></div>
-        <div class="cc cc-steel"><div class="cc-ico">&#x1FA99;</div><h4>Anthropic's Certifications Stack</h4><div class="cc-iss"> AI Knowledge Base: Introduction to Model Context Protocol, Model Context Protocol: Advanced Topics, Claude with the Anthropic API, Claude Code 101 & Claude Code in Action, AI Fluency: Framework & Foundations, Introduction to Claude Cowork</div><div class="cc-pill cp-done">Completed</div></div>
-        <div class="cc cc-steel"><div class="cc-ico">&#x1F916;</div><h4>GenAI for Fraud Detection &amp; Compliance</h4><div class="cc-iss">Coursera</div><div class="cc-pill cp-done">Completed</div></div>
-        <div class="cc cc-steel"><div class="cc-ico">&#x1F4CA;</div><h4>Google Data Analytics</h4><div class="cc-iss">Google &middot; Coursera &middot; Certified</div><div class="cc-pill cp-done">Completed</div></div>
-        <div class="cc cc-steel"><div class="cc-ico">&#x2696;&#xFE0F;</div><h4>Regulatory Compliance Specialisation</h4><div class="cc-iss">University of Pennsylvania</div><div class="cc-pill cp-done">Completed</div></div>
-        <div class="cc cc-steel"><div class="cc-ico">&#x1F50D;</div><h4>Suspicious Transaction Reporting (STR)</h4><div class="cc-iss">SkillsUp &middot; US Standard</div><div class="cc-pill cp-done">Completed</div></div>
-        <div class="cc cc-steel"><div class="cc-ico">&#x1F6E1;</div><h4>Protecting Against ML &amp; Terrorist Financing</h4><div class="cc-iss">SkillsUp &middot; US Standard</div><div class="cc-pill cp-done">Completed</div></div>
-        <div class="cc cc-steel"><div class="cc-ico">&#x1F512;</div><h4>GDPR &mdash; General Data Protection Regulation</h4><div class="cc-iss">EU Data Protection Framework</div><div class="cc-pill cp-done">Completed</div></div>
-      </div>
+    <div class="rv" style="--i:1">
+      <h2 class="h-sec" style="margin-top:14px">Let's work <em>together.</em></h2>
+      <p class="contact-p">Open to remote, async, in-house and B2B contract work — fintech, Web3, EMI. AML/KYC/KYB, sanctions, PEP, transaction monitoring, SAR escalation, crypto, and the AI tooling around all of it. No shell companies.</p>
+      <a class="mail-link" href="mailto:gintare@ajatauaml.com">gintare@ajatauaml.com →</a>
+    </div>
+    <div class="contact-grid">
+      <div class="cg rv" style="--i:2"><span class="k">Location</span><span class="v">Lithuania · Fully Remote · EMEA</span></div>
+      <div class="cg rv" style="--i:3"><span class="k">Email</span><span class="v"><a href="mailto:gintare@ajatauaml.com">gintare@ajatauaml.com</a><br><a href="mailto:gintare.jat@gmail.com">gintare.jat@gmail.com</a></span></div>
+      <div class="cg rv" style="--i:4"><span class="k">Elsewhere</span><span class="v"><a href="https://www.linkedin.com/in/gintare-jatautyte-11a507397/" target="_blank" rel="noopener">LinkedIn</a><br><a href="https://github.com/gintarejat/" target="_blank" rel="noopener">GitHub</a></span></div>
+      <div class="cg rv" style="--i:5"><span class="k">Open to</span><span class="v am" style="color:var(--amber-text)">Remote · Async · In-house · B2B</span></div>
     </div>
   </div>
 </div>
-<!-- CONTACT -->
-<div id="pane-contact" class="tab-pane">
-  <div class="con-layout">
-    <div class="con-left">
-      <p class="con-kicker">// Available Now &middot; Lithuania &middot; EMEA</p>
-      <h2 class="con-big">Let&apos;s work<br><em>together.</em></h2>
-      <p>Open to remote roles, B2B freelance contracts, and DAO contributions. AML compliance, Web3 RegTech, AI-powered financial crime investigation. No shell companies.</p>
-      <a class="btn-amber" href="mailto:gintare@ajatauaml.com">Say hello &#x2192;</a>
-    </div>
-    <div class="con-right">
-      <div class="con-status">
-        <span class="blip-wrap" style="width:10px;height:10px"><span class="blip-r1"></span><span class="blip-core"></span></span>
-        Online &amp; available
-      </div>
-      <p class="con-lbl">Contact Details</p>
-      <div class="c-item"><div class="c-ico">&#x1F4CD;</div><div><div class="c-lbl">Location</div><div class="c-val">Lithuania &middot; Fully Remote &middot; EMEA</div></div></div>
-      <div class="c-item"><div class="c-ico">&#x2709;&#xFE0F;</div><div><div class="c-lbl">Email</div><div class="c-val"><a href="mailto:gintare@ajatauaml.com">gintare@ajatauaml.com</a><p><a href="mailto:gintare.jat@gmail.com">gintare.jat@gmail.com</a></p></div></div></div>
-      <div class="c-item"><div class="c-ico">&#x1F310;</div><div><div class="c-lbl">Website</div><div class="c-val"><a href="https://www.ajatauaml.com" target="_blank">ajatauaml.com</a></div></div></div>
-      <div class="c-item"><div class="c-ico">&#x1F310;</div><div><div class="c-lbl">Website</div><div class="c-val"><a href="https://www.linkedin.com/in/gintare-jatautyte-11a507397/" target="_blank">LinkedIn</a></div></div></div>
-      <div class="c-item"><div class="c-ico">&#x1F310;</div><div><div class="c-lbl">Website</div><div class="c-val"><a href="https://github.com/gintarejat/" target="_blank">GitHub</a></div></div></div>
-      <div class="c-item"><div class="c-ico">&#x26A1;</div><div><div class="c-lbl">Open to</div><div class="c-val">Remote FT &middot; B2B &middot; DAO</div></div></div>
-    </div>
-  </div>
-</div>
-</div><!-- /pane-wrap -->
-<div class="footer-strip">
-  <span>&copy; 2026 ajatau AML &middot; Gintare Jatautyte</span>
-  <span class="fa"><a href="mailto:gintare@ajatauaml.com">gintare@ajatauaml.com</a></span>
-  <span>&ldquo;Your shady transactions are my puzzle pieces.&rdquo;</span>
-</div>
-<!-- MODAL: direct child of body, z-index:9999, display:none by default -->
-<div class="modal-overlay" id="portfolioModal" onclick="closeModalOnOverlay(event)">
-  <div class="modal-panel" id="modalPanel">
+
+</main>
+
+<footer>
+  <span class="hidem">© 2026 ajatau AML · Gintarė Jatautytė</span>
+  <span class="quote">"Your shady transactions are my puzzle pieces."</span>
+  <a href="mailto:gintare@ajatauaml.com">gintare@ajatauaml.com</a>
+</footer>
+
+<!-- ══════════ MODAL ══════════ -->
+<div class="modal-overlay" id="portfolioModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-panel">
     <div class="modal-header">
       <div class="modal-header-l">
         <span class="modal-badge mb-live" id="modalBadge"><span class="mb-dot"></span><span id="modalBadgeText">Live</span></span>
         <h2 class="modal-title" id="modalTitle">Case Study</h2>
       </div>
-      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+      <button class="modal-close" id="modalClose" aria-label="Close">&#x2715;</button>
     </div>
     <div class="modal-body">
       <div class="modal-visuals" id="modalVisuals"></div>
@@ -859,174 +1016,240 @@ nav{
     <div class="modal-actions" id="modalActions"></div>
   </div>
 </div>
+
 <script>
-// ── TAB SWITCHING ──
-function showTab(id) {
-  document.querySelectorAll('.tab-pane').forEach(function(p){p.classList.remove('active')});
-  document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.remove('active')});
-  var pane = document.getElementById('pane-' + id);
-  var tab = document.querySelector('[data-tab="' + id + '"]');
-  if (pane) { pane.classList.add('active'); pane.scrollTop = 0; }
-  if (tab) tab.classList.add('active');
+/* ── TABS ── */
+var TABS = ['home','portfolio','about','skills','experience','certs','contact'];
+function showTab(id){
+  document.querySelectorAll('.pane').forEach(function(p){p.classList.remove('active')});
+  document.querySelectorAll('.nav-tab').forEach(function(t){
+    t.classList.remove('active');t.setAttribute('aria-selected','false');
+  });
+  var pane = document.getElementById('pane-'+id);
+  var tab = document.querySelector('.nav-tab[data-tab="'+id+'"]');
+  if(pane){
+    pane.classList.add('active');pane.scrollTop = 0;
+    /* restart stagger animations */
+    pane.querySelectorAll('.rv,.tmx-scan,.tmx-done,.tmx-skills span,.tmx-scanwrap,.tmx-final,.tmx-verdict,.tmx-meter span,.tma-pip,.tmx-sr .sp').forEach(function(el){
+      el.style.animation='none';void el.offsetWidth;el.style.animation='';
+    });
+  }
+  if(tab){tab.classList.add('active');tab.setAttribute('aria-selected','true');}
+  if(id==='home'){runCounters();fitHome();}
 }
-// Cork board strings removed — clean bento design
-// ── KEYBOARD NAV ──
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') { closeModal(); return; }
-  var tabs = ['home','portfolio','about','skills','experience','certs','contact'];
-  var cur = document.querySelector('.nav-tab.active');
-  if (!cur) return;
-  var i = tabs.indexOf(cur.dataset.tab);
-  if (e.key === 'ArrowRight' && i < tabs.length - 1) showTab(tabs[i+1]);
-  if (e.key === 'ArrowLeft' && i > 0) showTab(tabs[i-1]);
+
+/* ── FIT HOME TO VIEWPORT (no landing scroll) ── */
+function fitHome(){
+  var p=document.getElementById('pane-home');
+  if(!p)return;
+  var w=p.querySelector('.pane-in');
+  if(!w)return;
+  w.style.transform='';
+  if(window.innerWidth<=980)return; /* stacked mobile layout scrolls normally */
+  var s=Math.min(1,p.clientHeight/w.offsetHeight);
+  if(s<.999)w.style.transform='scale('+s+')';
+}
+window.addEventListener('resize',fitHome);
+window.addEventListener('load',fitHome);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){fitHome()});
+fitHome();
+setTimeout(fitHome,400);
+/* the alert card grows when the scan resolves — re-fit once it has settled */
+setTimeout(fitHome,26200);
+setTimeout(fitHome,27200);
+document.querySelectorAll('[data-tab]').forEach(function(el){
+  el.addEventListener('click',function(){showTab(el.dataset.tab)});
+  if(el.classList.contains('logo')){
+    el.addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();showTab(el.dataset.tab);}
+    });
+  }
 });
-// ── MODAL DATA ──
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){closeModal();return;}
+  if(document.getElementById('portfolioModal').classList.contains('open'))return;
+  if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
+  var cur=document.querySelector('.nav-tab.active');
+  if(!cur)return;
+  var i=TABS.indexOf(cur.dataset.tab);
+  if(e.key==='ArrowRight'&&i<TABS.length-1)showTab(TABS[i+1]);
+  if(e.key==='ArrowLeft'&&i>0)showTab(TABS[i-1]);
+});
+
+/* ── COUNT-UP ── */
+var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var counted = false;
+function fmt(n){return n.toLocaleString('en-US')}
+function runCounters(){
+  if(counted||reduced)return;
+  counted=true;
+  document.querySelectorAll('[data-count]').forEach(function(el){
+    var target=parseInt(el.dataset.count,10);
+    var dur=900+Math.min(target,1000);
+    var t0=null;
+    function step(ts){
+      if(!t0)t0=ts;
+      var p=Math.min((ts-t0)/dur,1);
+      var eased=1-Math.pow(1-p,3);
+      el.textContent=fmt(Math.round(target*eased));
+      if(p<1)requestAnimationFrame(step);
+      else el.textContent=fmt(target);
+    }
+    requestAnimationFrame(step);
+  });
+}
+window.addEventListener('load',runCounters);
+
+/* ── MODAL DATA — ported from the live site ── */
 var projects = {
   live1: {
-    title: "Agentic SAR Generator - Python & SQL Scripts",
+    title: "Agentic SAR Generator — Python & SQL Scripts",
     badge: "live", badgeText: "Beta Version Live",
     meta: [{k:"Stack",v:"Python · SQL · Claude API"},{k:"Version",v:"Beta v1.0"},{k:"Type",v:"RegTech Automation"},{k:"Status",v:"Live"}],
-    overview: "<p>Targets the same core workflow FIS and Anthropic announced as their Financial Crimes AI Agent: automated evidence assembly and SAR narrative generation with human-in-the-loop review. Built independently, from the practitioner side.</p><p>A technical portfolio of compliance automation scripts demonstrating practical RegTech capability. The core premise: the same investigative logic used in manual AML reviews can be partially automated using SQL queries, Python scripts, and GenAI API calls.</p><p><strong>Component 1:</strong> Python-based sanctions screening helper that cross-references name inputs against OFAC SDN list patterns.</p><p><strong>Component 2:</strong> SQL anomaly detection queries flagging unusual transaction patterns in sample datasets.</p><p><strong>Component 3:</strong> GenAI-assisted  narrative generator — takes structured investigation notes and produces draft  language via streaming Claude API. Beta v1.0.</p>",
+    overview: "<p>Targets the same core workflow FIS and Anthropic announced as their Financial Crimes AI Agent: automated evidence assembly and SAR narrative generation with human-in-the-loop review. Built independently, from the practitioner side.</p><p>A technical portfolio of compliance automation scripts demonstrating practical RegTech capability. The core premise: the same investigative logic used in manual AML reviews can be partially automated using SQL queries, Python scripts, and GenAI API calls.</p><p><strong>Component 1:</strong> Python-based sanctions screening helper that cross-references name inputs against OFAC SDN list patterns.</p><p><strong>Component 2:</strong> SQL anomaly detection queries flagging unusual transaction patterns in sample datasets.</p><p><strong>Component 3:</strong> GenAI-assisted narrative generator — takes structured investigation notes and produces draft language via streaming Claude API. Beta v1.0.</p>",
     approach: "<p>Built to prove practical AI/automation execution, not just theoretical knowledge. Each component is documented with methodology notes and limitations. All sample data is fully synthetic.</p>",
-    tags: ["Python","SQL","Claude API","OFAC Screening","Anomaly Detection"," Drafting","RegTech"],
+    tags: ["Python","SQL","Claude API","OFAC Screening","Anomaly Detection","SAR Drafting","RegTech"],
     tagStyles: ["am","am","am","tl","tl","tl",""],
-    images: [{source:"https://64.media.tumblr.com/90fe7405a203578a76347701f9169af2/c0d592b3a02b76b8-f8/s400x600/0e317d07224b384e68d618791ffc80e59dba4805.gifv",label:"SAR Drafting Automantion — walkthrough",color:"img-amber",size:"modal-img-lg"},{source:"https://64.media.tumblr.com/662c03bf7c2328c9bcc9d95089dde9c2/6a7f9a56fa052f80-cd/s1280x1920/8ad680c43eb0700fdc28b8986c9c5158e8a3abdb.png",label:"SAR Drafting",color:"img-steel",size:"modal-img-sm"},{source:"https://64.media.tumblr.com/12b0bfe724f041fe72914cd135bd4d5e/6a7f9a56fa052f80-8a/s1280x1920/d92d44cd5abf8a1408f5feafceeb30ec5b9740e3.png",label:" Data textfields for input",color:"img-steel",size:"modal-img-sm"},{source:"https://64.media.tumblr.com/13b481f78e9d993b02cf86799d6a5086/6a7f9a56fa052f80-19/s1280x1920/0a5a1d25ef9a27f9cacdfa3329f8fad3a87d5e21.png",label:"Technical documentation",color:"img-olive",size:"modal-img-sm"}],
-    actions: [{label:"Try Live Beta",icon:"&#x2197;",cls:"ma-p",href:"https://sar-draft-automation.vercel.app",ext:true},{label:"View GitHub",icon:"&#x2197;",cls:"ma-s",href:"https://github.com/gintarejat/SAR-Draft-Automation", ext:true}]
+    images: [{source:"https://64.media.tumblr.com/90fe7405a203578a76347701f9169af2/c0d592b3a02b76b8-f8/s400x600/0e317d07224b384e68d618791ffc80e59dba4805.gifv",label:"SAR Drafting Automation — walkthrough",color:"img-amber",size:"modal-img-lg"},{source:"https://64.media.tumblr.com/662c03bf7c2328c9bcc9d95089dde9c2/6a7f9a56fa052f80-cd/s1280x1920/8ad680c43eb0700fdc28b8986c9c5158e8a3abdb.png",label:"SAR Drafting",color:"img-steel",size:"modal-img-sm"},{source:"https://64.media.tumblr.com/12b0bfe724f041fe72914cd135bd4d5e/6a7f9a56fa052f80-8a/s1280x1920/d92d44cd5abf8a1408f5feafceeb30ec5b9740e3.png",label:"Data textfields for input",color:"img-steel",size:"modal-img-sm"},{source:"https://64.media.tumblr.com/13b481f78e9d993b02cf86799d6a5086/6a7f9a56fa052f80-19/s1280x1920/0a5a1d25ef9a27f9cacdfa3329f8fad3a87d5e21.png",label:"Technical documentation",color:"img-olive",size:"modal-img-sm"}],
+    actions: [{label:"Try Live Beta",icon:"&#x2197;",cls:"ma-p",href:"https://sar-draft-automation.vercel.app",ext:true},{label:"View GitHub",icon:"&#x2197;",cls:"ma-s",href:"https://github.com/gintarejat/SAR-Draft-Automation",ext:true}]
   },
   dao1: {
-    title: "Kambria Participant-Proposed DAO — DEP 2",
+    title: "Pesa Play DAO — Documentation Working Group Lead",
     badge: "dao", badgeText: "DAO · Live",
-    meta: [{k:"Type",v:"Documentation Working Group Lead"},{k:"Project",v:"Kambria DEP 2"},{k:"Status",v:"Working Group Lead · May 2026 - Present"}],
-    overview: "<p>Selected for Kambria's Decentralized Experimental Program (DEP 2) Pesa Pay DAO as a Documentation Working Group Lead. The project focuses on financial education for kids in Kenya.</p><p><strong>My contribution:</strong> applying regulatory expertise to tokenomics risk assessment and off-ramp token to fiat SOP proposal (accepted), documentation working group plan in the project proposal preparation and submittion (accepted), documentation system proposal (accepted), educational sessions results and reporting for future pitches, reimbursement policy proposal (drafting, pending), collaborating with the DOA working groups, bookkeeping.</p>",
-    approach: "<p>Positioning as Data analyst owning the bookkeeping and reporting processes rather than a developer. Bringing institutional AML/CTF discipline (OFAC, CDD/EDD, MiCA) into a decentralised context (creating audit trial), evaluating tokenomic structures for financial crime exposure and regulatory compliance gaps.</p>",
-    tags: ["DAO Governance","MiCA","Tokenomics Risk","Async / Web3","AML Advisory","DeFi Compliance"],
+    meta: [{k:"Type",v:"Documentation & Compliance"},{k:"Project",v:"Pesa Play DAO · Kambria DEP 2"},{k:"Role",v:"Documentation WG Lead (WG4)"},{k:"Status",v:"Volunteer · May 2026 — Present"}],
+    overview: "<p>Documentation Working Group Lead (WG4) of the Pesa Play DAO, a project inside Kambria's Decentralized Experimental Program (DEP 2) running a financial-literacy education pilot in Kenyan schools.</p><p><strong>My contribution:</strong> the control function. Assessment instruments, consent and data-ownership framework, results reporting, bookkeeping review, and the governance documents the DAO was missing — an off-ramp SOP, a media clearance checklist, and a session/attendance log template.</p><p><strong>Four months of bookkeeping and compliance documentation</strong> — weekly independent treasury review under a four-eyes model, where the reviewer never holds or moves funds.</p>",
+    approach: "<p>Control function, never executor: I review and document, someone else executes. That caps the workload and removes the conflict of interest.</p><p>Deliverables so far: crypto-to-fiat off-ramp SOP with segregation of duties and per-conversion documentation (draft, pending DAO adoption) · child-data protection framework with anonymised IDs and consent-gated media, anchored in Kenya's Data Protection Act 2019 · session and attendance log template · MiCA token-classification analysis, where transferability and purchasability — not the technology — are what trigger Title II obligations.</p>",
+    tags: ["DAO Governance","EU MiCA","Bookkeeping","Async / Web3","Data Protection","Documentation"],
     tagStyles: ["am","am","","","tl","tl"],
-    images: [{source:"https://64.media.tumblr.com/37244ebd2f1fee5d7c43c47d318f3bd3/15571551ff57203f-1b/s1280x1920/9cc7667450ba400264ee05625c7aac030e4098a4.png",label:"DAO governance structure overview",color:"img-olive",size:"modal-img-lg"},{source:"https://64.media.tumblr.com/1cb94c2126113d98fc4dc3a7f52ca7e0/15571551ff57203f-2b/s1280x1920/eefcc584d1b5621404a2dfb50916ecfe12ea3cc3.pnj",label:"Vision",color:"img-amber",size:"modal-img-sm"},{source:"https://64.media.tumblr.com/d0329d1bf983520c908e2f1185d02006/15571551ff57203f-de/s1280x1920/3dc7d81498a38a10bed6e492090cf0911a1a8a5a.png",label:"Overview",color:"img-steel",size:"modal-img-sm"}],
-    actions: [{label:"Kambria DEP 2 Info",icon:"&#x2197;",cls:"ma-p",href:"https://www.kambria.io",ext:true},{label:"Pesa Play DAO - Hela Kids",icon:"&#x2197;",cls:"ma-p",href:"https://www.helakids.com",ext:true}]
+    images: [{source:"https://64.media.tumblr.com/37244ebd2f1fee5d7c43c47d318f3bd3/15571551ff57203f-1b/s1280x1920/9cc7667450ba400264ee05625c7aac030e4098a4.png",label:"Pesa Play DAO — governance structure overview",color:"img-olive",size:"modal-img-lg"},{source:"https://64.media.tumblr.com/1cb94c2126113d98fc4dc3a7f52ca7e0/15571551ff57203f-2b/s1280x1920/eefcc584d1b5621404a2dfb50916ecfe12ea3cc3.pnj",label:"Vision",color:"img-amber",size:"modal-img-sm"},{source:"https://64.media.tumblr.com/d0329d1bf983520c908e2f1185d02006/15571551ff57203f-de/s1280x1920/3dc7d81498a38a10bed6e492090cf0911a1a8a5a.png",label:"Overview",color:"img-steel",size:"modal-img-sm"}],
+    actions: [{label:"Kambria DEP 2 Info",icon:"&#x2197;",cls:"ma-p",href:"https://www.kambria.io",ext:true}]
   },
   build1: {
     title: "Policy Reader — Compliance Document Analyser",
-    badge: "build", badgeText: "Live",
-    meta: [{k:"Stack",v:"Claude API · React"},{k:"Frameworks",v:"AMLD6 · MiCA"},{k:"Version",v:"Beta v1.0"},{k:"Status",v:"Live"}],
+    badge: "build", badgeText: "Beta Version Live",
+    meta: [{k:"Stack",v:"Claude API · React"},{k:"Frameworks",v:"AMLD6 · MiCA"},{k:"Version",v:"Beta v1.0 · demo scope"},{k:"Status",v:"Live"}],
     overview: "<p>Dual-mode AI tool for compliance teams built on the Claude API.</p><p><strong>Compare Mode:</strong> paste two versions of any compliance policy and get inline strikethrough/highlight showing exactly what changed — every added rule, every removed threshold, every modified obligation.</p><p><strong>Analyse Mode:</strong> upload any compliance document and it extracts every rule, threshold, and restriction into a searchable, keyword-grouped database. No more ctrl+F through 80-page PDFs.</p>",
-    approach: "<p>Built to solve a real workflow problem: compliance teams waste hours manually comparing policy versions and hunting for specific rules. This tool handles both in seconds. Beta v1.0 — actively being expanded with more regulatory frameworks.</p>",
+    approach: "<p>Built to solve a real workflow problem: compliance teams waste hours manually comparing policy versions and hunting for specific rules. This tool handles both in seconds. Beta v1.0 — demo scope: built as a working proof of the workflow, not a maintained product.</p>",
     tags: ["Claude API","React","AMLD6","MiCA","Rule Extraction","Policy Comparison","RegTech"],
     tagStyles: ["am","am","tl","tl","","",""],
     images: [{source:"https://64.media.tumblr.com/f3a26a25f53ac30c2d14cf375a710ab5/2558a57992f0438e-73/s400x600/173c1171f2d40f1e935de77651b71d33f2710194.gifv",label:"Policy Reader Walkthrough",color:"img-steel",size:"modal-img-lg"}],
-    actions: [{label:"LIVE",icon:"&#x2197;",cls:"ma-p",href:"https://policy-reader-fawn.vercel.app",ext:false},{label:"View GitHub",icon:"&#x2197;",cls:"ma-s",href:"https://github.com/gintarejat/Policy-reader"}]
+    actions: [{label:"View Live Beta",icon:"&#x2197;",cls:"ma-p",href:"https://policy-reader-fawn.vercel.app",ext:true},{label:"View GitHub",icon:"&#x2197;",cls:"ma-s",href:"https://github.com/gintarejat/Policy-reader",ext:true}]
   },
   build2: {
-    title: "Scam Investigator - KYB Verification",
+    title: "Scam Investigator — KYB Verification",
     badge: "build", badgeText: "Draft Version Live",
     meta: [{k:"Type",v:"KYB Verification"},{k:"Version",v:"Beta v1.0"},{k:"Status",v:"Live"}],
-    overview: "AI tool for investigating job ads and business validity built on the Claude API.",
-    approach: "Based on my own experience of almost falling for a scam job, I decided to make at tool that validates each red flag. It saves time and money, actually goes on full investigation of the company offering the job. <p>Human-in-loop automation - only human can decide the verdict.</p> <p>Generates the whole investigation into a .pdf file.</p>",
-    tags: ["KYC","KYB","CRYPTO JOB INVESTIGATION","Documentation"],
-    tagStyles: ["am","am","tl","tl","","","",""],
+    overview: "<p>A KYB verification tool built on the Claude API. You enter the information you were given about a company; the tool runs the investigation and returns what it found <strong>together with the sources behind every finding</strong>, so each claim can be checked rather than taken on trust.</p><p>Nothing is concluded automatically. The verdict is a human sign-off, and the full investigation exports to PDF as the record.</p>",
+    approach: "<p>The idea came out of a real case — a crypto job offer that turned out to be a scam. Working it by hand made the point that the checks were the same KYB checks I ran at the bank: registration, ownership, footprint, red flags. Just slower.</p><p>So the tool does the evidence gathering and leaves the judgement where it belongs. Sourced findings in, human decision out.</p>",
+    tags: ["KYB","OSINT","Sourced Evidence","Human-in-Loop","PDF Reporting"],
+    tagStyles: ["am","am","tl","",""],
     images: [{source:"https://64.media.tumblr.com/71af5773d2960a6ebebb500f224e1740/4e19b44928561f51-00/s400x600/efbab7f4d379fd556ccc2a1a6a6d3516c25ccadf.gifv",label:"Scam Investigator Tool Walkthrough",color:"img-coral",size:"modal-img-lg"}],
-    actions: [{label:"LIVE",icon:"&#x2197;",cls:"ma-p",href:"https://scamnot.vercel.app",ext:true},{label:"Github",icon:"&#x2197;",cls:"ma-p",href:"https://github.com/gintarejat/scamnot",ext:true}]
+    actions: [{label:"Live Beta",icon:"&#x2197;",cls:"ma-p",href:"https://scamnot.vercel.app",ext:true},{label:"View GitHub",icon:"&#x2197;",cls:"ma-s",href:"https://github.com/gintarejat/scamnot",ext:true}]
   },
   build3: {
-    title: "Anti Financial Crime Knowledge Base — Compliance Guides",
+    title: "Anti Financial Crime Knowledge Base — Compliance Guides v2",
     badge: "build", badgeText: "Draft Version Live",
     meta: [{k:"Type",v:"Compliance Reference Library"},{k:"Version",v:"v2"},{k:"Guides",v:"6 published, 2 coming"},{k:"Status",v:"Live"}],
-    overview: "<p><strong>6 Published Guides:</strong> AML/KYC + PoF/W (CDD ladder SDD→CDD→EDD, PoF vs PoW distinction, PEP framework) · AMLD6 (22 predicate offences, corporate liability, SAR workflow chain) · OFAC (SDN list, strict liability, crypto wallet screening, DPRK exposure) · MiCA (3 asset categories, Travel Rule, CASP obligations checklist) · Fiat vs Web3 AML (side-by-side across 5 dimensions) · DAO Policy (Tokens).</p><p>Plus the L1/L2 Framework Graph showing the full investigation workflow from TxM alert to FIU filing - every document required at each stage, colour-coded as standard / critical / regulatory filing, with SLAs, escalation triggers, and record retention periods.</p>",
+    overview: "<p><strong>6 Published Guides:</strong> AML/KYC + PoF/W (CDD ladder SDD→CDD→EDD, PoF vs PoW distinction, PEP framework) · AMLD6 (22 predicate offences, corporate liability, SAR workflow chain) · OFAC (SDN list, strict liability, crypto wallet screening, DPRK exposure) · MiCA (3 asset categories, Travel Rule, CASP obligations checklist) · Fiat vs Web3 AML (side-by-side across 5 dimensions) · DAO Policy (Tokens).</p><p>Plus the L1/L2 Framework Graph showing the full investigation workflow from TxM alert to FIU filing — every document required at each stage, colour-coded as standard / critical / regulatory filing, with SLAs, escalation triggers, and record retention periods.</p>",
     approach: "<p><strong>Coming up:</strong> AML Investigation Document Guide (all 32 documents from the L1/L2 framework, fully explained) and Red Flag Investigation Guide. Built as a working reference resource, not just a portfolio piece.</p>",
     tags: ["AMLD6","MiCA","OFAC","KYC/AML","PoF/PoW","PEP Framework","L1/L2 Workflow","Documentation"],
     tagStyles: ["am","am","tl","tl","","","",""],
     images: [{source:"https://64.media.tumblr.com/a888acce9e3f09141173969acd9032af/15571551ff57203f-10/s2048x3072/d64f7a604c01bda368757b2d03e6567a59fad187.png",label:"Knowledge hub",color:"img-coral",size:"modal-img-lg"}],
-    actions: [{label:"Guides",icon:"&#x2197;",cls:"ma-p",href:"",ext:true},]
+    actions: [{label:"Guide 1: AMLD6",icon:"&#x2197;",cls:"ma-p",href:"https://gintare47.gumroad.com/",ext:true}]
   },
   soon1: {
-    title: "Case Study - How Would You File a SAR? EUR 306M Laundering",
+    title: "Case Study — How Would You File a SAR? EUR 306M Laundering",
     badge: "live", badgeText: "Published Article",
     meta: [{k:"Type",v:"Case Study"},{k:"Frameworks",v:"EU AMLD · Nordic FIU"},{k:"Scope",v:"Full L1→L2→FIU chain"},{k:"Status",v:"Published · LinkedIn"}],
-    overview: "<p>A worked case study walking through how you would actually file a SAR on a EUR 306 million laundering scenario - the full investigation flow from the first TxM alert through to FIU filing. Every document, every decision point, every escalation trigger.</p><p>Covers: initial alert triage, CDD/EDD activation criteria, internal escalation to second line, SAR/STR drafting, and the FIU submission chain under Nordic regulatory requirements.</p>",
-    approach: "<p>Published as a long-form LinkedIn article - structured as a step-by-step practitioner walkthrough, grounded in the L1/L2 framework and real reporting obligations.</p>",
+    overview: "<p>A worked case study walking through how you would actually file a SAR on a EUR 306 million laundering scenario — the full investigation flow from the first TxM alert through to FIU filing. Every document, every decision point, every escalation trigger.</p><p>Covers: initial alert triage, CDD/EDD activation criteria, internal escalation to second line, SAR/STR drafting, and the FIU submission chain under Nordic regulatory requirements.</p>",
+    approach: "<p>Published as a long-form LinkedIn article — structured as a step-by-step practitioner walkthrough, grounded in the L1/L2 framework and real reporting obligations.</p>",
     tags: ["Escalation","SAR Filing","FIU","Nordic AMLD","L1/L2 Workflow","Case Study"],
     tagStyles: ["am","tl","tl","","",""],
-    images: [{source:"assets/article.png", label:"How Would You File a SAR? EUR 306M Laundering",color:"img-steel",size:"modal-img-lg"}],
+    images: [{label:"How Would You File a SAR? EUR 306M Laundering",color:"img-steel",size:"modal-img-lg"}],
     actions: [{label:"Read on LinkedIn",icon:"&#x2197;",cls:"ma-p",href:"https://www.linkedin.com/pulse/how-would-you-file-sar-eur-306-million-laundering-gintare-jatautyte-x9gof/",ext:true}]
   },
   soon2: {
     title: "Case Study — Crypto Transaction Tracing",
     badge: "soon", badgeText: "Coming Soon",
     meta: [{k:"Type",v:"On-Chain OSINT"},{k:"Tools",v:"Etherscan · Mempool.space"},{k:"Method",v:"Wallet tracing + clustering"},{k:"Status",v:"Drafting"}],
-    overview: "<p>On-chain tracing walkthrough: starting from a suspicious transaction flag, tracing through wallet clusters, identifying counterparty patterns, and building the evidence chain for a financial crime report.</p><p>Will document the methodology for address clustering, cross-chain bridge tracking, and how public block explorer data compares to enterprise tools like Chainalysis Reactor.</p>",
+    overview: "<p>On-chain OSINT walkthrough: starting from a suspicious transaction flag, tracing through wallet clusters, identifying counterparty patterns, and building the evidence chain for a financial crime report.</p><p>Will document the methodology for address clustering, cross-chain bridge tracking, and how public block explorer data compares to enterprise tools like Chainalysis Reactor.</p>",
     approach: "<p>Case documentation in progress. Will use Bitcoin (Mempool.space) and Ethereum (Etherscan) as the primary investigation environments.</p>",
-    tags: ["Crypto OSINT","Etherscan","Mempool.space","Wallet Tracing","Chainalysis","Blockchain"],
+    tags: ["Crypto OSINT","Etherscan","Mempool.space","Wallet Tracing","Chainalysis (theory)","Blockchain"],
     tagStyles: ["am","am","am","tl","",""],
     images: [{label:"Crypto tracing case — coming soon",color:"img-olive",size:"modal-img-lg"}],
-    actions: [{label:"Notify Me",icon:"&#x2709;",cls:"ma-p",href:"mailto:gintare@ajatauaml.com"}]
+    actions: [{label:"Notify Me",icon:"&#x2709;",cls:"ma-p",href:"mailto:gintare@ajatauaml.com",ext:false}]
   }
 };
-function openModal(key) {
-  var p = projects[key];
-  if (!p) return;
-  // Badge
-  var badge = document.getElementById('modalBadge');
-  badge.className = 'modal-badge mb-' + p.badge;
-  document.getElementById('modalBadgeText').textContent = p.badgeText;
-  document.getElementById('modalTitle').textContent = p.title;
-  // Visuals
-  var vhtml = '';
-  if (p.images.length === 1) {
-    vhtml += buildImg(p.images[0]);
-  } else {
-    vhtml += buildImg(p.images[0]);
-    vhtml += '<div class="img-row">';
-    for (var i = 1; i < p.images.length; i++) vhtml += buildImg(p.images[i]);
-    vhtml += '</div>';
-  }
-  document.getElementById('modalVisuals').innerHTML = vhtml;
-  // Info
-  var ihtml = '';
-  ihtml += '<div><div class="mi-label">Overview</div><div class="mi-text">' + p.overview + '</div></div>';
-  ihtml += '<div class="mi-divider"></div>';
-  ihtml += '<div><div class="mi-label">Approach</div><div class="mi-text">' + p.approach + '</div></div>';
-  ihtml += '<div class="mi-divider"></div>';
-  ihtml += '<div><div class="mi-label">Stack &amp; Frameworks</div><div class="mi-tags">';
-  for (var j = 0; j < p.tags.length; j++) {
-    ihtml += '<span class="mi-tag ' + (p.tagStyles[j]||'') + '">' + p.tags[j] + '</span>';
-  }
-  ihtml += '</div></div>';
-  ihtml += '<div class="mi-divider"></div>';
-  ihtml += '<div><div class="mi-label">Details</div><div class="mi-meta">';
-  for (var k = 0; k < p.meta.length; k++) {
-    ihtml += '<div class="mi-mrow"><span class="mk">' + p.meta[k].k + '</span><span class="mv">' + p.meta[k].v + '</span></div>';
-  }
-  ihtml += '</div></div>';
-  document.getElementById('modalInfo').innerHTML = ihtml;
-  // Actions
-  var ahtml = '';
-  for (var a = 0; a < p.actions.length; a++) {
-    var act = p.actions[a];
-    var tgt = act.ext ? ' target="_blank" rel="noopener"' : '';
-    ahtml += '<a class="ma-btn ' + act.cls + '" href="' + act.href + '"' + tgt + '>' + act.icon + ' ' + act.label + '</a>';
-  }
-  document.getElementById('modalActions').innerHTML = ahtml;
-  // Show — use display:flex
-  var overlay = document.getElementById('portfolioModal');
-  overlay.style.display = 'flex';
-  /* body overflow managed globally */
-}
-  
-function buildImg(img) {
+
+/* ── MODAL LOGIC ── */
+var lastFocused=null;
+function buildImg(img){
   var inner = img.source
-    ? '<img src="' + img.source + '" alt="' + img.label + '" style="width:100%;height:100%;object-fit:cover;display:block;">'
-    : '<span style="color:rgba(240,237,227,0.25)">' + img.label + '</span>';
-  return '<div class="modal-img ' + img.size + ' ' + img.color + '">'
-    + '<div class="modal-img-placeholder">' + inner + '</div>'
-    + '<div class="modal-img-caption">' + img.label + '</div>'
+    ? '<img src="'+img.source+'" alt="'+img.label+'" loading="lazy">'
+    : '<span style="padding:12px">'+img.label+'</span>';
+  return '<div class="modal-img '+img.size+' '+img.color+'">'
+    + '<div class="modal-img-placeholder">'+inner+'</div>'
+    + '<div class="modal-img-caption">'+img.label+'</div>'
     + '</div>';
 }
-function closeModal() {
-  document.getElementById('portfolioModal').style.display = 'none';
-  /* body overflow managed globally */
+function openModal(key){
+  var p=projects[key];
+  if(!p)return;
+  lastFocused=document.activeElement;
+  var badge=document.getElementById('modalBadge');
+  badge.className='modal-badge mb-'+p.badge;
+  document.getElementById('modalBadgeText').textContent=p.badgeText;
+  document.getElementById('modalTitle').textContent=p.title;
+  var vhtml='';
+  if(p.images.length===1){
+    vhtml=buildImg(p.images[0]);
+  }else{
+    vhtml=buildImg(p.images[0])+'<div class="img-row">';
+    for(var i=1;i<p.images.length;i++)vhtml+=buildImg(p.images[i]);
+    vhtml+='</div>';
+  }
+  document.getElementById('modalVisuals').innerHTML=vhtml;
+  var ihtml='';
+  ihtml+='<div><div class="mi-label">Overview</div><div class="mi-text">'+p.overview+'</div></div>';
+  ihtml+='<div class="mi-divider"></div>';
+  ihtml+='<div><div class="mi-label">Approach</div><div class="mi-text">'+p.approach+'</div></div>';
+  ihtml+='<div class="mi-divider"></div>';
+  ihtml+='<div><div class="mi-label">Stack &amp; Frameworks</div><div class="mi-tags">';
+  for(var j=0;j<p.tags.length;j++){
+    ihtml+='<span class="mi-tag '+(p.tagStyles[j]||'')+'">'+p.tags[j]+'</span>';
+  }
+  ihtml+='</div></div>';
+  ihtml+='<div class="mi-divider"></div>';
+  ihtml+='<div><div class="mi-label">Details</div><div class="mi-meta">';
+  for(var k=0;k<p.meta.length;k++){
+    ihtml+='<div class="mi-mrow"><span class="mk">'+p.meta[k].k+'</span><span class="mv">'+p.meta[k].v+'</span></div>';
+  }
+  ihtml+='</div></div>';
+  document.getElementById('modalInfo').innerHTML=ihtml;
+  var ahtml='';
+  for(var a=0;a<p.actions.length;a++){
+    var act=p.actions[a];
+    var tgt=act.ext?' target="_blank" rel="noopener"':'';
+    ahtml+='<a class="ma-btn '+act.cls+'" href="'+act.href+'"'+tgt+'>'+act.icon+'&nbsp;'+act.label+'</a>';
+  }
+  document.getElementById('modalActions').innerHTML=ahtml;
+  document.getElementById('portfolioModal').classList.add('open');
+  document.getElementById('modalClose').focus();
 }
-function closeModalOnOverlay(e) {
-  if (e.target === document.getElementById('portfolioModal')) closeModal();
+function closeModal(){
+  document.getElementById('portfolioModal').classList.remove('open');
+  if(lastFocused&&lastFocused.focus)lastFocused.focus();
 }
+document.getElementById('modalClose').addEventListener('click',closeModal);
+document.getElementById('portfolioModal').addEventListener('click',function(e){
+  if(e.target===this)closeModal();
+});
+document.querySelectorAll('.pc[data-key]').forEach(function(el){
+  el.addEventListener('click',function(){openModal(el.dataset.key)});
+  el.addEventListener('keydown',function(e){
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();openModal(el.dataset.key);}
+  });
+});
 </script>
 </body>
 </html>
