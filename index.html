@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ajatau AML — Gintarė Jatautytė</title>
-<meta name="description" content="AML Practitioner & AI Compliance Tool Builder. 17,473 cases at 97% audited quality across 2+ years inside the AML function of a major Nordic Tier 1 bank. Open to remote, async, in-house and B2B contracts.">
+<meta name="description" content="AML Analyst: transaction monitoring, KYC/EDD, sanctions, SAR reporting. 17,473 cases decided at 97% audited quality over 25 months in the Financial Crime function of a Tier 1 Nordic bank. Fully remote, employment or B2B contract.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Luckiest+Guy&family=Titan+One&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#14130f;
@@ -603,6 +603,378 @@ footer a:hover{color:var(--amber)}
   .modal-visuals{border-right:0;border-bottom:1px solid var(--line)}
   .modal-title{white-space:normal;font-size:15px}
 }
+
+/* ══════════ COMIC ACCENTS — borrowed from the AML Operating System diagram ══════════
+   One rule of thumb: nothing moves until you touch it. At rest the site stays editorial;
+   on hover/focus things "pop" like a comic panel — hard black offset shadow, a stop-motion
+   (stepped) jump, a patch of halftone. Delete this block to go back to the original. */
+:root{--pop:steps(3,end);--hard:6px 7px 0 var(--ink)}
+
+/* portfolio cards */
+.pc{transition:transform .21s var(--pop),box-shadow .21s var(--pop),border-color 0s}
+.pc:hover,.pc:focus-visible{transform:translate(-3px,-5px) rotate(-.6deg);border-color:var(--ink);box-shadow:var(--hard)}
+.pc>:not(.arrow){position:relative;z-index:1}
+.pc::after{
+  content:"";position:absolute;right:-36px;bottom:-36px;width:170px;height:170px;pointer-events:none;z-index:0;
+  background-image:radial-gradient(var(--acc,var(--ink)) 32%,transparent 35%);background-size:8px 8px;
+  -webkit-mask:radial-gradient(circle at 70% 70%,#000 0 22%,transparent 66%);mask:radial-gradient(circle at 70% 70%,#000 0 22%,transparent 66%);
+  opacity:0;transform:scale(.55) rotate(-8deg);transition:opacity .1s steps(1),transform .22s var(--pop);
+}
+.pc:hover::after,.pc:focus-visible::after{opacity:.5;transform:none}
+.pc .pc-top{padding-right:30px}
+.pc .arrow{
+  top:14px;right:14px;z-index:2;opacity:1;font-size:13px;line-height:1;
+  background:var(--ink);color:var(--cream);padding:5px 7px 6px;
+  transform:scale(0) rotate(-14deg);transition:transform .2s var(--pop);
+}
+.pc:hover .arrow,.pc:focus-visible .arrow{opacity:1;transform:scale(1) rotate(-4deg)}
+
+/* home bento tiles */
+.tile{transition:transform .21s var(--pop),box-shadow .21s var(--pop)}
+.tile:hover{transform:translate(-3px,-5px) rotate(-.5deg);box-shadow:var(--hard)}
+.tile>*{position:relative;z-index:1}
+.tile::after{
+  content:"";position:absolute;right:-20px;bottom:-20px;width:60%;height:60%;pointer-events:none;
+  background-image:radial-gradient(currentColor 30%,transparent 33%);background-size:7px 7px;
+  -webkit-mask:radial-gradient(circle at 80% 80%,#000 0 18%,transparent 70%);mask:radial-gradient(circle at 80% 80%,#000 0 18%,transparent 70%);
+  opacity:0;transition:opacity .1s steps(1);
+}
+.tile:hover::after{opacity:.16}
+
+/* skills, certs, contact cards — hard shadow only */
+.skill,.cert,.cg{transition:transform .21s var(--pop),box-shadow .21s var(--pop),border-color 0s}
+.skill:hover,.cert:hover,.cg:hover{transform:translate(-2px,-4px);border-color:var(--ink);box-shadow:5px 6px 0 var(--ink)}
+.skill:hover{border-top-color:var(--acc,var(--ink))}
+
+/* buttons */
+.btn{transition:transform .18s var(--pop),box-shadow .18s var(--pop),background 0s,color 0s}
+.btn:hover{transform:translate(-2px,-3px);box-shadow:4px 5px 0 var(--ink)}
+.btn--solid:hover{box-shadow:4px 5px 0 var(--ink)}
+.ma-btn{transition:transform .18s var(--pop),box-shadow .18s var(--pop),background 0s,color 0s}
+.ma-btn:hover{transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--ink)}
+.kw span{transition:transform .15s var(--pop),box-shadow .15s var(--pop),background 0s,color 0s}
+.kw span:hover{transform:translate(-1px,-2px);box-shadow:2px 3px 0 var(--amber)}
+
+/* headline marker: an amber brush stroke draws in under the italic word when a tab opens */
+.h-sec em{position:relative;z-index:0;white-space:nowrap}
+.h-sec em::after{
+  content:"";position:absolute;left:-.06em;right:-.08em;bottom:.02em;height:.3em;z-index:-1;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20' preserveAspectRatio='none'%3E%3Cpath d='M3 8 C 40 3, 80 6, 110 5 S 170 2, 198 6 L 196 15 C 160 18, 120 13, 88 16 S 34 18, 2 15 Z' fill='%23e8b030' fill-opacity='.85'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+  clip-path:inset(0 100% 0 0);
+}
+.pane.active .h-sec em::after{animation:marker .45s steps(5,end) .55s forwards}
+@keyframes marker{to{clip-path:inset(0 0 0 0)}}
+
+/* case-study modal: lands like a panel slapped onto the page */
+.modal-panel{border-width:2px;box-shadow:12px 14px 0 var(--ink);animation:panelIn .3s steps(4,end)}
+@keyframes panelIn{0%{opacity:0;transform:scale(.9) rotate(-2deg)}55%{opacity:1;transform:scale(1.015) rotate(.6deg)}100%{opacity:1;transform:none}}
+
+@media(prefers-reduced-motion:reduce){
+  .pc,.tile,.skill,.cert,.cg,.btn,.ma-btn,.kw span,.pc .arrow,.pc::after{transition:none}
+  .pane.active .h-sec em::after{animation:none;clip-path:none}
+  .modal-panel{animation:none}
+}
+
+/* ══════════ COMPACT + SHADE + SQUARE SKILLS + EXPERIENCE POP ══════════ */
+body{background:radial-gradient(ellipse 120% 85% at 50% 0%,#f6f1e5 0%,var(--paper) 42%,#e4dcc8 100%) fixed}
+.pane-in{padding:clamp(20px,3.2vh,40px) clamp(18px,3.5vw,48px) 56px}
+.h-sec{font-size:clamp(32px,4.4vw,58px)}
+.sec-head{margin-bottom:20px;padding-bottom:10px}
+.title-block{margin-bottom:clamp(16px,2.8vh,30px)}
+.sec-sub{margin-top:10px;font-size:15.5px}
+.pgrid{gap:12px}
+.pc{padding:18px 18px 15px;min-height:196px;gap:9px}
+.about-copy p{margin-bottom:12px;font-size:15px}
+.kw{margin-top:16px}
+.contact-grid{margin-top:32px}
+.contact-p{margin:14px 0 22px}
+
+.skill-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+@media(max-width:1200px){.skill-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.skill-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:440px){.skill-grid{grid-template-columns:1fr}}
+.skill{min-height:232px;padding:16px 16px 14px;display:flex;flex-direction:column;min-width:0}
+@media(max-width:440px){.skill{min-height:0}}
+.skill h4{font-size:20px;margin:4px 0 10px}
+.skill ul{display:flex;flex-wrap:wrap;gap:5px;align-content:flex-start}
+.skill li,.skill li:last-child{font-size:11.5px;line-height:1.3;color:var(--ink);padding:3px 7px;border:1px solid var(--line);border-radius:2px;background:rgba(255,253,246,.55)}
+
+.xp{grid-template-columns:190px 1fr;padding:clamp(16px,2vw,24px) clamp(18px,2.2vw,28px);margin-bottom:12px;position:relative;overflow:hidden;
+  transition:transform .21s var(--pop),box-shadow .21s var(--pop),border-color 0s}
+@media(max-width:860px){.xp{grid-template-columns:1fr}}
+.xp h3{margin:4px 0 10px;font-size:clamp(22px,2.2vw,28px)}
+.xp li{padding:6px 0 6px 22px;font-size:13.5px}
+.xp>*{position:relative;z-index:1}
+.xp:hover{transform:translate(-3px,-5px) rotate(-.25deg);border-color:var(--ink);border-left-color:var(--acc,var(--ink));box-shadow:var(--hard)}
+.xp::after{
+  content:"";position:absolute;right:-40px;bottom:-40px;width:220px;height:220px;pointer-events:none;z-index:0;
+  background-image:radial-gradient(var(--acc,var(--ink)) 32%,transparent 35%);background-size:8px 8px;
+  -webkit-mask:radial-gradient(circle at 70% 70%,#000 0 20%,transparent 66%);mask:radial-gradient(circle at 70% 70%,#000 0 20%,transparent 66%);
+  opacity:0;transform:scale(.55) rotate(-8deg);transition:opacity .1s steps(1),transform .22s var(--pop);
+}
+.xp:hover::after{opacity:.45;transform:none}
+
+.cert-grid{grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:1080px){.cert-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.cert-grid{grid-template-columns:1fr}}
+.cert{padding:14px 16px}
+.cert-note{margin:12px 0 20px}
+@media(prefers-reduced-motion:reduce){.xp,.xp::after{transition:none}}
+
+/* ══════════ CARD SYSTEM — one card, one hover, one colour per page ══════════
+   Every page puts its information in the same card: paper surface, 1px ink border,
+   4px top bar in the page's tab colour, mono label → bold title → grey body.
+   Every card hovers the same way: lift, hard black shadow, halftone patch. */
+#pane-home{--sec:var(--ink)}
+#pane-portfolio{--sec:var(--amber)}
+#pane-about{--sec:var(--ink)}
+#pane-skills{--sec:var(--steel-light)}
+#pane-experience{--sec:var(--coral)}
+#pane-certs{--sec:#3a382e}
+#pane-contact{--sec:var(--teal)}
+
+.pc,.skill,.xp,.cert,.cg,.side-card,.mini,.facts{
+  background:var(--card);border:1px solid var(--ink);border-top:4px solid var(--sec);
+  border-radius:4px;box-shadow:none;position:relative;overflow:hidden;
+}
+.facts{border-top-width:1px}
+.pc{padding:18px}
+.skill{padding:18px}
+.xp{padding:20px 22px;border-left:1px solid var(--ink)}
+.cert{padding:16px 18px}
+.cg{padding:16px 18px}
+
+/* one hover, everywhere there is an item card */
+.pc,.skill,.xp,.cert,.cg,.tile{transition:transform .2s var(--pop),box-shadow .2s var(--pop)}
+.pc:hover,.pc:focus-visible,.skill:hover,.xp:hover,.cert:hover,.cg:hover,.tile:hover{
+  transform:translate(-3px,-4px);box-shadow:5px 6px 0 var(--ink);
+  border-color:var(--ink);border-top-color:var(--sec);border-left-color:var(--ink);
+}
+.tile:hover{border:0}
+.skill>*,.xp>*,.cert>*,.cg>*{position:relative;z-index:1}
+.pc::after,.skill::after,.xp::after,.cert::after,.cg::after{
+  content:"";position:absolute;right:-36px;bottom:-36px;width:170px;height:170px;pointer-events:none;z-index:0;
+  background-image:radial-gradient(var(--sec) 32%,transparent 35%);background-size:8px 8px;
+  -webkit-mask:radial-gradient(circle at 70% 70%,#000 0 22%,transparent 66%);mask:radial-gradient(circle at 70% 70%,#000 0 22%,transparent 66%);
+  opacity:0;transform:scale(.55) rotate(-8deg);transition:opacity .1s steps(1),transform .22s var(--pop);
+}
+.pc:hover::after,.pc:focus-visible::after,.skill:hover::after,.xp:hover::after,.cert:hover::after,.cg:hover::after{opacity:.4;transform:none}
+
+/* one type ladder inside cards: mono label → bold sans title → grey body */
+.pc .pnum{color:var(--ink)}
+.skill .kicker{color:var(--grey)}
+.pc h3,.skill h4,.cert h4{font-family:var(--fs);font-style:normal;font-weight:700;font-size:17px;letter-spacing:-.015em;line-height:1.25}
+.skill h4{margin:6px 0 12px}
+.xp h3{font-family:var(--fs);font-weight:700;font-size:21px;letter-spacing:-.015em;margin:4px 0 10px}
+.pc p,.cert p,.xp li{color:var(--grey)}
+
+/* one chip style */
+.skill li,.skill li:last-child,.pt{
+  font-family:var(--fm);font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;line-height:1.35;
+  border:1px solid var(--line);border-radius:2px;padding:4px 7px;background:transparent;color:var(--ink)
+}
+.pt{color:var(--grey)}
+
+/* one status style: dot + mono text (as on portfolio cards) */
+.cert .st{border:0;background:none;padding:2px 0 0;display:inline-flex;align-items:center;gap:7px}
+.cert .st::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+
+@media(prefers-reduced-motion:reduce){.pc,.skill,.xp,.cert,.cg,.tile,.pc::after,.skill::after,.xp::after,.cert::after,.cg::after{transition:none}}
+
+/* ══════════ HOME: wider + case-file overview ══════════ */
+#pane-home .pane-in{max-width:none;padding-left:clamp(20px,3.2vw,56px);padding-right:clamp(20px,3.2vw,56px)}
+#pane-home .home-grid{grid-template-columns:minmax(0,1.35fr) minmax(360px,1fr);gap:clamp(24px,3.5vw,64px)}
+@media(max-width:980px){#pane-home .home-grid{grid-template-columns:1fr}}
+.cf{
+  position:relative;overflow:visible;background:var(--card);border:1px solid var(--ink);border-top:4px solid var(--ink);
+  border-radius:4px;transition:transform .2s var(--pop),box-shadow .2s var(--pop);
+}
+.cf:hover{transform:translate(-3px,-4px);box-shadow:5px 6px 0 var(--ink)}
+.cf-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 18px;border-bottom:1px solid var(--line)}
+.cf-id{font-family:var(--fm);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey)}
+.cf-rows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.cf-row{padding:14px 18px 16px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:4px;
+  opacity:0;transform:translateY(8px) scale(.96)}
+.cf-row:last-child{border-right:0}
+.pane.active .cf-row{animation:cfIn .36s steps(3,end) forwards;animation-delay:calc(.35s + var(--k)*.22s)}
+@keyframes cfIn{to{opacity:1;transform:none}}
+.cf-k{font-family:var(--fm);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--coral)}
+.cf-v{font-family:var(--fd);font-style:italic;font-weight:560;font-size:clamp(22px,1.9vw,28px);line-height:1.05;letter-spacing:-.01em}
+.cf-d{font-size:13px;line-height:1.4;color:var(--grey)}
+.cf-stamp{
+  position:absolute;right:18px;top:-18px;z-index:2;
+  font-family:var(--fm);font-weight:700;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--teal-text);background:var(--card);border:2px solid var(--teal-text);padding:5px 10px 4px 12px;
+  transform:rotate(-6deg);opacity:0;
+}
+.pane.active .cf-stamp{animation:stamp .3s steps(3,end) 1.25s forwards}
+@keyframes stamp{0%{opacity:0;transform:rotate(-14deg) scale(2)}70%{opacity:1;transform:rotate(-4deg) scale(.92)}100%{opacity:1;transform:rotate(-6deg) scale(1)}}
+@media(max-width:620px){
+  .cf-rows{grid-template-columns:1fr}
+  .cf-row{border-right:0;border-bottom:1px solid var(--line)}
+  .cf-row:last-child{border-bottom:0}
+}
+@media(prefers-reduced-motion:reduce){.cf-row,.cf-stamp{opacity:1;transform:none;animation:none!important}.cf-stamp{transform:rotate(-6deg)}}
+
+#pane-home .tile{aspect-ratio:auto;min-height:clamp(150px,21vh,230px)}
+#pane-home .hero-p{max-width:64ch}
+.cf-head{padding-right:130px}
+
+/* ══════════ HOME HERO SCENE — thought bubble, name tag, caption boxes ══════════ */
+.scene{position:relative;container-type:inline-size;width:100%;max-width:900px;height:0;padding-bottom:53%;margin:0 0 6px}
+.bubble{position:absolute;left:0;top:0;width:36cqw;z-index:1;transform-origin:20% 95%}
+.bubble svg{display:block;width:100%;height:auto;overflow:visible}
+.bubble-t{position:absolute;left:12%;top:22%;width:78%;text-align:center;transform:rotate(-15deg);
+  font-family:"Luckiest Guy","Archivo Black",Impact,sans-serif;font-size:3.8cqw;line-height:1.04;color:#5a5a5a;letter-spacing:.02em;text-transform:uppercase}
+.bubble-t em{font-style:normal;color:#c9695b}
+.tag{position:absolute;left:22cqw;top:20cqw;width:40cqw;height:26cqw;z-index:2;margin:0;
+  display:flex;flex-direction:column;background:#d7263f;border-radius:2.2cqw;overflow:hidden;transform:rotate(-3deg);
+  box-shadow:0 1px 0 rgba(0,0,0,.15),0 16px 28px -14px rgba(20,19,15,.55);
+  transition:transform .2s var(--pop),box-shadow .2s var(--pop)}
+.tag::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.18) 48%,transparent 56%),repeating-linear-gradient(8deg,transparent 0 11px,rgba(0,0,0,.018) 11px 12px)}
+.tag-top{display:flex;flex-direction:column;align-items:center;color:#fff;padding:1.6cqw 0 .8cqw;line-height:1}
+.tag-hello{font-family:var(--fs);font-weight:700;font-size:5.4cqw;letter-spacing:.2em;margin-left:.2em}
+.tag-my{font-family:var(--fs);font-weight:700;font-size:2.3cqw;letter-spacing:.04em;margin-top:.4cqw}
+.tag-name{flex:1;display:grid;place-items:center;background:#fbfaf6;text-align:center;
+  font-family:"Titan One","Archivo Black",sans-serif;font-weight:400;font-size:4.7cqw;line-height:1.05;color:#1f3d93;letter-spacing:.01em;text-transform:uppercase}
+.tag-bot{height:2.4cqw;flex:none}
+.tag:hover{transform:rotate(-1.5deg) translate(-3px,-4px);box-shadow:6px 7px 0 var(--ink)}
+.cap{position:absolute;z-index:3;margin:0;width:28cqw;left:calc(62cqw + var(--k)*5cqw);top:calc(6cqw + var(--k)*12.5cqw);
+  background:#a8281d;color:#fff;border:2px solid #1a1712;border-radius:.9cqw;padding:1.1cqw 1.4cqw 1.2cqw;text-align:center;
+  font-family:"Comic Neue","Comic Sans MS",cursive;font-weight:700;font-size:max(12px,1.7cqw);line-height:1.3;
+  box-shadow:0 8px 16px -10px rgba(20,19,15,.5);transition:transform .2s var(--pop),box-shadow .2s var(--pop)}
+.cap b{display:block;text-transform:uppercase;font-size:1.08em;letter-spacing:.02em;margin-bottom:.2em}
+.cap:hover{transform:translate(-3px,-4px);box-shadow:5px 6px 0 var(--ink)}
+
+.pane.active .bubble{animation:bubIn .36s steps(3,end) .1s backwards}
+.pane.active .tag{animation:tagIn .42s steps(4,end) .4s backwards}
+.pane.active .cap{animation:capIn .3s steps(3,end) backwards;animation-delay:calc(.9s + var(--k)*.25s)}
+@keyframes bubIn{from{opacity:0;transform:scale(.3) rotate(-10deg)}}
+@keyframes tagIn{from{opacity:0;transform:rotate(-14deg) scale(1.35)}60%{opacity:1;transform:rotate(-1deg) scale(.96)}}
+@keyframes capIn{from{opacity:0;transform:scale(.6) translateX(-12px)}}
+
+@media(max-width:620px){
+  .scene{height:auto;padding-bottom:0;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+  .bubble,.tag,.cap{position:relative;left:auto;top:auto}
+  .bubble{width:62%;margin-bottom:-8%}
+  .bubble-t{font-size:7.4cqw}
+  .tag{width:86%;height:auto;align-self:center;border-radius:14px}
+  .tag-top{padding:12px 0 6px}.tag-hello{font-size:9cqw}.tag-my{font-size:4cqw}
+  .tag-name{font-size:8.6cqw;padding:14px 8px}.tag-bot{height:14px}
+  .cap{width:auto;align-self:stretch;margin-left:calc(var(--k)*14px);margin-right:calc((2 - var(--k))*14px);padding:9px 12px;font-size:14px;border-radius:7px}
+}
+@media(prefers-reduced-motion:reduce){.pane.active .bubble,.pane.active .tag,.pane.active .cap{animation:none}}
+
+/* ══════════ HOME v3 — one idea: name tag → name screening → evidence ══════════ */
+#pane-home .hero2{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,96px);align-items:center;min-height:calc(100vh - var(--nav) - var(--foot) - 80px)}
+@media(max-width:980px){#pane-home .hero2{grid-template-columns:1fr;min-height:0}}
+.hero2 .tag,.hero2 .cap{position:relative;left:auto;top:auto}
+.hook{font-family:"Luckiest Guy","Archivo Black",sans-serif;font-size:clamp(18px,1.7vw,26px);color:#6a655a;letter-spacing:.03em;
+  text-transform:uppercase;transform:rotate(-3deg);transform-origin:left;margin:0 0 14px 6px}
+.tagwrap{position:relative;width:min(100%,520px);container-type:inline-size;margin-bottom:clamp(36px,4vw,56px)}
+.hero2 .tag{width:100%;height:auto;aspect-ratio:1.62/1;border-radius:4.5cqw;transform:rotate(-2.5deg)}
+.hero2 .tag-top{padding:3.6cqw 0 2cqw}
+.hero2 .tag-hello{font-size:12.5cqw}
+.hero2 .tag-my{font-size:5.2cqw;margin-top:1cqw}
+.hero2 .tag-name{font-size:10.2cqw;line-height:1.02}
+.hero2 .tag-bot{height:5cqw}
+.screen-stamp{position:absolute;right:-3cqw;bottom:-5cqw;z-index:3;transform:rotate(-8deg);
+  display:flex;flex-direction:column;align-items:center;gap:.4em;
+  font-family:var(--fm);font-size:max(10px,2.5cqw);letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  color:var(--teal-text);background:rgba(247,243,233,.94);border:2.5px solid var(--teal-text);border-radius:3px;padding:.7em 1em .6em;line-height:1}
+.screen-stamp b{font-size:1.25em;letter-spacing:.12em}
+.h-claim{font-family:var(--fd);font-weight:420;font-size:clamp(26px,2.7vw,40px);line-height:1.1;letter-spacing:-.015em;margin:0 0 12px;max-width:none}
+.h-claim em{font-style:italic;color:var(--coral)}
+.h-sub{color:var(--grey);font-size:clamp(15px,1.15vw,17px);max-width:52ch;margin:0 0 14px}
+.h-kw{font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin:0 0 24px}
+.h-right{display:flex;flex-direction:column;gap:14px;width:100%;max-width:680px;justify-self:end}
+.h-evlabel{font-family:var(--fm);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--grey);margin:0 0 2px;border-bottom:2px solid var(--ink);padding-bottom:8px}
+.hero2 .cap{width:auto;margin:0 calc((2 - var(--k))*6%) 0 calc(var(--k)*6%);text-align:left;
+  font-size:clamp(14px,1.1vw,17px);padding:14px 18px 15px;border-radius:6px}
+.hero2 .cap b{font-size:1.25em;margin-bottom:.25em}
+.hero2 .facts{margin-top:6px}
+.hero2 .fact{grid-template-columns:90px 1fr}
+
+.pane.active .hook{animation:capIn .3s steps(3,end) .1s backwards}
+.pane.active .hero2 .tag{animation:tagIn .42s steps(4,end) .3s backwards}
+.pane.active .screen-stamp{animation:stampIn .3s steps(3,end) 1.8s backwards}
+.pane.active .hero2 .cap{animation:capIn .3s steps(3,end) backwards;animation-delay:calc(.8s + var(--k)*.25s)}
+.pane.active .h-claim,.pane.active .h-sub,.pane.active .h-kw{animation:up .5s cubic-bezier(.22,1,.36,1) .55s backwards}
+@keyframes stampIn{from{opacity:0;transform:rotate(-20deg) scale(2.2)}}
+@media(max-width:620px){
+  .hero2 .cap{margin:0}
+  .screen-stamp{right:0}
+}
+@media(prefers-reduced-motion:reduce){.pane.active .hook,.pane.active .hero2 .tag,.pane.active .screen-stamp,.pane.active .hero2 .cap,.pane.active .h-claim,.pane.active .h-sub,.pane.active .h-kw{animation:none}}
+
+/* ── home v3.1: tiles back, darker tag, two-step stamp ── */
+.h-right{max-width:720px}
+.hero2 .bento{gap:10px}
+.hero2 .tile{aspect-ratio:auto;min-height:clamp(140px,19vh,210px);padding:18px}
+.hero2 .facts{margin-top:10px}
+.hero2 .tag{background:#a91f31}
+.hero2 .tag-name{background:#efebe1}
+.tag-dots{position:absolute;right:-6%;bottom:-10%;width:55%;height:70%;z-index:3;pointer-events:none;
+  background-image:radial-gradient(#5e0f19 32%,transparent 35%);background-size:9px 9px;
+  -webkit-mask:radial-gradient(circle at 72% 72%,#000 0 22%,transparent 66%);mask:radial-gradient(circle at 72% 72%,#000 0 22%,transparent 66%);
+  opacity:0;transform:scale(.55) rotate(-8deg);transition:opacity .1s steps(1),transform .22s var(--pop)}
+.tag:hover .tag-dots{opacity:.35;transform:none}
+.tag-top,.tag-name{position:relative;z-index:2}
+.tag-name{background-clip:padding-box}
+.screen-stamp{max-width:82cqw;text-align:center;bottom:-13cqw;right:-4cqw}
+.hero2 .tagwrap{margin-bottom:clamp(62px,6.5vw,92px)}
+.st2{display:block;font-size:.95em;line-height:1.3;letter-spacing:.1em;white-space:normal;max-height:0;overflow:hidden;opacity:0}
+.pane.active .st2{animation:st2In .45s steps(4,end) 2.6s forwards}
+@keyframes st2In{0%{max-height:0;opacity:0}40%{opacity:1}100%{max-height:4em;opacity:1}}
+@media(prefers-reduced-motion:reduce){.st2{max-height:none;opacity:1;animation:none!important}}
+
+/* ── home v3.2 ── */
+main{top:calc(var(--nav) + 6px)}
+#pane-home .pane-in{padding-top:clamp(34px,5vh,56px)}
+/* all four tiles share one type style */
+.hero2 .tile .tv,.hero2 .tile .tv .big{font-family:var(--fd);font-style:italic;font-weight:560;letter-spacing:-.01em;line-height:1.08;font-size:clamp(24px,2.1vw,34px)}
+.hero2 .tile .tv .big{display:inline}
+.hero2 .tile .stack{font-family:var(--fd);font-style:italic;font-weight:420;font-size:clamp(15px,1.15vw,18px);line-height:1.35}
+/* darker, smaller name tag */
+.hero2 .tagwrap{width:min(100%,420px)}
+.hero2 .tag{background:#7c1422}
+.hero2 .tag-name{background:#e8e3d6}
+.tag-dots{background-image:radial-gradient(#3d0810 32%,transparent 35%)}
+/* stamp sits on the lower card, below the name */
+.screen-stamp{bottom:-7cqw;right:-5cqw;max-width:78cqw}
+.hero2 .tagwrap{margin-bottom:clamp(40px,4.5vw,64px)}
+
+/* ── home v3.3: coral tile = tag red; grainy narrow stamp ── */
+.hero2 .tile-coral{background:#7c1422}
+.hero2 .tile-coral .tl{color:rgba(240,237,227,.7)}
+.screen-stamp{max-width:none;width:auto;right:-3cqw;bottom:-9cqw;padding:.75em 1.1em .7em;
+  border:3px double var(--teal-text);border-radius:4px;background:rgba(236,241,232,.9);
+  font-size:max(10px,2.4cqw);letter-spacing:.16em;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 2.05'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 2.05'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");
+  filter:contrast(1.1)}
+.screen-stamp b{font-size:1.3em;border-bottom:1.5px solid currentColor;padding-bottom:.35em;margin-bottom:.1em}
+.st2{line-height:1.35}
+
+.screen-stamp{-webkit-mask:none;mask:none;border:0;background:#eceee6;box-shadow:0 2px 6px -2px rgba(20,19,15,.25)}
+.screen-stamp::after{content:"";position:absolute;inset:3px;border:3px double var(--teal-text);border-radius:3px;pointer-events:none;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 2.1'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 2.1'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E")}
+.screen-stamp>b,.screen-stamp>.st2{-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 2.1'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 2.1'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E")}
+
+/* ══════════ SITE-WIDE CONSISTENCY PASS ══════════ */
+/* card surface: stone, a step darker than the page */
+:root{--card:#e4dfd5;--line:#cbc4b3;--grey:#5f5a4e}
+/* every page uses the same full-width frame, so the left edge never jumps between tabs */
+.pane-in,#pane-home .pane-in{max-width:none;padding-left:clamp(20px,3.4vw,56px);padding-right:clamp(20px,3.4vw,56px)}
+/* section header row: same height on every page whatever sits on the right */
+.sec-head{align-items:center;min-height:38px}
+/* statuses: cleared = green everywhere, active = amber, pending = grey */
+.st-build{color:var(--teal-text)}.st-build .pip{background:var(--teal)}
+/* experience bullets take the page colour */
+.xp li::before{color:var(--sec)}
+/* one chip style site-wide */
+.kw span{font-family:var(--fm);font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;border:1px solid var(--line);border-radius:2px;padding:4px 7px;background:transparent;color:var(--ink)}
+.kw{gap:5px}
 </style>
 </head>
 <body>
@@ -610,7 +982,7 @@ footer a:hover{color:var(--amber)}
 <nav>
   <div class="logo" data-tab="home" role="button" tabindex="0" aria-label="Home">
     <span class="lg">ajatau</span>
-    <span class="sub">AML · Web3</span>
+    <span class="sub">AML · RegTech</span>
   </div>
   <div class="tabs" role="tablist">
     <button class="nav-tab t-cream active" data-tab="home" role="tab" aria-selected="true">Home</button>
@@ -630,83 +1002,48 @@ footer a:hover{color:var(--amber)}
 <div class="pane active" id="pane-home">
   <div class="pane-in">
     <div class="ghost">01</div>
-    <div class="home-grid">
-      <div>
-        <div class="tmx rv" style="--i:0" role="status" aria-label="Record cleared: 17,473 alerts at 97% audited quality. Available for remote, async, in-house and B2B contracts.">
-          <div class="tmx-head">
-            <span class="tmx-statl">
-              <span class="tma-pip"></span>
-              <span class="tmx-state" aria-hidden="true">
-                <span class="tmx-scan">Screening<span class="c">&#9613;</span></span>
-                <span class="tmx-done">&#10003; Cleared</span>
-              </span>
-            </span>
-            <span class="tmx-year">2026 &middot; Q3</span>
-          </div>
-          <div class="tmx-body">
-            <div class="tmx-scanwrap" aria-hidden="true"><div>
-            <div class="tmx-sr">
-              <span class="ic"><span class="sp"></span></span>
-              <span class="tmx-skills" aria-hidden="true">
-                <span style="--t:0.4s;--d:1.79s">2+ years AML function @ Nordic Tier&nbsp;1 bank</span>
-                <span style="--t:2.29s;--d:1.79s">Sanctions screening &mdash; 6,790 cases at 98.58% audited quality</span>
-                <span style="--t:4.18s;--d:1.79s">Transaction monitoring &mdash; 10,683 cases at 96.15% audited quality</span>
-                <span style="--t:6.07s;--d:1.19s">AML &middot; KYC / KYB</span>
-                <span style="--t:7.36s;--d:1.29s">UBO &middot; PEP &middot; risk assessments</span>
-                <span style="--t:8.75s;--d:1.19s">EDD &middot; SoF / SoW</span>
-                <span style="--t:10.04s;--d:1.54s">3 AI compliance automation tools built</span>
-                <span style="--t:11.68s;--d:1.54s">Blockchain tracing &mdash; Etherscan, Arkham, MetaSleuth &middot; OSINT</span>
-                <span style="--t:13.32s;--d:1.92s">Documentation WG Lead @ Pesa Play DAO (Kambria DEP&nbsp;2)</span>
-                <span style="--t:15.34s;--d:1.79s">GDPR &middot; FATF 40 &middot; OFAC &middot; EU AMLD &middot; Nordic FIU</span>
-                <span style="--t:17.23s;--d:1.67s">Sumsub certifications &middot; 25.5 CPD hours &middot; Anthropic certifications</span>
-                <span style="--t:19.0s;--d:1.29s">Google Data Analytics Specialization</span>
-                <span style="--t:20.39s;--d:1.42s">Google Advanced Data Analytics Specialization</span>
-                <span style="--t:21.91s;--d:1.29s">Google AI Professional Specialization</span>
-                <span style="--t:23.3s;--d:1.54s">Google Project Management Foundations &middot; Business Intelligence</span>
-              </span>
-            </div>
-            <div class="tmx-line"></div>
-            </div></div>
-            <div class="tmx-final"><div><p>17,473 cleared alerts &middot; 97% audited quality &middot; 2+ years @ a Nordic Tier-1 bank &middot; 4 months bookkeeping + compliance documentation @ Pesa Play DAO (Kambria DEP&nbsp;2) &middot; AI compliance tools built</p></div></div>
-            <div class="tmx-verdict"><span class="vd">&#10003;</span>Available for: remote &middot; async &middot; in-house &middot; B2B</div>
-          </div>
-          <div class="tmx-meter" aria-hidden="true"><span></span></div>
+    <div class="home-grid hero2">
+      <div class="h-left">
+        <div class="tagwrap">
+          <h1 class="tag" aria-label="Gintarė Jatautytė">
+            <span class="tag-top" aria-hidden="true"><span class="tag-hello">HELLO</span><span class="tag-my">my name is</span></span>
+            <span class="tag-name">Gintarė<br>Jatautytė</span>
+            <span class="tag-bot" aria-hidden="true"></span>
+            <span class="tag-dots" aria-hidden="true"></span>
+          </h1>
+          <span class="screen-stamp" aria-hidden="true"><b>Name screened</b><span class="st2">Disposition:<br>a perfect fit<br>for the job</span></span>
         </div>
-        <div class="kicker rv" style="--i:1;margin-top:14px">AML · Web3 · RegTech</div>
-        <h1 class="hero-name rv" style="--i:2">Gintarė<span class="l2">Jatautytė</span></h1>
-        <p class="hero-role rv" style="--i:3">AML Practitioner &amp; AI Compliance Tool Builder.</p>
-        <p class="hero-p rv" style="--i:4">2+ years inside the actual AML function of a major Nordic Tier&nbsp;1 bank &mdash; 17,473 cases at 97% audited quality.</p>
-        <p class="hero-p rv" style="--i:5">Now building the practitioner's answer to what FIS and Anthropic announced as their Financial Crimes AI Agent — an agentic SAR generator, built independently from the inside.</p>
-        <p class="hero-claim rv" style="--i:6">Pattern recognition is my thing.<br><em>Dirty money doesn't stand a chance.</em></p>
-        <div class="btn-row rv" style="--i:7">
-          <button class="btn btn--solid" data-tab="portfolio">View Portfolio</button>
-          <a class="btn btn--ghost" href="mailto:gintare@ajatauaml.com">Let's talk</a>
+        <p class="h-claim">AML analyst who makes the call&nbsp;&mdash;<br><em>and can defend it.</em></p>
+        <p class="h-sub">I turn AML requirements into auditable workflows &mdash; and build the tools that run them, with the human decision kept where it belongs.</p>
+        <p class="h-kw">Transaction monitoring &middot; KYC/EDD &middot; Sanctions &middot; SAR reporting</p>
+        <div class="btn-row">
+          <button class="btn btn--solid" data-tab="portfolio">See the work</button>
+          <a class="btn btn--ghost" href="mailto:gintare@ajatauaml.com">Let&rsquo;s talk</a>
         </div>
       </div>
-      <div>
+      <div class="h-right">
         <div class="bento">
-          <div class="tile tile-amber rv" style="--i:2">
-            <span class="tl">AML experience</span>
-            <span class="tv"><span class="big"><span data-count="2">2</span>+ years</span></span>
+          <div class="tile tile-amber">
+            <span class="tl">Financial Crime · Tier 1 Nordic bank</span>
+            <span class="tv"><span class="big"><span data-count="25">25</span> months</span></span>
           </div>
-          <div class="tile tile-olive rv" style="--i:3">
-            <span class="tl">Quality score</span>
-            <span class="tv"><span data-count="97">97</span>% Quality,<br><span data-count="17473" data-fmt="k">17,473</span> Cleared Alerts</span>
+          <div class="tile tile-olive">
+            <span class="tl">Audited quality · bank QA</span>
+            <span class="tv"><span data-count="97">97</span>% Quality,<br><span data-count="17473">17,473</span> Cases Decided</span>
           </div>
-          <div class="tile tile-steel rv" style="--i:4">
-            <span class="tl">Certifications and Education</span>
+          <div class="tile tile-steel">
+            <span class="tl">Certifications and education</span>
             <span class="tv"><span data-count="21">21</span>+ Certs,<br>25.5 CPD-Accredited Hours</span>
           </div>
-          <div class="tile tile-coral rv" style="--i:5">
-            <span class="tl">Applied AI Prototyping</span>
-            <span class="stack">Python,<br>SQL,<br>Claude API,<br>Anthropic MCP</span>
+          <div class="tile tile-coral">
+            <span class="tl">Applied AI prototyping</span>
+            <span class="stack">Python,<br>SQL,<br>Claude API</span>
             <span class="tv"><span data-count="3">3</span> Live Compliance Tools</span>
           </div>
         </div>
-        <div class="facts rv" style="--i:6">
-          <div class="fact"><span class="k">Location</span><span class="v">Lithuania · Remote</span></div>
-          <div class="fact"><span class="k">Timezone</span><span class="v">EMEA · UTC+2/3</span></div>
-          <div class="fact"><span class="k">Open to</span><span class="v am">Remote · Async · In-house · B2B</span></div>
+        <div class="facts">
+          <div class="fact"><span class="k">Location</span><span class="v">Lithuania (EU) &middot; Fully remote &middot; UTC+2/3</span></div>
+          <div class="fact"><span class="k">Open to</span><span class="v am">Employment or B2B &middot; Available now</span></div>
           <div class="fact"><span class="k">Email</span><span class="v"><a href="mailto:gintare@ajatauaml.com">gintare@ajatauaml.com</a></span></div>
         </div>
       </div>
@@ -720,58 +1057,65 @@ footer a:hover{color:var(--amber)}
     <div class="ghost">02</div>
     <div class="sec-head rv" style="--i:0">
       <span class="kicker">02 — Portfolio</span>
-      <span class="kicker">Alert queue: 7 hits · click to adjudicate</span>
+      <span class="kicker">Alert queue: 8 hits · click to adjudicate</span>
     </div>
     <div class="title-block rv" style="--i:1">
       <h2 class="h-sec">Real cases. <em>Documented.</em></h2>
       <p class="sec-sub">Nordic bank investigations, Web3 builds, and AI tools in progress.</p>
     </div>
     <div class="pgrid">
+      <a class="pc rv" style="--i:1" href="aml-operating-system.html" aria-label="Open the AML Operating System diagram">
+        <span class="arrow">↗</span>
+        <div class="pc-top"><span class="pnum">01</span><span class="status st-live"><span class="pip"></span>Interactive · Live</span></div>
+        <h3>AML Operating System — How the Tools Fit Together</h3>
+        <p>One interactive map of the AML framework — governance, risk, customer lifecycle, controls, investigation, effectiveness — showing where each of my tools automates a step, where the human decides, and what isn't built yet.</p>
+        <div class="ptags"><span class="pt">Framework</span><span class="pt">Decision flow</span><span class="pt">Human-in-loop</span><span class="pt">Interactive</span></div>
+      </a>
       <div class="pc rv" style="--acc:var(--amber);--i:2" data-key="live1" role="button" tabindex="0" aria-label="Open case study: Agentic SAR Generator">
         <span class="arrow">↗</span>
-        <div class="pc-top"><span class="pnum">01</span><span class="status st-live"><span class="pip"></span>Cleared · Beta Live</span></div>
+        <div class="pc-top"><span class="pnum">02</span><span class="status st-live"><span class="pip"></span>Cleared · Beta Live</span></div>
         <h3>Agentic SAR Generator — Python &amp; SQL Scripts</h3>
-        <p>Automated evidence assembly and SAR narrative generation with human-in-the-loop review — the same core workflow FIS and Anthropic announced, built independently from the practitioner side.</p>
-        <div class="ptags"><span class="pt">GenAI API</span><span class="pt">Python</span><span class="pt">SQL</span><span class="pt">SAR/STR</span><span class="pt">OFAC</span></div>
+        <p>Six-step pipeline from alert triage to draft SAR narrative, with human review at every gate. Includes OFAC name screening and SQL anomaly-detection queries.</p>
+        <div class="ptags"><span class="pt">Python</span><span class="pt">Claude API</span><span class="pt">SQL</span><span class="pt">SAR/STR</span><span class="pt">OFAC</span></div>
       </div>
-      <div class="pc rv" style="--acc:var(--olive-light);--i:3" data-key="dao1" role="button" tabindex="0" aria-label="Open case study: Pesa Play DAO, Documentation Working Group Lead">
+      <div class="pc rv" style="--acc:var(--olive-light);--i:3" data-key="dao1" role="button" tabindex="0" aria-label="Open case study: PesaPlay DAO, Documentation Working Group Lead">
         <span class="arrow">↗</span>
-        <div class="pc-top"><span class="pnum">02</span><span class="status st-dao"><span class="pip"></span>WG Lead · Active</span></div>
-        <h3>Pesa Play DAO — Documentation WG Lead (Kambria DEP 2)</h3>
-        <p>Documentation Working Group Lead since May 2026 (volunteer). Bookkeeping review, consent and data-protection framework, and a designed crypto-to-fiat off-ramp SOP with segregation of duties.</p>
-        <div class="ptags"><span class="pt">DAO</span><span class="pt">MiCA</span><span class="pt">Bookkeeping</span><span class="pt">Documentation</span></div>
+        <div class="pc-top"><span class="pnum">03</span><span class="status st-dao"><span class="pip"></span>WG Lead · Active</span></div>
+        <h3>PesaPlay DAO — Documentation &amp; Impact WG Lead (Kambria DEP 2)</h3>
+        <p>Compliance governance since May 2026 (volunteer) for a grant-funded financial-literacy programme in Kenya. Wrote and had adopted the crypto-to-fiat off-ramp SOP and a child data protection framework; built the audit-ready record pack.</p>
+        <div class="ptags"><span class="pt">DAO</span><span class="pt">MiCA</span><span class="pt">SOP</span><span class="pt">Audit readiness</span></div>
       </div>
       <div class="pc rv" style="--acc:var(--steel);--i:4" data-key="build1" role="button" tabindex="0" aria-label="Open case study: Policy Reader">
         <span class="arrow">↗</span>
-        <div class="pc-top"><span class="pnum">03</span><span class="status st-build"><span class="pip"></span>Cleared · Beta Live</span></div>
-        <h3>Policy Reader — Compliance Document Analyser</h3>
-        <p>Dual-mode AI tool. Compare mode: inline diff between policy versions. Analyse mode: every rule, threshold, and restriction extracted into a searchable database.</p>
-        <div class="ptags"><span class="pt">Claude API</span><span class="pt">React</span><span class="pt">AMLD6</span><span class="pt">MiCA</span></div>
-      </div>
-      <div class="pc rv" style="--acc:var(--amber);--i:5" data-key="build2" role="button" tabindex="0" aria-label="Open case study: Scam Investigator">
-        <span class="arrow">↗</span>
         <div class="pc-top"><span class="pnum">04</span><span class="status st-build"><span class="pip"></span>Cleared · Beta Live</span></div>
-        <h3>Scam Investigator — KYB Verification</h3>
-        <p>Enter the information you were given; the tool investigates the company and returns what it found <b>with the sources behind each finding</b>. The verdict is a human sign-off.</p>
-        <div class="ptags"><span class="pt">GenAI API</span><span class="pt">KYB</span><span class="pt">Fraud</span><span class="pt">OSINT</span></div>
+        <h3>Policy Reader — Compliance Document Analyser</h3>
+        <p>Compares policy and regulation versions and extracts every rule and threshold, so reviewers can check controls against current requirements.</p>
+        <div class="ptags"><span class="pt">Python</span><span class="pt">Claude API</span><span class="pt">AMLD6</span><span class="pt">MiCA</span></div>
+      </div>
+      <div class="pc rv" style="--acc:var(--amber);--i:5" data-key="build2" role="button" tabindex="0" aria-label="Open case study: Scamnot, KYB and OSINT screening">
+        <span class="arrow">↗</span>
+        <div class="pc-top"><span class="pnum">05</span><span class="status st-build"><span class="pip"></span>Cleared · Beta Live</span></div>
+        <h3>Scamnot — KYB &amp; OSINT Screening</h3>
+        <p>Parallel registry, naming-pattern and adverse-media checks rolled into red-amber-green flags, <b>with the sources behind each finding</b>. The verdict is a human decision.</p>
+        <div class="ptags"><span class="pt">Python</span><span class="pt">Claude API</span><span class="pt">n8n</span><span class="pt">KYB</span><span class="pt">OSINT</span></div>
       </div>
       <div class="pc rv" style="--acc:var(--coral);--i:6" data-key="build3" role="button" tabindex="0" aria-label="Open case study: Anti Financial Crime Knowledge Base">
         <span class="arrow">↗</span>
-        <div class="pc-top"><span class="pnum">05</span><span class="status st-build"><span class="pip"></span>Cleared · Draft Live</span></div>
+        <div class="pc-top"><span class="pnum">06</span><span class="status st-build"><span class="pip"></span>Cleared · Draft Live</span></div>
         <h3>Anti Financial Crime Knowledge Base — Compliance Guides</h3>
         <p>6 published guides: AML/KYC + PoF/W, AMLD6, OFAC, MiCA, Fiat vs Web3 AML, DAO Policy. 2 upcoming: AML Investigation Documents and Red Flag methodology.</p>
         <div class="ptags"><span class="pt">Policy</span><span class="pt">AMLD6</span><span class="pt">OFAC</span><span class="pt">MiCA</span><span class="pt">KYC</span></div>
       </div>
       <div class="pc rv" style="--acc:var(--steel);--i:7" data-key="soon1" role="button" tabindex="0" aria-label="Open case study: EUR 306M SAR filing">
         <span class="arrow">↗</span>
-        <div class="pc-top"><span class="pnum">06</span><span class="status st-live"><span class="pip"></span>Case Study · Published</span></div>
+        <div class="pc-top"><span class="pnum">07</span><span class="status st-live"><span class="pip"></span>Case Study · Published</span></div>
         <h3>Case Study — How Would You File a SAR? EUR 306M Laundering</h3>
         <p>Full investigation flow from TxM alert to FIU filing on a EUR 306 million laundering scenario — every document, every decision point.</p>
         <div class="ptags"><span class="pt">Case Study</span><span class="pt">SAR Filing</span><span class="pt">FIU</span></div>
       </div>
       <div class="pc rv" style="--acc:#b8b09a;--i:8" data-key="soon2" role="button" tabindex="0" aria-label="Open case study: Crypto Transaction Tracing">
         <span class="arrow">↗</span>
-        <div class="pc-top"><span class="pnum">07</span><span class="status st-soon"><span class="pip"></span>Under Review · Soon</span></div>
+        <div class="pc-top"><span class="pnum">08</span><span class="status st-soon"><span class="pip"></span>Under Review · Soon</span></div>
         <h3>Case Study — Crypto Transaction Tracing</h3>
         <p>On-chain OSINT walkthrough: wallet tracing, address clustering, and illicit fund identification.</p>
         <div class="ptags"><span class="pt">Crypto</span><span class="pt">OSINT</span><span class="pt">Blockchain</span></div>
@@ -793,13 +1137,13 @@ footer a:hover{color:var(--amber)}
     </div>
     <div class="about-grid">
       <div class="about-copy rv" style="--i:2">
-        <p>Two years inside the actual AML function of a major Nordic Tier&nbsp;1 bank — running live transaction monitoring across <b>Finland, Denmark, and Sweden</b>. OFAC alerts, CDD/EDD, SAR/STR escalation, adverse media, OSINT. The real thing.</p>
-        <p><b>17,473 cases at 97% audited quality</b> over 25 months — 10,683 transaction monitoring cases at 96.15% and 6,790 sanctions cases at 98.58%. Not a box-ticking exercise — I actually notice things. The pattern that's slightly off. The business model that doesn't add up. That's the job, and I genuinely like it.</p>
-        <p>Now building at the intersection of <b>AML, AI automation, and Web3</b>. My flagship build is an <b>agentic SAR generator</b> on the Claude API — automated evidence assembly and SAR narrative generation with human-in-the-loop review. It targets the same core workflow <b>FIS and Anthropic</b> announced as their Financial Crimes AI Agent, built independently from the practitioner side.</p>
-        <p>Also <b>Documentation Working Group Lead at Pesa Play DAO</b> (a project inside Kambria's DEP 2 programme, volunteer) since May 2026 — four months of bookkeeping review and compliance documentation: consent and child-data protection framework, a designed crypto-to-fiat off-ramp SOP with segregation of duties, weekly independent treasury review.</p>
-        <p>21+ certifications: Sumsub stack (25.5 CPD-accredited hours), Anthropic stack, four POSTECH blockchain certs, MiCA, GenAI for fraud detection, UPenn regulatory compliance, and five Google specialisations. CAMS planned October 2026.</p>
+        <p>AML analyst who makes the call and can defend it. <b>25 months in the Financial Crime function of a Tier&nbsp;1 Nordic bank</b> (Finland, Denmark, Sweden): transaction monitoring, EDD, sanctions screening and suspicious activity reporting. Fully remote, working independently and keeping queues inside SLA.</p>
+        <p><b>17,473 cases decided at 97% audited quality</b>, measured by the bank&rsquo;s QA, not self-reported: 10,683 transaction monitoring cases at 96.15% and 6,790 OFAC sanctions cases at 98.58%, holding 96%+ on every monthly assessment. I took over aged and orphaned cases left by departing analysts and brought the queue back inside SLA without the quality score dropping.</p>
+        <p>I handled the cases that couldn&rsquo;t be closed at first line: <b>SoF/SoW verification, beneficial ownership on complex structures, SAR/STR/UAR filings to the FIU</b> with the narrative and evidence pack behind each one. When alert populations kept producing false positives, I gave the rule and detection-model owners the case evidence they used to refine monitoring logic.</p>
+        <p>When a process keeps producing the same problem, I fix the process, first with evidence, then by <b>building the tool</b>: an agentic SAR generator, a KYB/OSINT screener and a policy reader, each ending in a human decision.</p>
+        <p>Since May 2026, <b>Documentation &amp; Impact WG Lead at PesaPlay DAO</b> (Kambria DEP&nbsp;2, volunteer): wrote and had adopted the crypto-to-fiat off-ramp SOP and a child data protection framework, and built the audit-ready record pack the programme runs on. Certified with Sumsub (25.5 CPD hours), Anthropic, UPenn and more; CAMS planned.</p>
         <div class="kw">
-          <span>OFAC</span><span>AML/CTF</span><span>CDD/EDD</span><span>OSINT</span><span>MiCA</span><span>DeFi</span><span>GenAI</span><span>RBA</span><span>Nordic FIU</span><span>FATF</span><span>SAR/STR</span><span>PEP Screening</span><span>Blockchain Analytics</span><span>VASP</span><span>KYB</span><span>UBO</span><span>Transaction Monitoring</span>
+          <span>Transaction Monitoring</span><span>CDD/EDD</span><span>KYC/KYB</span><span>UBO</span><span>SoF/SoW</span><span>SAR/STR/UAR</span><span>OFAC</span><span>PEP Screening</span><span>OSINT</span><span>RBA</span><span>FATF</span><span>AMLR</span><span>MiCA</span><span>Travel Rule</span><span>Nordic FIU</span><span>VASP/CASP</span><span>Blockchain Tracing</span>
         </div>
       </div>
       <div>
@@ -809,20 +1153,20 @@ footer a:hover{color:var(--amber)}
             <div class="avatar">GJ</div>
             <div>
               <h4>Gintarė Jatautytė</h4>
-              <div class="kicker">AML Officer · Web3 Compliance</div>
+              <div class="kicker">AML Analyst · RegTech Builder</div>
             </div>
           </div>
-          <div class="fact"><span class="k">Location</span><span class="v">Lithuania · Remote</span></div>
-          <div class="fact"><span class="k">Role</span><span class="v">AML Practitioner · RegTech Builder</span></div>
-          <div class="fact"><span class="k">Timezone</span><span class="v">EMEA · EET/EEST</span></div>
-          <div class="fact"><span class="k">Languages</span><span class="v">LT · EN</span></div>
+          <div class="fact"><span class="k">Location</span><span class="v">Lithuania (EU) · Fully remote</span></div>
+          <div class="fact"><span class="k">Role</span><span class="v">AML Analyst · Tool Builder</span></div>
+          <div class="fact"><span class="k">Timezone</span><span class="v">EMEA · UTC+2/3</span></div>
+          <div class="fact"><span class="k">Languages</span><span class="v">LT native · EN C2</span></div>
           <div class="fact"><span class="k">Quality</span><span class="v" style="color:var(--teal-text)">97% audited</span></div>
-          <div class="fact"><span class="k">Open to</span><span class="v am">Remote · Async · In-house · B2B</span></div>
+          <div class="fact"><span class="k">Open to</span><span class="v am">Employment or B2B · Available now</span></div>
         </div>
         <div class="mini rv" style="--i:4">
-          <div><b>2+</b><span>Years AML</span></div>
+          <div><b>25</b><span>Months AML</span></div>
           <div><b>3</b><span>Jurisdictions</span></div>
-          <div><b>17,473</b><span>Cases cleared</span></div>
+          <div><b>17,473</b><span>Cases decided</span></div>
           <div><b>21+</b><span>Certs total</span></div>
         </div>
       </div>
@@ -836,7 +1180,7 @@ footer a:hover{color:var(--amber)}
     <div class="ghost">04</div>
     <div class="sec-head rv" style="--i:0">
       <span class="kicker">04 — Skills</span>
-      <span class="kicker">53 skills · 6 domains</span>
+      <span class="kicker">34 skills · 5 domains</span>
     </div>
     <div class="title-block rv" style="--i:1">
       <h2 class="h-sec">From OFAC to <em>on-chain.</em></h2>
@@ -845,33 +1189,28 @@ footer a:hover{color:var(--amber)}
     <div class="skill-grid">
       <div class="skill rv" style="--acc:var(--amber);--acc-t:var(--amber-text);--i:2">
         <span class="kicker">Core Compliance</span>
-        <h4>Financial Crime</h4>
-        <ul><li>AML/CTF</li><li>CDD/EDD</li><li>SAR/STR/UAR</li><li>PEP Screening</li><li>SoF/SoW</li><li>RBA</li><li>UBO / Beneficial Ownership</li><li>KYC / KYB</li><li>Alert Adjudication</li><li>Risk Scoring</li></ul>
+        <h4>AML / KYC</h4>
+        <ul><li>Transaction monitoring</li><li>CDD/EDD</li><li>KYC/KYB</li><li>UBO</li><li>SoF/SoW</li><li>PEP &amp; sanctions screening</li><li>SAR/STR/UAR</li><li>Risk-based approach</li><li>OSINT &amp; adverse media</li></ul>
       </div>
       <div class="skill rv" style="--acc:var(--steel);--acc-t:var(--steel);--i:3">
-        <span class="kicker">Regulatory Frameworks</span>
-        <h4>Regulations</h4>
-        <ul><li>OFAC SDN List</li><li>EU AMLD</li><li>FATF 40</li><li>EU Consolidated Sanctions</li><li>UN Sanctions</li><li>EU MiCA</li><li>GDPR</li><li>Nordic FIU</li></ul>
+        <span class="kicker">Frameworks</span>
+        <h4>Regulation</h4>
+        <ul><li>FATF Recommendations</li><li>AMLD 4&ndash;6</li><li>AMLR</li><li>OFAC, EU &amp; UN sanctions</li><li>Nordic FIU reporting</li><li>MiCA</li><li>Travel Rule</li><li>GDPR</li></ul>
       </div>
       <div class="skill rv" style="--acc:var(--coral);--acc-t:var(--coral);--i:4">
-        <span class="kicker">Investigations</span>
-        <h4>TM &amp; OSINT</h4>
-        <ul><li>Live Alert Triaging</li><li>Cross-Border Payments</li><li>OSINT</li><li>Adverse Media</li><li>Anomaly Detection</li><li>Corporate Registry Analysis</li><li>TM Software (≡ Actimize)</li><li>Unit21 (familiar)</li></ul>
+        <span class="kicker">Systems</span>
+        <h4>Platforms</h4>
+        <ul><li>Tier 1 bank TM platform (Actimize-equivalent)</li><li>Sumsub (certified)</li><li>Orbis</li><li>Dow Jones Risk &amp; Compliance</li><li>Jira</li><li>Confluence</li></ul>
       </div>
       <div class="skill rv" style="--acc:var(--olive-light);--acc-t:var(--olive);--i:5">
-        <span class="kicker">Blockchain &amp; Crypto</span>
-        <h4>On-Chain</h4>
-        <ul><li>Etherscan</li><li>Arkham</li><li>MetaSleuth</li><li>Mempool.space</li><li>Chainalysis / TRM / Elliptic (theory)</li><li>DeFi Compliance</li><li>Crypto-Asset Risk</li><li>VASP / CASP</li><li>Travel Rule</li><li>Tokenomics Risk</li></ul>
+        <span class="kicker">On-chain · self-directed</span>
+        <h4>Crypto</h4>
+        <ul><li>Etherscan</li><li>Arkham</li><li>MetaSleuth</li><li>Mempool.space</li><li>VASP/CASP due diligence</li></ul>
       </div>
       <div class="skill rv" style="--acc:var(--teal);--acc-t:var(--teal-text);--i:6">
-        <span class="kicker">Data &amp; Analytics</span>
-        <h4>Technical</h4>
-        <ul><li>SQL</li><li>Python (SAR drafting app, Policy Reader app)</li><li>AWS</li><li>Tableau</li><li>Google Sheets</li><li>Google Data Analytics ✓</li><li>Google Advanced Data Analytics ✓</li><li>Google Business Intelligence ✓</li></ul>
-      </div>
-      <div class="skill rv" style="--acc:var(--ink);--acc-t:var(--ink);--i:7">
-        <span class="kicker">AI &amp; RegTech</span>
-        <h4>Emerging Tech</h4>
-        <ul><li>Anthropic API</li><li>Model Context Protocol (MCP)</li><li>Claude Code</li><li>Sumsub (KYC/KYB)</li><li>GenAI Fraud Detection ✓</li><li>AI Workflow Automation</li><li>Google AI Professional ✓</li><li>Pattern Recognition</li><li>DAO Governance</li></ul>
+        <span class="kicker">Build &amp; analyse</span>
+        <h4>Data &amp; AI</h4>
+        <ul><li>Excel (pivots over transactional exports)</li><li>SQL</li><li>Python</li><li>Tableau</li><li>Claude API</li><li>n8n</li></ul>
       </div>
     </div>
   </div>
@@ -883,56 +1222,55 @@ footer a:hover{color:var(--amber)}
     <div class="ghost">05</div>
     <div class="sec-head rv" style="--i:0">
       <span class="kicker">05 — Experience</span>
-      <span class="kicker">2+ years · 17,473 cases · 97% audited quality</span>
+      <span class="kicker">25 months · 17,473 cases · 97% audited quality</span>
     </div>
     <div class="title-block rv" style="--i:1">
       <h2 class="h-sec">Two years in the <em>engine room.</em></h2>
       <p class="sec-sub">Not support. The team that decides what's clean.</p>
     </div>
 
-    <article class="xp rv" style="--acc:var(--olive-light);--i:2">
-      <div class="xp-when"><b>May 2026 — Present</b><br>Remote · Async · Volunteer</div>
+    <article class="xp rv" style="--acc:var(--coral);--i:2">
+      <div class="xp-when"><b>May 2024 — Dec 2025</b><br>Lithuania · Fully remote</div>
       <div>
-        <p class="org">Pesa Play DAO — Kambria DEP 2 programme</p>
-        <h3>Documentation Working Group Lead</h3>
-        <ul>
-          <li>Lead of WG4 (Documentation): assessment instruments, consent forms, data ownership and results reporting for a financial-literacy education pilot.</li>
-          <li>Bookkeeping and independent weekly treasury review under a four-eyes model — reviewer never holds or moves funds.</li>
-          <li>Designed a <b>crypto-to-fiat off-ramp SOP</b> with segregation of duties and per-conversion documentation (draft, pending DAO adoption).</li>
-          <li>Child-data protection framework: anonymised participant IDs, consent-gated media, media clearance checklist anchored in Kenya's Data Protection Act 2019.</li>
-          <li>Applied MiCA frameworks to the token classification question — transferability and purchasability as the trigger for Title II obligations.</li>
-        </ul>
-      </div>
-    </article>
-
-    <article class="xp rv" style="--acc:var(--coral);--i:3">
-      <div class="xp-when"><b>May 2024 — Dec 2025</b><br>Lithuania · Remote</div>
-      <div>
-        <p class="org">UAB "Transcom" — Major Nordic Tier 1 Bank</p>
+        <p class="org">Transcom — contracted to a Tier 1 Nordic bank</p>
         <h3>AML Officer</h3>
         <ul>
-          <li>Live and batch Transaction Monitoring (TM) across Nordic jurisdictions — Finland, Denmark, Sweden — on a proprietary Tier 1 bank TM platform (Actimize-equivalent), escalating patterns consistent with structuring, layering, and self-funding typologies.</li>
-          <li>SoF / SoW verification as part of Enhanced Due Diligence (EDD) for high-risk customers and complex entity structures, including beneficial ownership analysis.</li>
-          <li>Risk-Based Approach (RBA) applied to customer risk scoring, incorporating KYC validation, business model and account activity analysis.</li>
-          <li>Adverse media screening and OSINT for PEP, sanctions, and reputational risk identification.</li>
-          <li>SAR/STR and UAR escalation into the Financial Intelligence Unit (FIU) reporting chain.</li>
-          <li><b>10,683 transaction monitoring cases at 96.15% audited quality</b> across every monthly assessment.</li>
+          <li><b>Transaction monitoring:</b> investigated real-time and batch alerts across domestic and cross-border payment flows on a proprietary Tier 1 TM platform (Actimize-equivalent), covering Finland, Denmark and Sweden. Identified structuring, layering and self-funding patterns; closed or escalated with a documented rationale.</li>
+          <li><b>Suspicious activity reporting:</b> drafted SAR/STR and UAR filings to the FIU under EU AMLD and Nordic reporting obligations.</li>
+          <li><b>EDD and risk assessment:</b> risk-based customer scoring &mdash; KYC validation, business model assessment, account activity analysis, corporate structure and UBO review, SoF/SoW verification.</li>
+          <li><b>OSINT and adverse media</b> on customers and counterparties for PEP status, sanctions exposure and reputational risk.</li>
+          <li><b>Stakeholders:</b> requested SoF documentation and transaction rationale from customers in writing; worked with compliance, operations and FIU stakeholders across three jurisdictions.</li>
+          <li><b>10,683 transaction monitoring cases at 96.15% audited quality</b>, 96%+ on every monthly assessment, tracked against monthly KPI targets.</li>
         </ul>
       </div>
     </article>
 
-    <article class="xp rv" style="--acc:var(--steel);--i:4">
-      <div class="xp-when"><b>Dec 2023 — May 2024</b><br>Lithuania · Remote</div>
+    <article class="xp rv" style="--acc:var(--steel);--i:3">
+      <div class="xp-when"><b>Dec 2023 — May 2024</b><br>Lithuania · Fully remote</div>
       <div>
-        <p class="org">UAB "Transcom" — Major Nordic Tier 1 Bank</p>
-        <h3>Data Coordinator Specialist</h3>
+        <p class="org">Transcom — same Nordic bank</p>
+        <h3>Data Coordinator Specialist (Sanctions)</h3>
         <ul>
-          <li>OFAC sanctions alert review and adjudication — exception-handling protocols for complex multi-jurisdictional escalations.</li>
-          <li>Customer Due Diligence (CDD): client ID, documentation review, and risk profiling per EU AMLD and Nordic FIU requirements.</li>
-          <li>Adverse media and negative news screening via OSINT to surface reputational, sanctions, and financial crime indicators.</li>
-          <li>Sanctions compliance support across OFAC, EU Consolidated Sanctions List, and UN Sanctions frameworks.</li>
-          <li><b>6,790 OFAC sanctions cases at 98.58% audited quality</b> across every monthly assessment.</li>
-          <li>Cross-departmental collaboration on complex financial crime investigations.</li>
+          <li><b>Sanctions screening:</b> decided alerts against the OFAC SDN, EU Consolidated and UN lists, separating true matches from name-similarity noise and documenting each disposition for audit.</li>
+          <li>Handled multi-jurisdictional escalations needing cross-department coordination.</li>
+          <li><b>CDD and OSINT:</b> customer identification, documentation review and risk profiling in line with EU AMLD and Nordic FIU requirements, plus adverse media screening.</li>
+          <li><b>6,790 OFAC sanctions cases at 98.58% audited quality.</b></li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="xp rv" style="--acc:var(--olive-light);--i:4">
+      <div class="xp-when"><b>May 2026 — Present</b><br>Remote · Volunteer<br>Compliance governance</div>
+      <div>
+        <p class="org">PesaPlay DAO — Kambria DEP 2 · grant-funded financial literacy &amp; cyber safety e-learning for children in Kenya</p>
+        <h3>Documentation &amp; Impact WG Lead</h3>
+        <ul>
+          <li><b>Off-ramp policy (token &rarr; KES):</b> wrote and had adopted the crypto-to-fiat SOP &mdash; KYC&rsquo;d exchange route, retained evidence, named ownership, segregation of duties. Also authored the MiCA token classification memo (Art.&nbsp;3) and Art.&nbsp;4 exemption analysis.</li>
+          <li><b>Co-bookkeeper:</b> keep the cashbook, the running record of all DAO funds in and out; co-wrote and implemented the reimbursement policy; built the financial record pack (receipts, reimbursement register, ledgers mapped to grant budget lines).</li>
+          <li><b>Cleared Evidence Summary:</b> the single source for anything said externally &mdash; verified figures, approved wording, and the list of claims the data does not support.</li>
+          <li><b>Pilot #1 results report:</b> participation funnel, item-level change, ceiling effect and confidence intervals, explaining why scores did not rise &mdash; followed by an evaluation report specifying eight fixes for pilot #2.</li>
+          <li><b>Data and consent controls:</b> documentation index and drive architecture (naming, anonymisation rules, access levels); a media log where nothing goes public until cleared; a child data protection framework aligned to the Kenya DPA 2019 and GDPR.</li>
+          <li><b>Session-in-a-Box (productised delivery):</b> designed the template that turns each teaching session into a ready-to-deliver package &mdash; run sheet, facilitator guide, slides, evidence and claims, FAQ, feedback form, delivery record and release checklist &mdash; so any Guide can run the same session to the same standard. Backed by an auto-scoring pre/post results workbook (used within 48h of each pilot) and the participant feedback tracking Kambria requires.</li>
         </ul>
       </div>
     </article>
@@ -949,22 +1287,22 @@ footer a:hover{color:var(--amber)}
       <span class="kicker">21+ certs · 25.5 CPD hours</span>
     </div>
     <div class="title-block rv" style="--i:1">
-      <h2 class="h-sec">Certified in finding <em>filth.</em></h2>
-      <p class="sec-sub">The criminals call it laundering. My job is proving the laundry's still dirty.</p>
-      <p class="cert-note"><b>AML = anti-money laundering.</b> "Laundering" = washing. I prove it's not clean. These are my cleaning credentials.</p>
+      <h2 class="h-sec">A deep diver. <em>No easy passes.</em></h2>
+      <p class="sec-sub">Research enthusiast by habit &mdash; the paper trail behind the judgement.</p>
     </div>
     <div class="cert-grid">
-      <div class="cert rv" style="--i:2"><div><h4>CAMS — Certified Anti-Money Laundering Specialist</h4><p>ACAMS · Global Gold Standard</p></div><span class="st st--plan">Planned Oct 2026</span></div>
-      <div class="cert rv" style="--i:3"><div><h4>Blockchain Specialisation (×4)</h4><p>POSTECH · Coursera</p></div><span class="st st--done">Completed</span></div>
+      <div class="cert rv" style="--i:2"><div><h4>Sumsub Certification Stack</h4><p>CPD-accredited, 25.5 hours (2026): Transaction Monitoring · AML Fundamentals · Fraud Prevention · Travel Rule · User &amp; Business Verification</p></div><span class="st st--done">Completed</span></div>
+      <div class="cert rv" style="--i:3"><div><h4>Regulatory Compliance Specialisation</h4><p>University of Pennsylvania</p></div><span class="st st--done">Completed</span></div>
       <div class="cert rv" style="--i:4"><div><h4>EU MiCA Regulatory Framework</h4><p>Markets in Crypto-Assets</p></div><span class="st st--done">Completed</span></div>
-      <div class="cert rv" style="--i:5"><div><h4>Sumsub Certification Stack</h4><p>CPD-accredited (25.5 CPD hrs): AML Fundamentals, Fraud Prevention, User Verification, Travel Rule, Business Verification Fundamentals &amp; Advanced, Transaction Monitoring</p></div><span class="st st--done">Completed</span></div>
-      <div class="cert rv" style="--i:6"><div><h4>Anthropic Certification Stack</h4><p>Intro to Model Context Protocol, MCP: Advanced Topics, Claude with the Anthropic API, Claude Code 101 &amp; Claude Code in Action, AI Fluency: Framework &amp; Foundations, Introduction to Claude Cowork</p></div><span class="st st--done">Completed</span></div>
+      <div class="cert rv" style="--i:5"><div><h4>Blockchain Specialisation (×4)</h4><p>POSTECH · Coursera</p></div><span class="st st--done">Completed</span></div>
+      <div class="cert rv" style="--i:6"><div><h4>Google Specialisations (×5)</h4><p>Data Analytics · Advanced Data Analytics · AI Professional · Project Management Foundations · Business Intelligence</p></div><span class="st st--done">Completed</span></div>
       <div class="cert rv" style="--i:7"><div><h4>GenAI for Fraud Detection &amp; Compliance</h4><p>Coursera</p></div><span class="st st--done">Completed</span></div>
-      <div class="cert rv" style="--i:8"><div><h4>Google Specialisations (×5)</h4><p>Data Analytics · Advanced Data Analytics · AI Professional · Project Management Foundations · Business Intelligence</p></div><span class="st st--done">Completed</span></div>
-      <div class="cert rv" style="--i:9"><div><h4>Regulatory Compliance Specialisation</h4><p>University of Pennsylvania</p></div><span class="st st--done">Completed</span></div>
-      <div class="cert rv" style="--i:10"><div><h4>Suspicious Transaction Reporting (STR)</h4><p>SkillsUp · US Standard</p></div><span class="st st--done">Completed</span></div>
-      <div class="cert rv" style="--i:11"><div><h4>Protecting Against ML &amp; Terrorist Financing</h4><p>SkillsUp · US Standard</p></div><span class="st st--done">Completed</span></div>
-      <div class="cert rv" style="--i:12"><div><h4>GDPR — General Data Protection Regulation</h4><p>EU Data Protection Framework</p></div><span class="st st--done">Completed</span></div>
+      <div class="cert rv" style="--i:8"><div><h4>Suspicious Transaction Reporting (STR)</h4><p>SkillsUp</p></div><span class="st st--done">Completed</span></div>
+      <div class="cert rv" style="--i:9"><div><h4>Anthropic Certification Stack (2026)</h4><p>Claude with the Anthropic API · Model Context Protocol (intro &amp; advanced) · Claude Code · AI Fluency · Claude Cowork</p></div><span class="st st--done">Completed</span></div>
+      <div class="cert rv" style="--i:10"><div><h4>CAMS — Certified Anti-Money Laundering Specialist</h4><p>ACAMS</p></div><span class="st st--plan">Planned</span></div>
+      <div class="cert rv" style="--i:11"><div><h4>Bachelor&rsquo;s in Business Management</h4><p>Utena University of Applied Sciences</p></div><span class="st st--plan">Final semester</span></div>
+      <div class="cert rv" style="--i:12"><div><h4>Protecting Against ML &amp; Terrorist Financing</h4><p>SkillsUp</p></div><span class="st st--done">Completed</span></div>
+      <div class="cert rv" style="--i:13"><div><h4>GDPR — General Data Protection Regulation</h4><p>EU Data Protection Framework</p></div><span class="st st--done">Completed</span></div>
     </div>
   </div>
 </div>
@@ -979,14 +1317,14 @@ footer a:hover{color:var(--amber)}
     </div>
     <div class="rv" style="--i:1">
       <h2 class="h-sec" style="margin-top:14px">Let's work <em>together.</em></h2>
-      <p class="contact-p">Open to remote, async, in-house and B2B contract work — fintech, Web3, EMI. AML/KYC/KYB, sanctions, PEP, transaction monitoring, SAR escalation, crypto, and the AI tooling around all of it. No shell companies.</p>
+      <p class="contact-p">Available immediately &mdash; fully remote, based in Lithuania with EU right to work. Employment or B2B contract. Transaction monitoring, KYC/EDD, sanctions, SAR reporting, crypto, and the AI tooling around all of it. No shell companies.</p>
       <a class="mail-link" href="mailto:gintare@ajatauaml.com">gintare@ajatauaml.com →</a>
     </div>
     <div class="contact-grid">
-      <div class="cg rv" style="--i:2"><span class="k">Location</span><span class="v">Lithuania · Fully Remote · EMEA</span></div>
+      <div class="cg rv" style="--i:2"><span class="k">Location</span><span class="v">Lithuania (EU) · Fully remote · EMEA</span></div>
       <div class="cg rv" style="--i:3"><span class="k">Email</span><span class="v"><a href="mailto:gintare@ajatauaml.com">gintare@ajatauaml.com</a><br><a href="mailto:gintare.jat@gmail.com">gintare.jat@gmail.com</a></span></div>
       <div class="cg rv" style="--i:4"><span class="k">Elsewhere</span><span class="v"><a href="https://www.linkedin.com/in/gintare-jatautyte-11a507397/" target="_blank" rel="noopener">LinkedIn</a><br><a href="https://github.com/gintarejat/" target="_blank" rel="noopener">GitHub</a></span></div>
-      <div class="cg rv" style="--i:5"><span class="k">Open to</span><span class="v am" style="color:var(--amber-text)">Remote · Async · In-house · B2B</span></div>
+      <div class="cg rv" style="--i:5"><span class="k">Open to</span><span class="v am" style="color:var(--amber-text)">Employment or B2B · Available now</span></div>
     </div>
   </div>
 </div>
@@ -995,7 +1333,7 @@ footer a:hover{color:var(--amber)}
 
 <footer>
   <span class="hidem">© 2026 ajatau AML · Gintarė Jatautytė</span>
-  <span class="quote">"Your shady transactions are my puzzle pieces."</span>
+  <span class="quote">"Too nosy to let a suspicion pass."</span>
   <a href="mailto:gintare@ajatauaml.com">gintare@ajatauaml.com</a>
 </footer>
 
@@ -1030,7 +1368,7 @@ function showTab(id){
   if(pane){
     pane.classList.add('active');pane.scrollTop = 0;
     /* restart stagger animations */
-    pane.querySelectorAll('.rv,.tmx-scan,.tmx-done,.tmx-skills span,.tmx-scanwrap,.tmx-final,.tmx-verdict,.tmx-meter span,.tma-pip,.tmx-sr .sp').forEach(function(el){
+    pane.querySelectorAll('.tag,.screen-stamp,.st2,.cap,.h-claim,.h-sub,.h-kw,.rv,.tmx-scan,.tmx-done,.tmx-skills span,.tmx-scanwrap,.tmx-final,.tmx-verdict,.tmx-meter span,.tma-pip,.tmx-sr .sp').forEach(function(el){
       el.style.animation='none';void el.offsetWidth;el.style.animation='';
     });
   }
@@ -1114,36 +1452,36 @@ var projects = {
     actions: [{label:"Try Live Beta",icon:"&#x2197;",cls:"ma-p",href:"https://sar-draft-automation.vercel.app",ext:true},{label:"View GitHub",icon:"&#x2197;",cls:"ma-s",href:"https://github.com/gintarejat/SAR-Draft-Automation",ext:true}]
   },
   dao1: {
-    title: "Pesa Play DAO — Documentation Working Group Lead",
+    title: "PesaPlay DAO — Documentation Working Group Lead",
     badge: "dao", badgeText: "DAO · Live",
-    meta: [{k:"Type",v:"Documentation & Compliance"},{k:"Project",v:"Pesa Play DAO · Kambria DEP 2"},{k:"Role",v:"Documentation WG Lead (WG4)"},{k:"Status",v:"Volunteer · May 2026 — Present"}],
-    overview: "<p>Documentation Working Group Lead (WG4) of the Pesa Play DAO, a project inside Kambria's Decentralized Experimental Program (DEP 2) running a financial-literacy education pilot in Kenyan schools.</p><p><strong>My contribution:</strong> the control function. Assessment instruments, consent and data-ownership framework, results reporting, bookkeeping review, and the governance documents the DAO was missing — an off-ramp SOP, a media clearance checklist, and a session/attendance log template.</p><p><strong>Four months of bookkeeping and compliance documentation</strong> — weekly independent treasury review under a four-eyes model, where the reviewer never holds or moves funds.</p>",
-    approach: "<p>Control function, never executor: I review and document, someone else executes. That caps the workload and removes the conflict of interest.</p><p>Deliverables so far: crypto-to-fiat off-ramp SOP with segregation of duties and per-conversion documentation (draft, pending DAO adoption) · child-data protection framework with anonymised IDs and consent-gated media, anchored in Kenya's Data Protection Act 2019 · session and attendance log template · MiCA token-classification analysis, where transferability and purchasability — not the technology — are what trigger Title II obligations.</p>",
+    meta: [{k:"Type",v:"Documentation & Compliance"},{k:"Project",v:"PesaPlay DAO · Kambria DEP 2"},{k:"Role",v:"Documentation WG Lead (WG4)"},{k:"Status",v:"Volunteer · May 2026 — Present"}],
+    overview: "<p>Documentation Working Group Lead (WG4) of the PesaPlay DAO, a project inside Kambria's Decentralized Experimental Program (DEP 2) running a financial-literacy education pilot in Kenyan schools.</p><p><strong>My contribution:</strong> the control function. Assessment instruments, consent and data-ownership framework, results reporting, bookkeeping review, and the governance documents the DAO was missing — an off-ramp SOP, a media clearance checklist, and a session/attendance log template.</p><p><strong>Four months of bookkeeping and compliance documentation</strong> — weekly independent treasury review under a four-eyes model, where the reviewer never holds or moves funds.</p>",
+    approach: "<p>Control function, never executor: I review and document, someone else executes. That caps the workload and removes the conflict of interest.</p><p>Deliverables so far: crypto-to-fiat off-ramp SOP with segregation of duties and per-conversion documentation (written and adopted by the DAO) · child-data protection framework with anonymised IDs and consent-gated media, anchored in Kenya's Data Protection Act 2019 · session and attendance log template · MiCA token-classification analysis, where transferability and purchasability — not the technology — are what trigger Title II obligations.</p>",
     tags: ["DAO Governance","EU MiCA","Bookkeeping","Async / Web3","Data Protection","Documentation"],
     tagStyles: ["am","am","","","tl","tl"],
-    images: [{source:"https://64.media.tumblr.com/37244ebd2f1fee5d7c43c47d318f3bd3/15571551ff57203f-1b/s1280x1920/9cc7667450ba400264ee05625c7aac030e4098a4.png",label:"Pesa Play DAO — governance structure overview",color:"img-olive",size:"modal-img-lg"},{source:"https://64.media.tumblr.com/1cb94c2126113d98fc4dc3a7f52ca7e0/15571551ff57203f-2b/s1280x1920/eefcc584d1b5621404a2dfb50916ecfe12ea3cc3.pnj",label:"Vision",color:"img-amber",size:"modal-img-sm"},{source:"https://64.media.tumblr.com/d0329d1bf983520c908e2f1185d02006/15571551ff57203f-de/s1280x1920/3dc7d81498a38a10bed6e492090cf0911a1a8a5a.png",label:"Overview",color:"img-steel",size:"modal-img-sm"}],
+    images: [{source:"https://64.media.tumblr.com/37244ebd2f1fee5d7c43c47d318f3bd3/15571551ff57203f-1b/s1280x1920/9cc7667450ba400264ee05625c7aac030e4098a4.png",label:"PesaPlay DAO — governance structure overview",color:"img-olive",size:"modal-img-lg"},{source:"https://64.media.tumblr.com/1cb94c2126113d98fc4dc3a7f52ca7e0/15571551ff57203f-2b/s1280x1920/eefcc584d1b5621404a2dfb50916ecfe12ea3cc3.pnj",label:"Vision",color:"img-amber",size:"modal-img-sm"},{source:"https://64.media.tumblr.com/d0329d1bf983520c908e2f1185d02006/15571551ff57203f-de/s1280x1920/3dc7d81498a38a10bed6e492090cf0911a1a8a5a.png",label:"Overview",color:"img-steel",size:"modal-img-sm"}],
     actions: [{label:"Kambria DEP 2 Info",icon:"&#x2197;",cls:"ma-p",href:"https://www.kambria.io",ext:true}]
   },
   build1: {
     title: "Policy Reader — Compliance Document Analyser",
     badge: "build", badgeText: "Beta Version Live",
-    meta: [{k:"Stack",v:"Claude API · React"},{k:"Frameworks",v:"AMLD6 · MiCA"},{k:"Version",v:"Beta v1.0 · demo scope"},{k:"Status",v:"Live"}],
+    meta: [{k:"Stack",v:"Python · Claude API"},{k:"Frameworks",v:"AMLD6 · MiCA"},{k:"Version",v:"Beta v1.0 · demo scope"},{k:"Status",v:"Live"}],
     overview: "<p>Dual-mode AI tool for compliance teams built on the Claude API.</p><p><strong>Compare Mode:</strong> paste two versions of any compliance policy and get inline strikethrough/highlight showing exactly what changed — every added rule, every removed threshold, every modified obligation.</p><p><strong>Analyse Mode:</strong> upload any compliance document and it extracts every rule, threshold, and restriction into a searchable, keyword-grouped database. No more ctrl+F through 80-page PDFs.</p>",
     approach: "<p>Built to solve a real workflow problem: compliance teams waste hours manually comparing policy versions and hunting for specific rules. This tool handles both in seconds. Beta v1.0 — demo scope: built as a working proof of the workflow, not a maintained product.</p>",
-    tags: ["Claude API","React","AMLD6","MiCA","Rule Extraction","Policy Comparison","RegTech"],
+    tags: ["Python","Claude API","AMLD6","MiCA","Rule Extraction","Policy Comparison","RegTech"],
     tagStyles: ["am","am","tl","tl","","",""],
     images: [{source:"https://64.media.tumblr.com/f3a26a25f53ac30c2d14cf375a710ab5/2558a57992f0438e-73/s400x600/173c1171f2d40f1e935de77651b71d33f2710194.gifv",label:"Policy Reader Walkthrough",color:"img-steel",size:"modal-img-lg"}],
     actions: [{label:"View Live Beta",icon:"&#x2197;",cls:"ma-p",href:"https://policy-reader-fawn.vercel.app",ext:true},{label:"View GitHub",icon:"&#x2197;",cls:"ma-s",href:"https://github.com/gintarejat/Policy-reader",ext:true}]
   },
   build2: {
-    title: "Scam Investigator — KYB Verification",
+    title: "Scamnot — KYB & OSINT Screening",
     badge: "build", badgeText: "Draft Version Live",
-    meta: [{k:"Type",v:"KYB Verification"},{k:"Version",v:"Beta v1.0"},{k:"Status",v:"Live"}],
+    meta: [{k:"Type",v:"KYB & OSINT screening"},{k:"Stack",v:"Python · Claude API · n8n"},{k:"Version",v:"Beta v1.0"},{k:"Status",v:"Live"}],
     overview: "<p>A KYB verification tool built on the Claude API. You enter the information you were given about a company; the tool runs the investigation and returns what it found <strong>together with the sources behind every finding</strong>, so each claim can be checked rather than taken on trust.</p><p>Nothing is concluded automatically. The verdict is a human sign-off, and the full investigation exports to PDF as the record.</p>",
     approach: "<p>The idea came out of a real case — a crypto job offer that turned out to be a scam. Working it by hand made the point that the checks were the same KYB checks I ran at the bank: registration, ownership, footprint, red flags. Just slower.</p><p>So the tool does the evidence gathering and leaves the judgement where it belongs. Sourced findings in, human decision out.</p>",
     tags: ["KYB","OSINT","Sourced Evidence","Human-in-Loop","PDF Reporting"],
     tagStyles: ["am","am","tl","",""],
-    images: [{source:"https://64.media.tumblr.com/71af5773d2960a6ebebb500f224e1740/4e19b44928561f51-00/s400x600/efbab7f4d379fd556ccc2a1a6a6d3516c25ccadf.gifv",label:"Scam Investigator Tool Walkthrough",color:"img-coral",size:"modal-img-lg"}],
+    images: [{source:"https://64.media.tumblr.com/71af5773d2960a6ebebb500f224e1740/4e19b44928561f51-00/s400x600/efbab7f4d379fd556ccc2a1a6a6d3516c25ccadf.gifv",label:"Scamnot walkthrough",color:"img-coral",size:"modal-img-lg"}],
     actions: [{label:"Live Beta",icon:"&#x2197;",cls:"ma-p",href:"https://scamnot.vercel.app",ext:true},{label:"View GitHub",icon:"&#x2197;",cls:"ma-s",href:"https://github.com/gintarejat/scamnot",ext:true}]
   },
   build3: {

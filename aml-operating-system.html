@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AML Operating System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Permanent+Marker&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f3efe6; --card:#fffdf8; --ink:#141414; --red:#e4161b; --yellow:#ffd60a;
+  --grey:#8a857b; --grey-l:#cfcac0;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+html{overflow-x:hidden}
+body{background:var(--paper);color:var(--ink);font-family:"Special Elite","Courier New",monospace;overflow-x:hidden;min-height:100vh}
+body.fit,html.fit{overflow:hidden;height:100vh}
+
+/* paper grain that boils */
+body::before{
+  content:"";position:fixed;inset:-50%;pointer-events:none;z-index:90;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity:.28;mix-blend-mode:multiply;animation:grain .5s steps(1) infinite;
+}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-1%,-2%)}}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:89;background:radial-gradient(ellipse at center,transparent 58%,rgba(60,45,20,.15) 100%)}
+
+/* ============ STAGE (scaled to fit the window) ============ */
+.stage{position:relative;padding:20px 16px 50px}
+body.fit .stage{position:absolute;left:0;top:0;width:var(--W,1440px);height:820px;padding:0;transform-origin:0 0}
+
+/* ============ HEADER ============ */
+.top{position:relative;text-align:left;z-index:5}
+body.fit .top{position:absolute;left:296px;top:12px;right:16px}
+.kicker{font-family:"Permanent Marker",cursive;font-size:16px;color:var(--red);transform:rotate(-1.5deg);display:inline-block;margin:0 0 6px 4px}
+.h1wrap{position:relative;display:inline-block}
+h1{margin:0;line-height:1;position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:8px 12px}
+.scrap{font-family:"Archivo Black",sans-serif;font-weight:400;font-size:clamp(30px,8vw,58px);letter-spacing:-.02em;padding:.06em .22em .02em;display:inline-block;animation:jig .9s steps(1) infinite}
+body.fit .scrap{font-size:58px}
+.scrap:nth-child(1){background:var(--ink);color:var(--card);--r:-3deg}
+.scrap:nth-child(2){background:var(--yellow);color:var(--ink);--r:2deg;animation-delay:-.3s}
+.scrap:nth-child(3){background:var(--red);color:var(--card);--r:-1.5deg;animation-delay:-.6s}
+@keyframes jig{0%{transform:rotate(var(--r))}33%{transform:rotate(calc(var(--r) + .7deg)) translate(1px,-1px)}66%{transform:rotate(calc(var(--r) - .5deg)) translate(-1px,1px)}}
+.title-scribble{position:absolute;left:-30px;right:-30px;top:-22px;bottom:-26px;width:calc(100% + 60px);height:calc(100% + 48px);z-index:1;pointer-events:none;overflow:visible}
+.lede{margin:12px 0 0 4px;font-size:15px;line-height:1.45;max-width:820px}
+.lede b{background:linear-gradient(transparent 55%,var(--yellow) 55%,var(--yellow) 92%,transparent 92%);font-weight:400}
+.legend{position:relative;background:var(--card);padding:10px 14px 10px;font-size:13px;line-height:1.3;display:flex;flex-direction:column;gap:6px;margin-top:14px;max-width:260px;transform:rotate(1.2deg)}
+body.fit .legend{position:absolute;right:0;top:4px;margin:0;width:236px}
+.legend span{display:flex;align-items:center;gap:8px}
+.sw{display:inline-block;flex:none;width:30px;height:12px;background:var(--yellow);transform:skew(-12deg) rotate(-2deg)}
+.sw.g{background:var(--grey-l);border:1.5px dashed var(--grey)}
+.legend .hint{font-family:"Permanent Marker",cursive;color:var(--red);font-size:14px}
+
+/* ============ LEFT RULER: the framework ============ */
+.rail{position:relative;z-index:30;margin:26px 0 30px}
+body.fit .rail{position:absolute;left:16px;top:14px;width:256px;height:792px;margin:0}
+.rail-card{position:absolute;inset:0;z-index:0;filter:drop-shadow(4px 5px 0 rgba(20,20,20,.85))}
+.rail-card .paper{position:absolute;inset:0;background:var(--card)}
+.rail-card .ticks{position:absolute;top:0;bottom:0;right:0;width:24px;background:
+  repeating-linear-gradient(180deg,var(--ink) 0 2px,transparent 2px 40px),
+  repeating-linear-gradient(180deg,var(--ink) 0 1.2px,transparent 1.2px 8px) ;
+  background-size:14px 100%,8px 100%;background-repeat:repeat-y;background-position:right top,right top;
+  background-color:var(--yellow);opacity:.95}
+body:not(.fit) .rail-card{position:absolute}
+.rail-in{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:14px 34px 12px 14px}
+.rail-head{margin-bottom:8px}
+.rail-head .t{font-family:"Archivo Black",sans-serif;font-size:17px;line-height:1.02;text-transform:uppercase}
+.rail-head .s{font-size:11.5px;color:#4a463f;margin-top:4px;line-height:1.3}
+.layers{list-style:none;margin:0;padding:0;flex:1;display:flex;flex-direction:column}
+.layers li{flex:1;position:relative;border-top:2px solid var(--ink);display:flex}
+.layers li:last-child{border-bottom:2px solid var(--ink)}
+.layer{display:block;position:relative;flex:1;color:inherit;text-decoration:none;outline:none;cursor:pointer}
+.seg{position:relative;height:100%;padding:6px 6px 6px 4px;transition:transform .22s steps(3,end)}
+.lburst{position:absolute;inset:-14px -22px;z-index:0;opacity:0;transform:scale(.6) rotate(-5deg);transition:transform .24s steps(3,end),opacity .1s steps(1);
+  background-color:var(--yellow);background-image:radial-gradient(var(--red) 28%,transparent 30%);background-size:9px 9px}
+.gap .lburst{background-color:var(--grey-l);background-image:radial-gradient(var(--grey) 28%,transparent 30%)}
+.lpaper{position:absolute;inset:0;z-index:1;background:transparent;transition:background .1s steps(1)}
+.lin{position:relative;z-index:2}
+.lrow{display:flex;align-items:baseline;gap:8px}
+.lnum{font-family:"Archivo Black",sans-serif;font-size:22px;color:var(--red);line-height:1}
+.lname{font-family:"Archivo Black",sans-serif;font-size:13.5px;line-height:1.05;text-transform:uppercase}
+.ltiny{font-size:10.5px;line-height:1.25;color:#4a463f;margin:3px 0 4px}
+.ltag{display:inline-block;font-family:"Archivo Black",sans-serif;font-size:10.5px;background:var(--ink);color:var(--card);padding:3px 7px 2px;transform:rotate(-1.5deg)}
+.ltag i{font-style:normal;color:var(--yellow)}
+.ltag small{font-family:"Special Elite",monospace;font-size:10px;color:#d8d2c4;margin-left:4px}
+.gap .lnum{color:var(--grey)}
+.gap .lname,.gap .ltiny{color:var(--grey)}
+.gap .ltag{background:transparent;color:var(--grey);border:1.5px dashed var(--grey)}
+
+/* flyout comic panel */
+.fly{
+  position:absolute;left:calc(100% + 34px);top:-6px;width:300px;z-index:40;
+  background:var(--card);border:3px solid var(--ink);box-shadow:9px 10px 0 var(--ink);
+  padding:14px 16px 14px;transform:scale(0) rotate(-8deg);transform-origin:0 20%;
+  transition:transform .22s steps(3,end);pointer-events:none;
+}
+.layers li:nth-child(n+4) .fly{top:auto;bottom:-6px;transform-origin:0 80%}
+.fly::before{content:"";position:absolute;left:-19px;top:22px;border:9px solid transparent;border-right:11px solid var(--ink)}
+.layers li:nth-child(n+4) .fly::before{top:auto;bottom:22px}
+.fly h3{margin:0 0 8px;font-family:"Archivo Black",sans-serif;font-size:17px;text-transform:uppercase;line-height:1.05}
+.fly ul{list-style:none;margin:0;padding:0;font-size:13px;line-height:1.35}
+.fly li{display:flex;gap:8px;padding:2px 0;border:0;flex:none}
+.fly li b{flex:none;width:16px;text-align:center;font-weight:400;font-family:"Archivo Black",sans-serif}
+.fly li.y b{color:var(--ink)} .fly li.y span{background:linear-gradient(100deg,transparent 0 2%,var(--yellow) 2% 97%,transparent 97%)}
+.fly li.h b{color:var(--red)}
+.fly li.n{color:var(--grey)} .fly li.n b{color:var(--grey)}
+.fly .note{font-size:12px;color:#4a463f;margin-top:8px;line-height:1.35}
+.fly .go{margin-top:10px;font-family:"Archivo Black",sans-serif;font-size:14px;text-transform:uppercase}
+.fly .go em{font-style:normal;color:var(--red)}
+.gap .fly{background:#ebe7de;border-color:var(--grey);box-shadow:9px 10px 0 var(--grey);color:#6b665d}
+.gap .fly::before{border-right-color:var(--grey)}
+.stamp{display:inline-block;margin-top:10px;font-family:"Archivo Black",sans-serif;font-size:13px;letter-spacing:.04em;color:var(--grey);border:3px solid var(--grey);padding:4px 9px 3px;transform:rotate(-4deg)}
+
+.layer:hover .seg,.layer:focus-visible .seg,.layer.echo .seg{transform:scale(1.05) rotate(-1.5deg) translate(4px,-2px)}
+.layer:hover .lburst,.layer:focus-visible .lburst{opacity:1;transform:scale(1) rotate(0)}
+.layer:hover .lpaper,.layer:focus-visible .lpaper{background:var(--card);box-shadow:5px 5px 0 var(--ink)}
+.gap:hover .lpaper,.gap:focus-visible .lpaper{background:#ebe7de;box-shadow:5px 5px 0 var(--grey);filter:grayscale(1)}
+.layer:hover .fly,.layer:focus-visible .fly{transform:scale(1) rotate(-1deg)}
+.layer.echo .lname{background:linear-gradient(100deg,transparent 0 2%,var(--yellow) 2% 97%,transparent 97%)}
+.rail-foot{font-size:10.5px;line-height:1.35;color:#4a463f;margin-top:8px}
+.rail-foot b{font-weight:400;color:var(--ink)}
+
+/* ============ DIAGRAM ============ */
+.diagram{position:relative;display:flex;flex-direction:column;align-items:stretch}
+body.fit .diagram{position:absolute;left:0;top:0;width:100%;height:820px;pointer-events:none;display:block}
+body.fit .diagram > *{pointer-events:auto}
+body.fit .slot{position:absolute;top:156px;width:var(--zw,324px)}
+body.fit .slot-a{left:296px} body.fit .slot-b{left:calc(296px + var(--zw,324px) + var(--g,78px))} body.fit .slot-c{left:calc(296px + 2 * var(--zw,324px) + 2 * var(--g,78px))}
+body.fit .slot-hub{position:absolute;width:128px;height:128px;left:785px;top:650px;z-index:6}
+.cycle{position:absolute;left:0;top:0;width:100%;height:820px;pointer-events:none!important;overflow:visible;z-index:1}
+body:not(.fit) .cycle,body:not(.fit) .cycle-label{display:none}
+.cycle-label{position:absolute;z-index:2;font-family:"Permanent Marker",cursive;font-size:14px;line-height:1.15;text-align:center;transform:translate(-50%,-50%) rotate(var(--r,0deg));pointer-events:none!important}
+.cycle-label em{font-style:normal;color:var(--red)}
+.m-arrow{display:none}
+
+.slot{position:relative;z-index:3;animation:slap .7s steps(4,end) both;animation-delay:var(--d,0s)}
+@keyframes slap{0%{opacity:0;transform:scale(.55) rotate(-9deg)}45%{opacity:1;transform:scale(1.1) rotate(3deg)}75%{transform:scale(.97) rotate(-1deg)}100%{opacity:1;transform:none}}
+
+.zone{display:block;position:relative;color:inherit;text-decoration:none;transform:rotate(var(--tilt,0deg));transition:transform .24s steps(3,end),filter .2s steps(2,end),opacity .2s steps(2,end);outline:none}
+.zone .burst{position:absolute;inset:-36px;z-index:0;pointer-events:none;background-color:var(--yellow);background-image:radial-gradient(var(--red) 28%,transparent 30%);background-size:11px 11px;opacity:0;transform:scale(.6) rotate(-6deg);transition:transform .26s steps(3,end),opacity .12s steps(1,end)}
+.zone .paper-wrap{position:absolute;inset:0;z-index:1;filter:drop-shadow(5px 6px 0 rgba(20,20,20,.9));transition:filter .2s steps(2,end)}
+.zone .paper{position:absolute;inset:0;background:var(--card)}
+.slot-a .paper{background-color:#fffef9;background-image:linear-gradient(90deg,transparent 26px,rgba(228,22,27,.55) 26px,rgba(228,22,27,.55) 28px,transparent 28px),repeating-linear-gradient(180deg,transparent 0 23px,rgba(90,140,200,.28) 23px 24px)}
+.slot-c .paper{background-color:#fffdf6;background-image:linear-gradient(rgba(20,20,20,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(20,20,20,.07) 1px,transparent 1px);background-size:16px 16px}
+.zone .content{position:relative;z-index:3;padding:16px 16px 16px 38px}
+.slot-b .content,.slot-c .content{padding-left:18px}
+.zone-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:10px}
+.num{font-family:"Archivo Black",sans-serif;font-size:34px;line-height:.8;color:var(--red)}
+.zone-title{font-family:"Archivo Black",sans-serif;font-size:20px;line-height:1.02;text-transform:uppercase;margin:4px 0 0;position:relative;display:inline-block}
+.zone-title .hl{position:absolute;left:-6px;right:-6px;bottom:-4px;height:16px;z-index:-1;overflow:visible;pointer-events:none}
+.zone-title .hl path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .3s steps(4,end)}
+.tool-tag{flex:none;font-family:"Archivo Black",sans-serif;font-size:11.5px;background:var(--ink);color:var(--card);padding:5px 8px 4px;transform:rotate(3deg);white-space:nowrap;position:relative;top:-2px}
+.tool-tag i{font-style:normal;color:var(--yellow)}
+.tape{position:absolute;width:70px;height:22px;background:rgba(220,214,196,.72);z-index:4;mix-blend-mode:multiply}
+.tape.t1{top:-10px;left:16%;transform:rotate(-7deg)} .tape.t2{top:-9px;right:14%;transform:rotate(5deg)}
+.pop{position:absolute;z-index:6;right:-14px;top:-40px;font-family:"Archivo Black",sans-serif;font-size:14px;line-height:1.05;text-transform:uppercase;background:var(--card);padding:9px 12px 8px;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);transform:scale(0) rotate(-14deg);transform-origin:20% 100%;transition:transform .22s steps(3,end)}
+.pop::after{content:"";position:absolute;left:18px;bottom:-15px;border:8px solid transparent;border-top:9px solid var(--ink);border-left:4px solid var(--ink)}
+.pop b{color:var(--red);font-weight:400}
+body.fit .slot-c .pop{right:auto;left:-14px;top:-44px}
+.live{position:absolute;z-index:6;left:-12px;bottom:-14px;font-family:"Permanent Marker",cursive;font-size:14px;background:var(--red);color:#fff;padding:3px 10px;transform:rotate(-4deg) scale(0);transition:transform .2s steps(3,end) .05s}
+
+.flow{display:flex;flex-direction:column;align-items:stretch}
+.node{position:relative;padding:7px 11px 6px;font-size:13px;line-height:1.28;text-align:center}
+.node.start,.node.end{padding:10px 18px 9px}
+.node.auto .txt{background:linear-gradient(100deg,transparent 0 2%,rgba(255,214,10,.55) 2% 97%,transparent 97%);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:0 3px}
+.node.human{padding:9px 24px 8px}
+.node .who{font-family:"Permanent Marker",cursive;color:var(--red);font-size:12px;display:block;margin-top:1px}
+.star{position:absolute;right:-8px;top:-10px;width:22px;height:22px;overflow:visible;z-index:2}
+.arr{display:block;width:26px;height:20px;margin:0 auto;position:relative;flex:none}
+.answer{margin-top:10px;font-family:"Permanent Marker",cursive;font-size:13.5px;line-height:1.3;transform:rotate(-1deg);padding-left:2px}
+.answer::before{content:"↳ ";color:var(--red)}
+.rough{position:absolute;left:0;top:0;overflow:visible;pointer-events:none;z-index:0}
+.node > *:not(.rough):not(.star){position:relative;z-index:1}
+
+/* hub */
+.hub{position:relative;width:100%;height:100%;display:grid;place-items:center;text-align:center}
+.hub svg{position:absolute;inset:-6%;width:112%;height:112%;overflow:visible;animation:spin 3.2s steps(8) infinite}
+@keyframes spin{to{transform:rotate(45deg)}}
+.hub-big{position:relative;z-index:2;width:70%;font-family:"Archivo Black",sans-serif;font-size:12.5px;line-height:1.02;color:#fff;text-transform:uppercase;text-shadow:2px 2px 0 var(--ink)}
+
+/* pop state (hover / focus / lit from the ruler) */
+.zone:hover,.zone:focus-visible,.zone.lit{transform:rotate(calc(var(--tilt,0deg) * -1 - 1.2deg)) scale(1.04) translate(-3px,-6px);z-index:10}
+.slot:has(.zone:hover),.slot:has(.zone.lit){z-index:10}
+.zone:hover .burst,.zone:focus-visible .burst,.zone.lit .burst{opacity:1;transform:scale(1) rotate(0)}
+.zone:hover .paper-wrap,.zone:focus-visible .paper-wrap,.zone.lit .paper-wrap{filter:drop-shadow(11px 12px 0 var(--ink))}
+.zone:hover .pop,.zone:focus-visible .pop{transform:scale(1) rotate(-4deg)}
+.zone:hover .live,.zone:focus-visible .live,.zone.lit .live{transform:rotate(-4deg) scale(1)}
+.zone:hover .zone-title .hl path,.zone:focus-visible .zone-title .hl path,.zone.lit .zone-title .hl path{stroke-dashoffset:0}
+.zone:hover .node.auto .txt,.zone.lit .node.auto .txt{background:linear-gradient(100deg,transparent 0 2%,var(--yellow) 2% 97%,transparent 97%)}
+.zone:hover .star,.zone.lit .star{animation:thump .5s steps(2) infinite}
+@keyframes thump{50%{transform:scale(1.35) rotate(20deg)}}
+.diagram.dim .zone:not(.lit):not(:hover){filter:grayscale(1) contrast(.85) brightness(1.05);opacity:.5}
+.diagram.dim .cycle,.diagram.dim .cycle-label{opacity:.35}
+
+/* ============ small screens: stack & scroll ============ */
+@media (max-width:899px){
+  .stage{overflow-x:clip}
+  .fly{display:none}
+  .diagram{margin-top:10px}
+  .slot-hub{order:0;width:220px;height:220px;margin:0 auto 26px}
+  .slot-a{order:1}.m1{order:2}.slot-b{order:3}.m2{order:4}.slot-c{order:5}.m3{order:6}
+  .m-arrow{display:flex;flex-direction:column;align-items:center;padding:26px 0 30px;font-family:"Permanent Marker",cursive;font-size:15px;text-align:center}
+  .m-arrow svg{width:40px;height:54px;overflow:visible}
+  .hub-big{font-size:18px}
+  .rail-in{padding-right:34px}
+  .layers li{min-height:92px}
+  .pop{right:-4px;font-size:13px}
+  .zone .burst{inset:-18px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+.backlink{position:fixed;right:16px;bottom:14px;z-index:95;font-family:"Archivo Black",sans-serif;font-size:12px;letter-spacing:.04em;
+  text-decoration:none;color:var(--card);background:var(--ink);padding:7px 11px 6px;transform:rotate(-2deg);box-shadow:3px 3px 0 var(--red);transition:transform .15s steps(2,end)}
+.backlink:hover,.backlink:focus-visible{transform:rotate(-2deg) translate(-2px,-2px);box-shadow:5px 5px 0 var(--red);outline:none}
+</style>
+</head>
+<body>
+<a class="backlink" href="https://ajatauaml.com/">&larr; ajatauaml.com</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="grit" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="3" result="t"/>
+      <feDisplacementMap in="SourceGraphic" in2="t" scale="2.6" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="brush" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency=".6 .05" numOctaves="2" seed="8" result="t"/>
+      <feDisplacementMap in="SourceGraphic" in2="t" scale="4" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feTurbulence type="fractalNoise" baseFrequency="1.8" numOctaves="1" seed="2" result="h"/>
+      <feColorMatrix in="h" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.7" result="holes"/>
+      <feComposite in="d" in2="holes" operator="in"/>
+    </filter>
+  </defs>
+</svg>
+
+<div class="stage" id="stage">
+
+  <!-- ================= HEADER ================= -->
+  <header class="top">
+    <div class="kicker">one coherent project · three live tools →</div><br>
+    <div class="h1wrap">
+      <svg class="title-scribble" id="titleScribble" viewBox="0 0 900 140" preserveAspectRatio="none" aria-hidden="true"></svg>
+      <h1 aria-label="AML operating system"><span class="scrap">AML</span><span class="scrap">OPERATING</span><span class="scrap">SYSTEM</span></h1>
+    </div>
+    <p class="lede">Three AML operations, mapped <b>regulation → decision → evidence</b>, with a working automation layer for each.</p>
+    <div class="legend" data-rough="rect">
+      <span><i class="sw"></i> software drafts it</span>
+      <span><svg width="22" height="22" data-star></svg> a human decides</span>
+      <span><i class="sw g"></i> not built yet</span>
+      <span class="hint">hover anything → click to open ↗</span>
+    </div>
+  </header>
+
+  <!-- ================= LEFT RULER : FRAMEWORK ================= -->
+  <aside class="rail" aria-label="AML operating framework">
+    <div class="rail-card"><div class="paper" id="railPaper"></div><div class="ticks"></div></div>
+    <div class="rail-in">
+      <div class="rail-head">
+        <div class="t">AML operating framework</div>
+        <div class="s">six layers · where each tool plugs in</div>
+      </div>
+      <ol class="layers">
+        <li>
+          <a class="layer" data-zones="A" href="https://policy-reader-fawn.vercel.app/" target="_blank" rel="noopener">
+            <div class="seg"><div class="lburst"></div><div class="lpaper"></div><div class="lin">
+              <div class="lrow"><span class="lnum">1</span><span class="lname">Governance</span></div>
+              <div class="ltiny">MLRO ownership · 3 lines of defence · escalation · QA · audit</div>
+              <span class="ltag">POLICY READER <i>↗</i><small>partial</small></span>
+            </div></div>
+            <div class="fly">
+              <h3>1 · Governance</h3>
+              <ul>
+                <li class="y"><b>✓</b><span>policy → control mapping</span></li>
+                <li class="y"><b>✓</b><span>an owner for every control</span></li>
+                <li class="h"><b>✱</b><span>MLRO / escalation authority</span></li>
+                <li class="n"><b>—</b><span>three lines of defence</span></li>
+                <li class="n"><b>—</b><span>quality assurance</span></li>
+                <li class="n"><b>—</b><span>independent testing &amp; audit</span></li>
+              </ul>
+              <div class="go">open <em>Policy Reader</em> ↗</div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <div class="layer gap" data-zones="" tabindex="0">
+            <div class="seg"><div class="lburst"></div><div class="lpaper"></div><div class="lin">
+              <div class="lrow"><span class="lnum">2</span><span class="lname">Risk assessment</span></div>
+              <div class="ltiny">customer · product · geography · channel · typology · enterprise-wide</div>
+              <span class="ltag">not built yet</span>
+            </div></div>
+            <div class="fly">
+              <h3>2 · Risk assessment</h3>
+              <ul>
+                <li class="n"><b>—</b><span>customer risk</span></li>
+                <li class="n"><b>—</b><span>product / service risk</span></li>
+                <li class="n"><b>—</b><span>geography risk</span></li>
+                <li class="n"><b>—</b><span>delivery-channel risk</span></li>
+                <li class="n"><b>—</b><span>transaction &amp; typology risk</span></li>
+                <li class="n"><b>—</b><span>enterprise-wide risk assessment</span></li>
+              </ul>
+              <div class="note">Customer risk is only touched per-entity, by Scamnot’s risk outcome.</div>
+              <span class="stamp">NOT AUTOMATED — YET</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <a class="layer" data-zones="B" href="https://scamnot.vercel.app/" target="_blank" rel="noopener">
+            <div class="seg"><div class="lburst"></div><div class="lpaper"></div><div class="lin">
+              <div class="lrow"><span class="lnum">3</span><span class="lname">Customer lifecycle</span></div>
+              <div class="ltiny">ID&amp;V · UBO · purpose · risk score · CDD/EDD · review · exit</div>
+              <span class="ltag">SCAMNOT <i>↗</i></span>
+            </div></div>
+            <div class="fly">
+              <h3>3 · Customer lifecycle</h3>
+              <ul>
+                <li class="y"><b>✓</b><span>identify entity, directors &amp; UBOs</span></li>
+                <li class="y"><b>✓</b><span>ownership &amp; control structure</span></li>
+                <li class="y"><b>✓</b><span>stated purpose vs public evidence</span></li>
+                <li class="h"><b>✱</b><span>risk rating &amp; CDD / EDD call</span></li>
+                <li class="h"><b>✱</b><span>approve · restrict · reject · exit</span></li>
+                <li class="n"><b>—</b><span>ongoing review</span></li>
+              </ul>
+              <div class="go">open <em>Scamnot</em> ↗</div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="layer" data-zones="B" href="https://scamnot.vercel.app/" target="_blank" rel="noopener">
+            <div class="seg"><div class="lburst"></div><div class="lpaper"></div><div class="lin">
+              <div class="lrow"><span class="lnum">4</span><span class="lname">Control systems</span></div>
+              <div class="ltiny">sanctions · PEP · adverse media · KYB/UBO · TM · SoF/SoW</div>
+              <span class="ltag">SCAMNOT <i>↗</i><small>partial</small></span>
+            </div></div>
+            <div class="fly">
+              <h3>4 · Control systems</h3>
+              <ul>
+                <li class="y"><b>✓</b><span>sanctions screening</span></li>
+                <li class="y"><b>✓</b><span>PEP screening</span></li>
+                <li class="y"><b>✓</b><span>adverse media</span></li>
+                <li class="y"><b>✓</b><span>KYB / UBO checks</span></li>
+                <li class="n"><b>—</b><span>transaction monitoring</span></li>
+                <li class="n"><b>—</b><span>source of funds / wealth</span></li>
+              </ul>
+              <div class="go">open <em>Scamnot</em> ↗</div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="layer" data-zones="C" href="https://sar-draft-automation.vercel.app/" target="_blank" rel="noopener">
+            <div class="seg"><div class="lburst"></div><div class="lpaper"></div><div class="lin">
+              <div class="lrow"><span class="lnum">5</span><span class="lname">Investigation &amp; reporting</span></div>
+              <div class="ltiny">triage · evidence · disposition · SAR/STR · MLRO · FIU</div>
+              <span class="ltag">SAR GENERATOR <i>↗</i></span>
+            </div></div>
+            <div class="fly">
+              <h3>5 · Investigation &amp; reporting</h3>
+              <ul>
+                <li class="y"><b>✓</b><span>evidence → structured case facts</span></li>
+                <li class="y"><b>✓</b><span>typology · fact vs inference vs uncertainty</span></li>
+                <li class="y"><b>✓</b><span>SAR / STR narrative draft</span></li>
+                <li class="h"><b>✱</b><span>disposition &amp; escalation</span></li>
+                <li class="h"><b>✱</b><span>MLRO decision</span></li>
+                <li class="n"><b>—</b><span>alert triage queue · FIU submission</span></li>
+              </ul>
+              <div class="go">open <em>SAR Generator</em> ↗</div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <div class="layer gap" data-zones="" tabindex="0">
+            <div class="seg"><div class="lburst"></div><div class="lpaper"></div><div class="lin">
+              <div class="lrow"><span class="lnum">6</span><span class="lname">Effectiveness</span></div>
+              <div class="ltiny">false positives · backlog · review time · rework · SAR conversion</div>
+              <span class="ltag">not built yet</span>
+            </div></div>
+            <div class="fly">
+              <h3>6 · Effectiveness</h3>
+              <ul>
+                <li class="n"><b>—</b><span>false positives &amp; backlog</span></li>
+                <li class="n"><b>—</b><span>review time &amp; rework</span></li>
+                <li class="n"><b>—</b><span>escalation quality</span></li>
+                <li class="n"><b>—</b><span>SAR conversion</span></li>
+                <li class="n"><b>—</b><span>audit findings</span></li>
+                <li class="n"><b>—</b><span>model / rule performance</span></li>
+              </ul>
+              <span class="stamp">NOT AUTOMATED — YET</span>
+            </div>
+          </div>
+        </li>
+      </ol>
+      <div class="rail-foot"><b>FATF</b> risk-based backbone · <b>R.15</b> VASPs<br><b>EU:</b> AMLR · AMLA · AMLD6 · TFR · MiCA</div>
+    </div>
+  </aside>
+
+  <!-- ================= DIAGRAM ================= -->
+  <main class="diagram" id="diagram">
+    <svg class="cycle" id="cycle" viewBox="0 0 1440 820" aria-hidden="true"></svg>
+
+    <div class="slot slot-hub" style="--d:1.25s">
+      <div class="hub"><svg id="hubBurst" viewBox="0 0 300 300" aria-hidden="true"></svg><div class="hub-big">The human owns the decision</div></div>
+    </div>
+
+    <!-- 01 POLICY READER -->
+    <div class="slot slot-a" style="--d:.3s">
+      <a class="zone" data-zone="A" style="--tilt:-1.1deg" href="https://policy-reader-fawn.vercel.app/" target="_blank" rel="noopener" aria-label="01 Policy to control — open Policy Reader">
+        <div class="burst"></div><div class="paper-wrap"><div class="paper"></div></div>
+        <span class="tape t1"></span><span class="tape t2"></span>
+        <span class="pop">open <b>policy reader</b> ↗</span><span class="live">live tool!</span>
+        <div class="content">
+          <div class="zone-head">
+            <div><div class="num">01</div>
+              <h2 class="zone-title">Policy → Control<svg class="hl" viewBox="0 0 200 18" preserveAspectRatio="none"><path pathLength="1" d="M2 11 C 50 5, 120 16, 198 8" stroke="#ffd60a" stroke-width="13" fill="none" stroke-linecap="round" filter="url(#brush)"/></svg></h2></div>
+            <span class="tool-tag">POLICY READER <i>↗</i></span>
+          </div>
+          <div class="flow">
+            <div class="node start" data-rough="ellipse">policy · regulation · bank questionnaire lands</div>
+            <i class="arr" data-arrow></i>
+            <div class="node auto" data-rough="rect"><span class="txt">extract &amp; classify obligations</span></div>
+            <i class="arr" data-arrow></i>
+            <div class="node auto" data-rough="rect"><span class="txt">map → control · process · owner · evidence</span></div>
+            <i class="arr" data-arrow></i>
+            <div class="node human" data-rough="decision" data-ink="#e4161b">interpreted right? missing · weak · ambiguous?</div>
+            <i class="arr" data-arrow></i>
+            <div class="node auto" data-rough="rect"><span class="txt">prioritise gaps by risk &amp; effort</span></div>
+            <i class="arr" data-arrow></i>
+            <div class="node end" data-rough="ellipse">control matrix · gap memo · action list</div>
+          </div>
+          <div class="answer">what must we do, what’s missing, who owns the fix?</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="m-arrow m1"><svg data-marrow></svg>controls define onboarding</div>
+
+    <!-- 02 SCAMNOT -->
+    <div class="slot slot-b" style="--d:.6s">
+      <a class="zone" data-zone="B" style="--tilt:1.2deg" href="https://scamnot.vercel.app/" target="_blank" rel="noopener" aria-label="02 KYB onboarding — open Scamnot">
+        <div class="burst"></div><div class="paper-wrap"><div class="paper"></div></div>
+        <span class="tape t1"></span><span class="tape t2"></span>
+        <span class="pop">open <b>scamnot</b> ↗</span><span class="live">live tool!</span>
+        <div class="content">
+          <div class="zone-head">
+            <div><div class="num">02</div>
+              <h2 class="zone-title">KYB Onboarding<svg class="hl" viewBox="0 0 200 18" preserveAspectRatio="none"><path pathLength="1" d="M2 10 C 60 15, 130 4, 198 10" stroke="#ffd60a" stroke-width="13" fill="none" stroke-linecap="round" filter="url(#brush)"/></svg></h2></div>
+            <span class="tool-tag">SCAMNOT <i>↗</i></span>
+          </div>
+          <div class="flow">
+            <div class="node start" data-rough="ellipse">a business applies</div>
+            <i class="arr" data-arrow></i>
+            <div class="node auto" data-rough="rect"><span class="txt">registry · directors · UBOs → ownership map</span></div>
+            <i class="arr" data-arrow></i>
+            <div class="node auto" data-rough="rect"><span class="txt">sanctions · PEP · adverse media</span></div>
+            <i class="arr" data-arrow></i>
+            <div class="node auto" data-rough="rect"><span class="txt">stated business vs public evidence</span></div>
+            <i class="arr" data-arrow></i>
+            <div class="node human" data-rough="decision" data-ink="#e4161b">is the red flag material?</div>
+            <i class="arr" data-arrow></i>
+            <div class="node end" data-rough="ellipse">approve · EDD · escalate · reject</div>
+          </div>
+          <div class="answer">an evidence-backed onboarding decision</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="m-arrow m2"><svg data-marrow></svg>ongoing monitoring throws alerts</div>
+
+    <!-- 03 SAR GENERATOR -->
+    <div class="slot slot-c" style="--d:.9s">
+      <a class="zone" data-zone="C" style="--tilt:-.8deg" href="https://sar-draft-automation.vercel.app/" target="_blank" rel="noopener" aria-label="03 Alert to SAR — open SAR Generator">
+        <div class="burst"></div><div class="paper-wrap"><div class="paper"></div></div>
+        <span class="tape t1"></span><span class="tape t2"></span>
+        <span class="pop">open <b>SAR generator</b> ↗</span><span class="live">live tool!</span>
+        <div class="content">
+          <div class="zone-head">
+            <div><div class="num">03</div>
+              <h2 class="zone-title">Alert → SAR/STR<svg class="hl" viewBox="0 0 200 18" preserveAspectRatio="none"><path pathLength="1" d="M2 9 C 70 3, 110 17, 198 9" stroke="#ffd60a" stroke-width="13" fill="none" stroke-linecap="round" filter="url(#brush)"/></svg></h2></div>
+            <span class="tool-tag">SAR GENERATOR <i>↗</i></span>
+          </div>
+          <div class="flow">
+            <div class="node start" data-rough="ellipse">alert or referral hits the queue</div>
+            <i class="arr" data-arrow></i>
+            <div class="node human" data-rough="decision" data-ink="#e4161b">legitimate explanation?<span class="who">yes → document &amp; close</span></div>
+            <i class="arr" data-arrow></i>
+            <div class="node auto" data-rough="rect"><span class="txt">typology · fact vs inference vs uncertainty</span></div>
+            <i class="arr" data-arrow></i>
+            <div class="node auto" data-rough="rect"><span class="txt">SAR / STR narrative draft</span></div>
+            <i class="arr" data-arrow></i>
+            <div class="node human" data-rough="decision" data-ink="#e4161b">human QA → MLRO: submit · reject · rework</div>
+            <i class="arr" data-arrow></i>
+            <div class="node end" data-rough="ellipse">record outcome &amp; lessons</div>
+          </div>
+          <div class="answer">a defensible outcome, SAR filed or not</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="m-arrow m3"><svg data-marrow></svg>↺ lessons feed back into policy &amp; rules</div>
+  </main>
+</div>
+
+<script>
+(() => {
+  const NS = "http://www.w3.org/2000/svg", INK = "#141414", RED = "#e4161b", YEL = "#ffd60a";
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const FRAMES = 3; let frame = 0;
+  const stage = document.getElementById("stage"), diagram = document.getElementById("diagram");
+
+  /* ---------- fit the whole stage into the window ---------- */
+  const W = 1440, H = 820;
+  function fit(){
+    const iw = innerWidth, ih = innerHeight;
+    if (iw >= 900 && ih >= 480){
+      document.body.classList.add("fit"); document.documentElement.classList.add("fit");
+      // scale by height, stretch the logical width to fill the window
+      let s = ih / H;
+      if (iw / s < 1280) s = iw / 1280;          // too narrow for that height: scale by width instead
+      const Wl = Math.min(iw / s, 2400);          // logical stage width
+      const g = Wl > 1700 ? 110 : 78;             // gap between tool panels
+      const zw = (Wl - 296 - 16 - 2 * g) / 3;
+      stage.style.setProperty("--W", Wl + "px");
+      stage.style.setProperty("--zw", zw + "px");
+      stage.style.setProperty("--g", g + "px");
+      document.getElementById("cycle").setAttribute("viewBox", `0 0 ${Wl} ${H}`);
+      stage.style.transform = `translate(${(iw - Wl * s) / 2}px, ${(ih - H * s) / 2}px) scale(${s})`;
+    } else {
+      document.body.classList.remove("fit"); document.documentElement.classList.remove("fit");
+      stage.style.transform = "";
+    }
+  }
+  fit(); addEventListener("resize", () => { fit(); relayout(); });
+
+  /* ---------- hand-drawn geometry ---------- */
+  function rng(seed){ let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  const J = (r, a) => (r() * 2 - 1) * a;
+  function line(r, x1, y1, x2, y2, j){
+    const dx = x2 - x1, dy = y2 - y1, len = Math.hypot(dx, dy) || 1, ux = dx / len, uy = dy / len, os = 2 + r() * 5;
+    const sx = x1 - ux * os * r() + J(r, j * .6), sy = y1 - uy * os * r() + J(r, j * .6);
+    const ex = x2 + ux * os * r() + J(r, j * .6), ey = y2 + uy * os * r() + J(r, j * .6);
+    const mx = (sx + ex) / 2 - uy * J(r, j * 1.4), my = (sy + ey) / 2 + ux * J(r, j * 1.4);
+    return `M${sx.toFixed(1)} ${sy.toFixed(1)} Q${mx.toFixed(1)} ${my.toFixed(1)} ${ex.toFixed(1)} ${ey.toFixed(1)}`;
+  }
+  function poly(r, pts, j, passes = 2){ let d = ""; for (let p = 0; p < passes; p++) for (let i = 0; i < pts.length; i++){ const a = pts[i], b = pts[(i + 1) % pts.length]; d += line(r, a[0], a[1], b[0], b[1], j) + " "; } return d; }
+  function smooth(pts){
+    let d = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
+    for (let i = 0; i < pts.length - 1; i++){
+      const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+      d += ` C${(p1[0] + (p2[0] - p0[0]) / 6).toFixed(1)} ${(p1[1] + (p2[1] - p0[1]) / 6).toFixed(1)} ${(p2[0] - (p3[0] - p1[0]) / 6).toFixed(1)} ${(p2[1] - (p3[1] - p1[1]) / 6).toFixed(1)} ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`;
+    }
+    return d;
+  }
+  function ellipse(r, cx, cy, rx, ry){ let d = ""; for (let p = 0; p < 2; p++){ const pts = [], n = 26, st = r() * Math.PI * 2, turn = Math.PI * 2 * (1.05 + r() * .12); for (let i = 0; i <= n; i++){ const t = st + turn * i / n, k = 1 + J(r, .035); pts.push([cx + Math.cos(t) * rx * k, cy + Math.sin(t) * ry * k]); } d += smooth(pts) + " "; } return d; }
+  function arrowHead(r, x, y, ang, s){ const a1 = ang + Math.PI * .82 + J(r, .12), a2 = ang - Math.PI * .82 + J(r, .12); return line(r, x, y, x + Math.cos(a1) * s, y + Math.sin(a1) * s, 1.2) + " " + line(r, x, y, x + Math.cos(a2) * s, y + Math.sin(a2) * s, 1.2); }
+  function burstPts(r, cx, cy, R, rIn, n, jit){ const pts = []; for (let i = 0; i < n * 2; i++){ const t = i / (n * 2) * Math.PI * 2, rad = (i % 2 ? rIn : R) * (1 + J(r, jit)); pts.push([cx + Math.cos(t) * rad, cy + Math.sin(t) * rad]); } return pts; }
+  const mk = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const boil = [];
+  const reg = (el, frames) => { const e = { el, frames }; boil.push(e); el.setAttribute("d", frames[frame % frames.length]); return e; };
+  const setFrames = (e, frames) => { e.frames = frames; e.el.setAttribute("d", frames[frame % frames.length]); };
+
+  /* ---------- rough outlines ---------- */
+  let seedBase = 11;
+  function drawStar(svg, seed){
+    const p = mk("path", { fill: "none", stroke: RED, "stroke-width": 4.2, "stroke-linecap": "round", filter: "url(#brush)" }, svg);
+    const fr = [];
+    for (let f = 0; f < FRAMES; f++){ const r = rng(seed + 31 + f * 13); let d = ""; for (let i = 0; i < 3; i++){ const a = i * Math.PI / 3 + J(r, .18) + .3, L = 9 + J(r, 1.5); d += line(r, -Math.cos(a) * L, -Math.sin(a) * L, Math.cos(a) * L, Math.sin(a) * L, .8) + " "; } fr.push(d); }
+    reg(p, fr);
+  }
+  function roughOverlay(el){
+    const shape = el.dataset.rough, ink = el.dataset.ink || INK;
+    const svg = mk("svg", { class: "rough", "aria-hidden": "true" }); el.prepend(svg);
+    const path = mk("path", { fill: "none", stroke: ink, "stroke-width": shape === "decision" ? 2.4 : 2, "stroke-linecap": "round", "stroke-linejoin": "round", filter: "url(#grit)" }, svg);
+    const entry = reg(path, [""]); const seed = seedBase += 97;
+    const draw = () => {
+      const w = el.offsetWidth, h = el.offsetHeight; if (!w) return;
+      svg.setAttribute("width", w); svg.setAttribute("height", h); svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+      const fr = [];
+      for (let f = 0; f < FRAMES; f++){
+        const r = rng(seed + f * 7919), j = Math.min(3, 1.2 + w * .008);
+        if (shape === "ellipse") fr.push(ellipse(r, w / 2, h / 2, w / 2 - 2, h / 2 - 1));
+        else if (shape === "decision"){ const k = Math.min(18, h * .45); fr.push(poly(r, [[0, h / 2], [k, 1], [w - k, 1], [w, h / 2], [w - k, h - 1], [k, h - 1]], j)); }
+        else fr.push(poly(r, [[1, 1], [w - 1, 1], [w - 1, h - 1], [1, h - 1]], j));
+      }
+      setFrames(entry, fr);
+    };
+    draw(); new ResizeObserver(draw).observe(el);
+    if (shape === "decision"){ const s = mk("svg", { class: "star", viewBox: "-12 -12 24 24", "aria-hidden": "true" }); el.appendChild(s); drawStar(s, seed); }
+  }
+  document.querySelectorAll("[data-rough]").forEach(roughOverlay);
+  document.querySelectorAll("[data-star]").forEach((s, i) => { s.setAttribute("viewBox", "-12 -12 24 24"); s.style.overflow = "visible"; drawStar(s, 500 + i); });
+
+  document.querySelectorAll("[data-arrow]").forEach((el, i) => {
+    const svg = mk("svg", { viewBox: "0 0 26 20", width: 26, height: 20, "aria-hidden": "true" }); svg.style.overflow = "visible"; el.appendChild(svg);
+    const p = mk("path", { fill: "none", stroke: INK, "stroke-width": 2.1, "stroke-linecap": "round" }, svg);
+    const fr = []; for (let f = 0; f < FRAMES; f++){ const r = rng(900 + i * 17 + f * 101); fr.push(line(r, 13 + J(r, 2), 1, 13 + J(r, 2), 17, 1.4) + " " + arrowHead(r, 13, 18, Math.PI / 2, 7)); }
+    reg(p, fr);
+  });
+  document.querySelectorAll("[data-marrow]").forEach((svg, i) => {
+    svg.setAttribute("viewBox", "0 0 40 54");
+    const p = mk("path", { fill: "none", stroke: RED, "stroke-width": 5, "stroke-linecap": "round", filter: "url(#brush)" }, svg);
+    const fr = []; for (let f = 0; f < FRAMES; f++){ const r = rng(1300 + i * 7 + f * 53); fr.push(line(r, 20, 3, 20 + J(r, 3), 46, 3) + " " + arrowHead(r, 20, 48, Math.PI / 2, 14)); }
+    reg(p, fr);
+  });
+
+  /* ---------- torn paper & comic bursts ---------- */
+  function tornClip(el, seed, step = 16){
+    const draw = () => {
+      const w = el.offsetWidth, h = el.offsetHeight; if (!w) return; const r = rng(seed), pts = [];
+      for (let x = 0; x <= w; x += step) pts.push([x + J(r, 3), J(r, 2.2) + 1.5]);
+      for (let y = step; y <= h; y += step) pts.push([w - 1.5 + J(r, 2.2), y + J(r, 3)]);
+      for (let x = w; x >= 0; x -= step) pts.push([x + J(r, 3), h - 1.5 + J(r, 2.2)]);
+      for (let y = h; y >= step; y -= step) pts.push([1.5 + J(r, 2.2), y + J(r, 3)]);
+      el.style.clipPath = `polygon(${pts.map(p => `${p[0].toFixed(1)}px ${p[1].toFixed(1)}px`).join(",")})`;
+    };
+    draw(); new ResizeObserver(draw).observe(el);
+  }
+  function burstClip(el, seed, n = 22){
+    const draw = () => {
+      const w = el.offsetWidth, h = el.offsetHeight; if (!w) return; const r = rng(seed), pts = [];
+      for (let i = 0; i < n * 2; i++){ const t = i / (n * 2) * Math.PI * 2, out = i % 2 === 0, k = out ? 1 + J(r, .04) : .84 + J(r, .03); pts.push([w / 2 + Math.cos(t) * w / 2 * k, h / 2 + Math.sin(t) * h / 2 * k]); }
+      el.style.clipPath = `polygon(${pts.map(p => `${p[0].toFixed(1)}px ${p[1].toFixed(1)}px`).join(",")})`;
+    };
+    draw(); new ResizeObserver(draw).observe(el);
+  }
+  document.querySelectorAll(".zone").forEach((z, i) => { tornClip(z.querySelector(".paper"), 40 + i * 13); burstClip(z.querySelector(".burst"), 70 + i * 29); });
+  document.querySelectorAll(".lburst").forEach((b, i) => burstClip(b, 300 + i * 11, 16));
+  tornClip(document.getElementById("railPaper"), 999, 18);
+
+  /* ---------- hub starburst ---------- */
+  (() => {
+    const svg = document.getElementById("hubBurst");
+    const fill = mk("path", { fill: RED }, svg);
+    const out = mk("path", { fill: "none", stroke: INK, "stroke-width": 4, "stroke-linejoin": "round", "stroke-linecap": "round", filter: "url(#grit)" }, svg);
+    const ff = [], of = [];
+    for (let f = 0; f < FRAMES; f++){ const r = rng(222 + f * 17), pts = burstPts(r, 150, 150, 148, 106, 14, .07); ff.push("M" + pts.map(p => p.map(v => v.toFixed(1)).join(" ")).join(" L") + " Z"); of.push(poly(r, pts, 1.6, 1)); }
+    reg(fill, ff); reg(out, of);
+  })();
+
+  /* ---------- title scribble ---------- */
+  (() => {
+    const svg = document.getElementById("titleScribble");
+    const p = mk("path", { fill: "none", stroke: YEL, "stroke-width": 11, "stroke-linecap": "round", filter: "url(#brush)", opacity: .9 }, svg);
+    const f1 = [], f2 = [];
+    for (let f = 0; f < FRAMES; f++){
+      const r = rng(77 + f * 5), pts = [];
+      for (let i = 0; i <= 56; i++){ const t = i / 56; pts.push([20 + t * 860 + Math.sin(t * 24) * 30 + J(r, 3), 70 + Math.cos(t * 24) * 62 + J(r, 3)]); }
+      f1.push(smooth(pts));
+    }
+    reg(p, f1);
+  })();
+
+  /* ---------- cycle arrows (fit mode) ---------- */
+  const cyc = document.getElementById("cycle");
+  const mkLabel = (html, r) => { const d = document.createElement("div"); d.className = "cycle-label"; d.innerHTML = html; d.style.setProperty("--r", r + "deg"); diagram.appendChild(d); return d; };
+  const L1 = mkLabel("controls<br>define<br><em>onboarding</em>", -3);
+  const L2 = mkLabel("monitoring<br>throws<br><em>alerts</em>", 3);
+  const L3 = mkLabel("lessons feed back into <em>policy &amp; rules</em> ↺", -2);
+  const arrows = [0, 1, 2].map(i => {
+    const col = i === 2 ? RED : INK;
+    return [reg(mk("path", { fill: "none", stroke: col, "stroke-width": 5, "stroke-linecap": "round", filter: "url(#brush)", pathLength: 1, class: "cy-body" }, cyc), [""]),
+            reg(mk("path", { fill: "none", stroke: col, "stroke-width": 4.6, "stroke-linecap": "round", filter: "url(#brush)" }, cyc), [""])];
+  });
+  const q = (r, a, c, b) => { let d = ""; for (let p = 0; p < 2; p++) d += `M${(a[0] + J(r, 2)).toFixed(1)} ${(a[1] + J(r, 2)).toFixed(1)} Q${(c[0] + J(r, 6)).toFixed(1)} ${(c[1] + J(r, 6)).toFixed(1)} ${(b[0] + J(r, 2)).toFixed(1)} ${(b[1] + J(r, 2)).toFixed(1)} `; return d; };
+  function layoutCycle(){
+    if (!document.body.classList.contains("fit")) return;
+    const box = el => ({ l: el.offsetLeft, t: el.offsetTop, w: el.offsetWidth, h: el.offsetHeight, get r(){ return this.l + this.w }, get b(){ return this.t + this.h }, get cx(){ return this.l + this.w / 2 } });
+    const A = box(document.querySelector(".slot-a")), B = box(document.querySelector(".slot-b")), C = box(document.querySelector(".slot-c"));
+    const hub = document.querySelector(".slot-hub");
+    const y0 = A.t + 190, maxB = Math.max(A.b, B.b, C.b);
+    const ctrlY = Math.min(maxB + 150, 2 * 720 - maxB - 16);
+    const specs = [
+      { s: [A.r + 8, y0], c: [(A.r + B.l) / 2, y0 - 34], e: [B.l - 8, y0 + 4] },
+      { s: [B.r + 8, y0], c: [(B.r + C.l) / 2, y0 - 34], e: [C.l - 8, y0 + 4] },
+      { s: [C.cx, C.b + 12], c: [(A.cx + C.cx) / 2, ctrlY], e: [A.cx, A.b + 14] },
+    ];
+    specs.forEach((sp, i) => {
+      const fb = [], fh = [], ang = Math.atan2(sp.e[1] - sp.c[1], sp.e[0] - sp.c[0]);
+      for (let f = 0; f < FRAMES; f++){ const r = rng(3000 + i * 71 + f * 13); fb.push(q(r, sp.s, sp.c, sp.e)); fh.push(arrowHead(r, sp.e[0], sp.e[1], ang, i === 2 ? 20 : 14)); }
+      setFrames(arrows[i][0], fb); setFrames(arrows[i][1], fh);
+    });
+    L1.style.left = (A.r + B.l) / 2 + "px"; L1.style.top = (y0 - 80) + "px";
+    L2.style.left = (B.r + C.l) / 2 + "px"; L2.style.top = (y0 - 80) + "px";
+    const my = .25 * (C.b + 12) + .5 * ctrlY + .25 * (A.b + 14);
+    hub.style.left = (A.cx + C.cx) / 2 - 64 + "px"; hub.style.top = my - 64 + "px";
+    L3.style.left = (A.cx + (A.cx + C.cx) / 2) / 2 - 10 + "px"; L3.style.top = (my + 40) + "px";
+  }
+  const relayout = () => requestAnimationFrame(layoutCycle);
+  new ResizeObserver(relayout).observe(document.querySelector(".slot-a"));
+  addEventListener("load", relayout); document.fonts && document.fonts.ready.then(relayout);
+  relayout();
+  if (!reduce){
+    cyc.querySelectorAll(".cy-body").forEach((b, i) => { b.style.strokeDasharray = "1"; b.animate([{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], { duration: 650, delay: 1300 + i * 300, easing: "steps(7,end)", fill: "both" }); });
+    [L1, L2, L3].forEach((l, i) => l.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200, delay: 1700 + i * 300, easing: "steps(2)", fill: "backwards" }));
+  }
+
+  /* ---------- ruler ↔ diagram linking ---------- */
+  const zones = [...document.querySelectorAll(".zone")], layers = [...document.querySelectorAll(".layer")];
+  const light = ids => { diagram.classList.add("dim"); zones.forEach(z => z.classList.toggle("lit", ids.includes(z.dataset.zone))); };
+  const clear = () => { diagram.classList.remove("dim"); zones.forEach(z => z.classList.remove("lit")); layers.forEach(l => l.classList.remove("echo")); };
+  layers.forEach(l => {
+    const ids = (l.dataset.zones || "").split(",").filter(Boolean);
+    l.addEventListener("mouseenter", () => light(ids)); l.addEventListener("focus", () => light(ids));
+    l.addEventListener("mouseleave", clear); l.addEventListener("blur", clear);
+  });
+  zones.forEach(z => {
+    const on = () => { light([z.dataset.zone]); layers.forEach(l => l.classList.toggle("echo", (l.dataset.zones || "").split(",").includes(z.dataset.zone))); };
+    z.addEventListener("mouseenter", on); z.addEventListener("focus", on);
+    z.addEventListener("mouseleave", clear); z.addEventListener("blur", clear);
+  });
+
+  /* ---------- the boil ---------- */
+  if (!reduce) setInterval(() => { frame = (frame + 1) % FRAMES; for (const e of boil) if (e.frames.length > 1) e.el.setAttribute("d", e.frames[frame % e.frames.length]); }, 280);
+})();
+</script>
+</body>
+</html>
