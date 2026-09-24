@@ -278,6 +278,7 @@ body.fit .slot-c .pop{right:auto;left:-14px;top:-44px}
                 <li class="n"><b>—</b><span>quality assurance</span></li>
                 <li class="n"><b>—</b><span>independent testing &amp; audit</span></li>
               </ul>
+              <div class="note">LLM extraction, read-only. Compare text is AI-reproduced, not a true diff.</div>
               <div class="go">open <em>Policy Reader</em> ↗</div>
             </div>
           </a>
@@ -321,6 +322,7 @@ body.fit .slot-c .pop{right:auto;left:-14px;top:-44px}
                 <li class="h"><b>✱</b><span>approve · restrict · reject · exit</span></li>
                 <li class="n"><b>—</b><span>ongoing review</span></li>
               </ul>
+              <div class="note">AI agent: read-only web search, human verdict.</div>
               <div class="go">open <em>Scamnot</em> ↗</div>
             </div>
           </a>
@@ -342,6 +344,7 @@ body.fit .slot-c .pop{right:auto;left:-14px;top:-44px}
                 <li class="n"><b>—</b><span>transaction monitoring</span></li>
                 <li class="n"><b>—</b><span>source of funds / wealth</span></li>
               </ul>
+              <div class="note">AI agent: read-only web search, human verdict.</div>
               <div class="go">open <em>Scamnot</em> ↗</div>
             </div>
           </a>
@@ -351,7 +354,7 @@ body.fit .slot-c .pop{right:auto;left:-14px;top:-44px}
             <div class="seg"><div class="lburst"></div><div class="lpaper"></div><div class="lin">
               <div class="lrow"><span class="lnum">5</span><span class="lname">Investigation &amp; reporting</span></div>
               <div class="ltiny">triage · evidence · disposition · SAR/STR · MLRO · FIU</div>
-              <span class="ltag">SAR GENERATOR <i>↗</i></span>
+              <span class="ltag">SAR DRAFT AUTOMATION <i>↗</i></span>
             </div></div>
             <div class="fly">
               <h3>5 · Investigation &amp; reporting</h3>
@@ -363,7 +366,8 @@ body.fit .slot-c .pop{right:auto;left:-14px;top:-44px}
                 <li class="h"><b>✱</b><span>MLRO decision</span></li>
                 <li class="n"><b>—</b><span>alert triage queue · FIU submission</span></li>
               </ul>
-              <div class="go">open <em>SAR Generator</em> ↗</div>
+              <div class="note">Workflow + one LLM call. Drafts only: no agent, no filing decision.</div>
+              <div class="go">open <em>SAR Draft Automation</em> ↗</div>
             </div>
           </a>
         </li>
@@ -465,17 +469,17 @@ body.fit .slot-c .pop{right:auto;left:-14px;top:-44px}
 
     <div class="m-arrow m2"><svg data-marrow></svg>ongoing monitoring throws alerts</div>
 
-    <!-- 03 SAR GENERATOR -->
+    <!-- 03 SAR DRAFT AUTOMATION -->
     <div class="slot slot-c" style="--d:.9s">
-      <a class="zone" data-zone="C" style="--tilt:-.8deg" href="https://sar-draft-automation.vercel.app/" target="_blank" rel="noopener" aria-label="03 Alert to SAR — open SAR Generator">
+      <a class="zone" data-zone="C" style="--tilt:-.8deg" href="https://sar-draft-automation.vercel.app/" target="_blank" rel="noopener" aria-label="03 Alert to SAR — open SAR Draft Automation">
         <div class="burst"></div><div class="paper-wrap"><div class="paper"></div></div>
         <span class="tape t1"></span><span class="tape t2"></span>
-        <span class="pop">open <b>SAR generator</b> ↗</span><span class="live">live tool!</span>
+        <span class="pop">open <b>SAR draft automation</b> ↗</span><span class="live">live tool!</span>
         <div class="content">
           <div class="zone-head">
             <div><div class="num">03</div>
               <h2 class="zone-title">Alert → SAR/STR<svg class="hl" viewBox="0 0 200 18" preserveAspectRatio="none"><path pathLength="1" d="M2 9 C 70 3, 110 17, 198 9" stroke="#ffd60a" stroke-width="13" fill="none" stroke-linecap="round" filter="url(#brush)"/></svg></h2></div>
-            <span class="tool-tag">SAR GENERATOR <i>↗</i></span>
+            <span class="tool-tag">SAR DRAFT<br>AUTOMATION <i>↗</i></span>
           </div>
           <div class="flow">
             <div class="node start" data-rough="ellipse">alert or referral hits the queue</div>

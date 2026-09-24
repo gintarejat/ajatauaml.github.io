@@ -1076,7 +1076,7 @@ main{top:calc(var(--nav) + 6px)}
         <div class="pc-top"><span class="pnum">02</span><span class="status st-live"><span class="pip"></span>Cleared · Beta Live</span></div>
         <h3>SAR Draft Automation — AI-Assisted SAR Drafting</h3>
         <p>Six-step workflow from alert triage to a draft SAR narrative and PDF. The AI writes the first draft; export stays locked until the officer has reviewed it and ticked a four-point checklist. The filing decision is left to the officer.</p>
-        <div class="ptags"><span class="pt">JavaScript</span><span class="pt">Claude API</span><span class="pt">SAR/STR</span><span class="pt">Human-in-loop</span></div>
+        <div class="ptags"><span class="pt">JavaScript</span><span class="pt">Claude API</span><span class="pt">LLM-assisted drafting</span><span class="pt">SAR/STR</span><span class="pt">Human-in-loop</span></div>
       </div>
       <div class="pc rv" style="--acc:var(--olive-light);--i:3" data-key="dao1" role="button" tabindex="0" aria-label="Open case study: PesaPlay DAO, Documentation Working Group Lead">
         <span class="arrow">↗</span>
@@ -1089,14 +1089,14 @@ main{top:calc(var(--nav) + 6px)}
         <span class="arrow">↗</span>
         <div class="pc-top"><span class="pnum">04</span><span class="status st-build"><span class="pip"></span>Cleared · Beta Live</span></div>
         <h3>Policy Reader — Compliance Document Analyser</h3>
-        <p>Compares policy and regulation versions and extracts every rule and threshold, so reviewers can check controls against current requirements.</p>
-        <div class="ptags"><span class="pt">React</span><span class="pt">Claude API</span><span class="pt">Rule extraction</span><span class="pt">Policy comparison</span></div>
+        <p>An LLM compares two policy versions and extracts rules and thresholds into a searchable view: a first pass for reviewers, who check material changes against the originals.</p>
+        <div class="ptags"><span class="pt">React</span><span class="pt">Claude API</span><span class="pt">LLM extraction</span><span class="pt">Policy comparison</span></div>
       </div>
       <div class="pc rv" style="--acc:var(--amber);--i:5" data-key="build2" role="button" tabindex="0" aria-label="Open case study: Scamnot, KYB and OSINT screening">
         <span class="arrow">↗</span>
         <div class="pc-top"><span class="pnum">05</span><span class="status st-build"><span class="pip"></span>Cleared · Beta Live</span></div>
         <h3>Scamnot — KYB &amp; OSINT Screening</h3>
-        <p>An AI agent searches the web across seven areas (registry, address, website, people, contact methods, adverse media) and flags each one, <b>with source links for every finding</b>. The verdict is a human decision.</p>
+        <p>An AI agent searches the web across seven areas (registry, address, website, people, contact methods, adverse media) and flags each one, <b>with source links for each finding</b> to open and check. The verdict is a human decision.</p>
         <div class="ptags"><span class="pt">JavaScript</span><span class="pt">Claude API</span><span class="pt">AI agent</span><span class="pt">KYB</span><span class="pt">OSINT</span></div>
       </div>
       <div class="pc rv" style="--acc:var(--coral);--i:6" data-key="build3" role="button" tabindex="0" aria-label="Open case study: Anti Financial Crime Knowledge Base">
@@ -1443,7 +1443,7 @@ var projects = {
   live1: {
     title: "SAR Draft Automation — AI-Assisted SAR Drafting",
     badge: "live", badgeText: "Beta Version Live",
-    meta: [{k:"Stack",v:"JavaScript · React · Claude API · jsPDF"},{k:"Version",v:"Beta v1.0"},{k:"Type",v:"RegTech Automation"},{k:"Status",v:"Live"}],
+    meta: [{k:"Stack",v:"JavaScript · React · Claude API · jsPDF"},{k:"Version",v:"Beta v1.0"},{k:"Type",v:"Workflow automation · LLM-assisted drafting"},{k:"Status",v:"Live"}],
     overview: "<p>Covers part of the workflow FIS and Anthropic announced in 2026 for their Financial Crimes AI Agent: SAR narrative drafting with human-in-the-loop review. Built independently, from the practitioner side.</p><p>A six-step workflow: <strong>triage</strong> (pick an alert), <strong>subject</strong> and <strong>transactions</strong> (entered by the officer or loaded as synthetic test data), <strong>generate</strong> (one Claude API call drafts a three-paragraph Statement of Facts from exactly those inputs), <strong>review</strong> (the officer edits the draft and ticks a four-point checklist; export stays locked until all four are ticked) and <strong>export</strong> (a ten-section PDF).</p><p>The AI drafts; it does not decide. The filing decision and its rationale are left blank in the PDF for the officer and MLRO to complete.</p>",
     approach: "<p>Built to show the division of labour I would use in a real team: facts come from the officer, the AI turns them into readable prose, and every consequential step stays human. All sample data is synthetic.</p><p><strong>Next on the roadmap (not built yet):</strong> a transaction-monitoring rule-tuning lab in SQL that feeds real alerts into the workflow, and fuzzy sanctions screening against the OFAC SDN list.</p>",
     tags: ["JavaScript","Claude API","SAR Drafting","Human-in-Loop","PDF Export","RegTech"],
@@ -1465,7 +1465,7 @@ var projects = {
   build1: {
     title: "Policy Reader — Compliance Document Analyser",
     badge: "build", badgeText: "Beta Version Live",
-    meta: [{k:"Stack",v:"React · Claude API"},{k:"Use",v:"AML & crypto policies"},{k:"Version",v:"Beta v1.0 · demo scope"},{k:"Status",v:"Live"}],
+    meta: [{k:"Stack",v:"React · Claude API"},{k:"Type",v:"AI-assisted document analysis · read-only"},{k:"Version",v:"Beta v1.0 · demo scope"},{k:"Status",v:"Live"}],
     overview: "<p>Dual-mode AI tool for compliance teams built on the Claude API.</p><p><strong>Compare Mode:</strong> paste two versions of a compliance policy and get the changed sections side by side, with the changed phrases highlighted: added rules, removed thresholds, modified obligations. The text shown is reproduced by the AI, so material changes are checked against the originals.</p><p><strong>Analyse Mode:</strong> paste a compliance document and it extracts the rules, thresholds and restrictions into a searchable, keyword-grouped list, each tagged with its section. No more ctrl+F through 80-page PDFs.</p>",
     approach: "<p>Built to solve a real workflow problem: compliance teams waste hours manually comparing policy versions and hunting for specific rules. This tool gives a first pass on both in seconds. Beta v1.0 — demo scope: built as a working proof of the workflow, not a maintained product.</p>",
     tags: ["React","Claude API","Rule Extraction","Policy Comparison","Human Review","RegTech"],
@@ -1476,8 +1476,8 @@ var projects = {
   build2: {
     title: "Scamnot — KYB & OSINT Screening",
     badge: "build", badgeText: "Draft Version Live",
-    meta: [{k:"Type",v:"KYB & OSINT investigation agent"},{k:"Stack",v:"JavaScript · Claude API · web search"},{k:"Version",v:"Beta v1.0"},{k:"Status",v:"Live"}],
-    overview: "<p>An OSINT investigation agent built on the Claude API with live web search. You enter the information you were given about a company; the agent searches seven areas (job listing, registry, address, website, people, contact methods, adverse media) and returns what it found <strong>with source links for every finding</strong>, so each claim can be checked rather than taken on trust.</p><p>Nothing is concluded automatically. The verdict is a human sign-off, and the full investigation exports to PDF as the record. Sanctions and PEP list screening are not built yet.</p>",
+    meta: [{k:"Type",v:"AI agent · read-only OSINT gathering"},{k:"Stack",v:"JavaScript · Claude API · web search"},{k:"Version",v:"Beta v1.0"},{k:"Status",v:"Live"}],
+    overview: "<p>An OSINT investigation agent built on the Claude API with live web search. You enter the information you were given about a company; the agent searches seven areas (job listing, registry, address, website, people, contact methods, adverse media) and returns what it found <strong>with source links for each finding</strong>, so each claim can be checked rather than taken on trust. The links are written by the model, so they are opened before a finding is relied on.</p><p>Nothing is concluded automatically. The verdict is a human sign-off, and the full investigation exports to PDF as the record. Sanctions and PEP list screening are not built yet.</p>",
     approach: "<p>The idea came out of a real case — a crypto job offer that turned out to be a scam. Working it by hand made the point that the checks were the same KYB checks I ran at the bank: registration, ownership, footprint, red flags. Just slower.</p><p>So the tool does the evidence gathering and leaves the judgement where it belongs. Sourced findings in, human decision out.</p>",
     tags: ["KYB","OSINT","Sourced Evidence","Human-in-Loop","PDF Reporting"],
     tagStyles: ["am","am","tl","",""],
