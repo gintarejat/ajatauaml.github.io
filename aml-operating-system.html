@@ -164,6 +164,7 @@ body.fit .slot-c .pop{right:auto;left:-14px;top:-44px}
 .flow{display:flex;flex-direction:column;align-items:stretch}
 .node{position:relative;padding:7px 11px 6px;font-size:13px;line-height:1.28;text-align:center}
 .node.start,.node.end{padding:10px 18px 9px}
+.node .txt.nbt,.zone:hover .node .txt.nbt,.zone.lit .node .txt.nbt{background:var(--grey-l)!important;color:#6b665d;outline:1.5px dashed var(--grey);outline-offset:1px;padding:0 3px}
 .node.auto .txt{background:linear-gradient(100deg,transparent 0 2%,rgba(255,214,10,.55) 2% 97%,transparent 97%);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:0 3px}
 .node.human{padding:9px 24px 8px}
 .node .who{font-family:"Permanent Marker",cursive;color:var(--red);font-size:12px;display:block;margin-top:1px}
@@ -270,8 +271,8 @@ body.fit .slot-c .pop{right:auto;left:-14px;top:-44px}
             <div class="fly">
               <h3>1 · Governance</h3>
               <ul>
-                <li class="y"><b>✓</b><span>policy → control mapping</span></li>
-                <li class="y"><b>✓</b><span>an owner for every control</span></li>
+                <li class="y"><b>✓</b><span>extract &amp; classify policy rules</span></li>
+                <li class="n"><b>—</b><span>policy → control mapping · owners</span></li>
                 <li class="h"><b>✱</b><span>MLRO / escalation authority</span></li>
                 <li class="n"><b>—</b><span>three lines of defence</span></li>
                 <li class="n"><b>—</b><span>quality assurance</span></li>
@@ -313,8 +314,8 @@ body.fit .slot-c .pop{right:auto;left:-14px;top:-44px}
             <div class="fly">
               <h3>3 · Customer lifecycle</h3>
               <ul>
-                <li class="y"><b>✓</b><span>identify entity, directors &amp; UBOs</span></li>
-                <li class="y"><b>✓</b><span>ownership &amp; control structure</span></li>
+                <li class="y"><b>✓</b><span>identify entity &amp; directors</span></li>
+                <li class="n"><b>—</b><span>UBO &amp; ownership structure</span></li>
                 <li class="y"><b>✓</b><span>stated purpose vs public evidence</span></li>
                 <li class="h"><b>✱</b><span>risk rating &amp; CDD / EDD call</span></li>
                 <li class="h"><b>✱</b><span>approve · restrict · reject · exit</span></li>
@@ -334,10 +335,10 @@ body.fit .slot-c .pop{right:auto;left:-14px;top:-44px}
             <div class="fly">
               <h3>4 · Control systems</h3>
               <ul>
-                <li class="y"><b>✓</b><span>sanctions screening</span></li>
-                <li class="y"><b>✓</b><span>PEP screening</span></li>
                 <li class="y"><b>✓</b><span>adverse media</span></li>
-                <li class="y"><b>✓</b><span>KYB / UBO checks</span></li>
+                <li class="y"><b>✓</b><span>KYB registry check</span></li>
+                <li class="n"><b>—</b><span>sanctions screening</span></li>
+                <li class="n"><b>—</b><span>PEP screening</span></li>
                 <li class="n"><b>—</b><span>transaction monitoring</span></li>
                 <li class="n"><b>—</b><span>source of funds / wealth</span></li>
               </ul>
@@ -356,7 +357,7 @@ body.fit .slot-c .pop{right:auto;left:-14px;top:-44px}
               <h3>5 · Investigation &amp; reporting</h3>
               <ul>
                 <li class="y"><b>✓</b><span>evidence → structured case facts</span></li>
-                <li class="y"><b>✓</b><span>typology · fact vs inference vs uncertainty</span></li>
+                <li class="y"><b>✓</b><span>typology &amp; red flags</span></li>
                 <li class="y"><b>✓</b><span>SAR / STR narrative draft</span></li>
                 <li class="h"><b>✱</b><span>disposition &amp; escalation</span></li>
                 <li class="h"><b>✱</b><span>MLRO decision</span></li>
@@ -417,11 +418,11 @@ body.fit .slot-c .pop{right:auto;left:-14px;top:-44px}
             <i class="arr" data-arrow></i>
             <div class="node auto" data-rough="rect"><span class="txt">extract &amp; classify obligations</span></div>
             <i class="arr" data-arrow></i>
-            <div class="node auto" data-rough="rect"><span class="txt">map → control · process · owner · evidence</span></div>
+            <div class="node" data-rough="rect"><span class="txt nbt">map → control · process · owner · evidence</span></div>
             <i class="arr" data-arrow></i>
             <div class="node human" data-rough="decision" data-ink="#e4161b">interpreted right? missing · weak · ambiguous?</div>
             <i class="arr" data-arrow></i>
-            <div class="node auto" data-rough="rect"><span class="txt">prioritise gaps by risk &amp; effort</span></div>
+            <div class="node" data-rough="rect"><span class="txt nbt">prioritise gaps by risk &amp; effort</span></div>
             <i class="arr" data-arrow></i>
             <div class="node end" data-rough="ellipse">control matrix · gap memo · action list</div>
           </div>
@@ -447,9 +448,9 @@ body.fit .slot-c .pop{right:auto;left:-14px;top:-44px}
           <div class="flow">
             <div class="node start" data-rough="ellipse">a business applies</div>
             <i class="arr" data-arrow></i>
-            <div class="node auto" data-rough="rect"><span class="txt">registry · directors · UBOs → ownership map</span></div>
+            <div class="node auto" data-rough="rect"><span class="txt">registry · directors</span> <span class="txt nbt">UBOs → ownership map</span></div>
             <i class="arr" data-arrow></i>
-            <div class="node auto" data-rough="rect"><span class="txt">sanctions · PEP · adverse media</span></div>
+            <div class="node auto" data-rough="rect"><span class="txt">adverse media</span> <span class="txt nbt">sanctions · PEP lists</span></div>
             <i class="arr" data-arrow></i>
             <div class="node auto" data-rough="rect"><span class="txt">stated business vs public evidence</span></div>
             <i class="arr" data-arrow></i>
@@ -481,7 +482,7 @@ body.fit .slot-c .pop{right:auto;left:-14px;top:-44px}
             <i class="arr" data-arrow></i>
             <div class="node human" data-rough="decision" data-ink="#e4161b">legitimate explanation?<span class="who">yes → document &amp; close</span></div>
             <i class="arr" data-arrow></i>
-            <div class="node auto" data-rough="rect"><span class="txt">typology · fact vs inference vs uncertainty</span></div>
+            <div class="node auto" data-rough="rect"><span class="txt">typology &amp; red flags</span></div>
             <i class="arr" data-arrow></i>
             <div class="node auto" data-rough="rect"><span class="txt">SAR / STR narrative draft</span></div>
             <i class="arr" data-arrow></i>
