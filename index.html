@@ -1089,7 +1089,7 @@ main{top:calc(var(--nav) + 6px)}
         <span class="arrow">↗</span>
         <div class="pc-top"><span class="pnum">04</span><span class="status st-build"><span class="pip"></span>Cleared · Beta Live</span></div>
         <h3>Policy Reader — Compliance Document Analyser</h3>
-        <p>An LLM compares two policy versions and extracts rules and thresholds into a searchable view: a first pass for reviewers, who check material changes against the originals.</p>
+        <p>Compares two policy versions with a word-level diff done by code, so every highlighted change is from the source text, and uses an LLM to extract rules and thresholds into a searchable view.</p>
         <div class="ptags"><span class="pt">React</span><span class="pt">Claude API</span><span class="pt">LLM extraction</span><span class="pt">Policy comparison</span></div>
       </div>
       <div class="pc rv" style="--acc:var(--amber);--i:5" data-key="build2" role="button" tabindex="0" aria-label="Open case study: Scamnot, KYB and OSINT screening">
@@ -1466,7 +1466,7 @@ var projects = {
     title: "Policy Reader — Compliance Document Analyser",
     badge: "build", badgeText: "Beta Version Live",
     meta: [{k:"Stack",v:"React · Claude API"},{k:"Type",v:"AI-assisted document analysis · read-only"},{k:"Version",v:"Beta v1.0 · demo scope"},{k:"Status",v:"Live"}],
-    overview: "<p>Dual-mode AI tool for compliance teams built on the Claude API.</p><p><strong>Compare Mode:</strong> paste two versions of a compliance policy and get the changed sections side by side, with the changed phrases highlighted: added rules, removed thresholds, modified obligations. The text shown is reproduced by the AI, so material changes are checked against the originals.</p><p><strong>Analyse Mode:</strong> paste a compliance document and it extracts the rules, thresholds and restrictions into a searchable, keyword-grouped list, each tagged with its section. No more ctrl+F through 80-page PDFs.</p>",
+    overview: "<p>Dual-mode AI tool for compliance teams built on the Claude API.</p><p><strong>Compare Mode:</strong> paste two versions of a compliance policy and get the changed sections side by side, with every deleted and added word highlighted: added rules, removed thresholds, modified obligations. The diff is computed by code from the pasted text, so nothing on screen is AI-reproduced; the AI only writes a one-line summary of each change.</p><p><strong>Analyse Mode:</strong> paste a compliance document and it extracts the rules, thresholds and restrictions into a searchable, keyword-grouped list, each tagged with its section. No more ctrl+F through 80-page PDFs.</p>",
     approach: "<p>Built to solve a real workflow problem: compliance teams waste hours manually comparing policy versions and hunting for specific rules. This tool gives a first pass on both in seconds. Beta v1.0 — demo scope: built as a working proof of the workflow, not a maintained product.</p>",
     tags: ["React","Claude API","Rule Extraction","Policy Comparison","Human Review","RegTech"],
     tagStyles: ["am","am","tl","tl","","",""],
